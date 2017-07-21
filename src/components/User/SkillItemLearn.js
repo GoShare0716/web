@@ -7,8 +7,7 @@ import {
     CardTitle,
     Button,
     ButtonGroup,
-    CardFooter,
-    Badge
+    CardFooter
 } from 'reactstrap';
 
 export default class SkillLearnItem extends Component {

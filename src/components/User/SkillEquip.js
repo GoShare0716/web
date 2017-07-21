@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import {
     Col,
-    Card,
-    CardText,
-    CardBlock,
-    CardTitle,
-    Button,
-    ButtonGroup,
-    CardFooter,
-    Badge
+    Card
 } from 'reactstrap';
 
 import './SkillEquip.css';

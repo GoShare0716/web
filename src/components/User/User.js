@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import {Row, Col, Button, ButtonGroup, Table} from 'reactstrap';
+import {Row, Button} from 'reactstrap';
 
 import './User.css';
-import WorkshopListItem from '../Workshop/WorkshopListItem';
-import SkillListItem from '../Skill/SkillListItem';
 import WorkshopItem from './WorkshopItem';
-
 import SkillItemLearn from './SkillItemLearn';
 import SkillItemEquip from './SkillItemEquip';
 import SkillEquip from './SkillEquip';

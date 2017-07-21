@@ -5,8 +5,6 @@ import {
     CardText,
     CardBlock,
     CardTitle,
-    CardFooter,
-    Progress,
     Badge,
     Col
 } from 'reactstrap';
