@@ -21,3 +21,8 @@
 .form-group {
     margin-bottom: 2rem !important;
 }
+
+.card-intro {
+    height: 6rem !important;
+    overflow: hidden;
+}

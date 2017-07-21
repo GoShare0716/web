@@ -22,7 +22,7 @@ export default class WorkshopItem extends Component {
                     <Badge className="workshop-list-item-tag" color="primary">已達標</Badge>
                     <CardBlock>
                         <CardTitle>HTML/CSS 網頁前端入門</CardTitle>
-                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                        <CardText className="card-intro">Some quick example text to build on the card title and make up the bulk of the card's content. lorem</CardText>
                     </CardBlock>
                 </Card>
             </Col>
