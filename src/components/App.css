@@ -1,0 +1,23 @@
+.full {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner, .outer {
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.inner {
+    max-width: 740px;
+}
+
+.outer {
+    max-width: 1000px;
+}
+
+.form-group {
+    margin-bottom: 2rem !important;
+}
