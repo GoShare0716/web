@@ -53,9 +53,34 @@ class Skill extends Component {
                             </InputGroupAddon>
                             <div className="vote-content w-100">
                                 <div className="vote-progress"></div>
-                                <div className="vote-title">Hello, World</div>
-
-
+                                <div className="vote-title">我想入門</div>
+                            </div>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputGroupAddon>
+                                <Input addon type="checkbox" aria-label="Checkbox for following text input"/>
+                            </InputGroupAddon>
+                            <div className="vote-content w-100">
+                                <div className="vote-progress"></div>
+                                <div className="vote-title">我想入門</div>
+                            </div>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputGroupAddon>
+                                <Input addon type="checkbox" aria-label="Checkbox for following text input"/>
+                            </InputGroupAddon>
+                            <div className="vote-content w-100">
+                                <div className="vote-progress"></div>
+                                <div className="vote-title">我想入門</div>
+                            </div>
+                        </InputGroup>
+                        <InputGroup>
+                            <InputGroupAddon>
+                                <Input addon type="checkbox" aria-label="Checkbox for following text input"/>
+                            </InputGroupAddon>
+                            <div className="vote-content w-100">
+                                <div className="vote-progress"></div>
+                                <div className="vote-title">我想入門</div>
                             </div>
                         </InputGroup>
                     </div>
