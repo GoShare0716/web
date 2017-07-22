@@ -11,7 +11,7 @@ class App extends Component {
             <div>
                 <NavBar/>
                 <div className="full">
-                    <SkillList/>
+                    <User/>
                 </div>
             </div>
         );
