@@ -12,6 +12,8 @@ import {
     InputGroup, InputGroupAddon, Input,
 } from 'reactstrap';
 
+import Vote from '../Utils/Vote';
+
 // <div className="d-flex align-items-center">
 //     <span className="hidden-md-down">
 //         <img className="mr-1" width="32px" src="https://scontent.ftpe3-2.fna.fbcdn.net/v/t1.0-1/c0.25.64.64/p64x64/18622427_1859238271067164_3869120362467491071_n.jpg?oh=84e54bc64012d3fdcfb2236d78ca96b8&oe=59FF9727" alt="fb"/>
@@ -30,8 +32,6 @@ import {
 //     <span></span>
 // </div>
 
-import './Skill.css';
-
 class Skill extends Component {
     render() {
         let {isOpen, toggle} = this.props;
@@ -47,42 +47,8 @@ class Skill extends Component {
                         <h1 className="mb-3">C/C++</h1>
                         <span>C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。</span>
                         <hr className="w-100 my-3"/>
-                        <InputGroup>
-                            <InputGroupAddon>
-                                <Input addon type="checkbox" aria-label="Checkbox for following text input"/>
-                            </InputGroupAddon>
-                            <div className="vote-content w-100">
-                                <div className="vote-progress"></div>
-                                <div className="vote-title">我想入門</div>
-                            </div>
-                        </InputGroup>
-                        <InputGroup>
-                            <InputGroupAddon>
-                                <Input addon type="checkbox" aria-label="Checkbox for following text input"/>
-                            </InputGroupAddon>
-                            <div className="vote-content w-100">
-                                <div className="vote-progress"></div>
-                                <div className="vote-title">我想入門</div>
-                            </div>
-                        </InputGroup>
-                        <InputGroup>
-                            <InputGroupAddon>
-                                <Input addon type="checkbox" aria-label="Checkbox for following text input"/>
-                            </InputGroupAddon>
-                            <div className="vote-content w-100">
-                                <div className="vote-progress"></div>
-                                <div className="vote-title">我想入門</div>
-                            </div>
-                        </InputGroup>
-                        <InputGroup>
-                            <InputGroupAddon>
-                                <Input addon type="checkbox" aria-label="Checkbox for following text input"/>
-                            </InputGroupAddon>
-                            <div className="vote-content w-100">
-                                <div className="vote-progress"></div>
-                                <div className="vote-title">我想入門</div>
-                            </div>
-                        </InputGroup>
+                        <Vote />
+                        <Vote className="mt-2" />
                     </div>
                     <div className="embed-responsive embed-responsive-16by9">
                         <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/qAeybdD5UoQ"></iframe>
