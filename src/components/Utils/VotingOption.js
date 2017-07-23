@@ -7,7 +7,7 @@ class VotingOption extends Component {
 
     render() {
         return (
-            <InputGroup>
+            <InputGroup className="vote">
                 <InputGroupAddon>
                     <Input addon type="checkbox"/>
                 </InputGroupAddon>

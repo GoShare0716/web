@@ -1,5 +1,9 @@
+.vote > .input-group-addon {
+    width: 39px;
+}
+
 .vote-content {
-    width: calc(100% - 72px - 0.25rem);
+    width: calc(100% - 73px - 0.25rem);
     margin-right: 0.25rem;
     height: 2.125rem;
     background-color: #fff;
@@ -9,7 +13,7 @@
 
 @media (min-width: 992px) {
     .vote-content {
-        width: calc(100% - 144px - 0.25rem);
+        width: calc(100% - 145px - 0.25rem);
     }
 }
 

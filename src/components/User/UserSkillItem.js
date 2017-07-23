@@ -10,7 +10,7 @@ import {
     CardFooter
 } from 'reactstrap';
 
-export default class SkillEquipItem extends Component {
+export default class UserSkillItem extends Component {
     render() {
         return (
             <Col className="mb-3" xs={12} md={6} lg={4}>
@@ -21,8 +21,8 @@ export default class SkillEquipItem extends Component {
                     </CardBlock>
                     <CardFooter className="d-flex justify-content-between">
                         <ButtonGroup size="sm">
-                            <Button color="primary">入門</Button>
-                            <Button>精進</Button>
+                            <Button color="primary">我想入門</Button>
+                            <Button>我想精進</Button>
                         </ButtonGroup>
                         <Button size="sm" color="danger">刪除</Button>
                     </CardFooter>

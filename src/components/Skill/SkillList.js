@@ -2,11 +2,27 @@ import React, {Component} from 'react';
 import {ListGroup, Row} from 'reactstrap';
 import MultipleFilter from '../Utils/MultipleFilter';
 import SkillListItem from './SkillListItem';
+import Skill from './Skill';
 
 const categoryOptions = ['全部', '科技', '美學'];
 const orderingOptions = ['熱門', '字母順序'];
 
-export default class Skill extends Component {
+export default class SkillList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: true
+        };
+
+        this.modalToggle = this.modalToggle.bind(this);
+    }
+
+    modalToggle() {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }
+
     render() {
         return (
             <div className="outer">
@@ -16,10 +32,12 @@ export default class Skill extends Component {
                 <MultipleFilter title="順序" options={orderingOptions} defaultIndex={0}/>
                 </ListGroup>
                 <Row>
-                    <SkillListItem/>
-                    <SkillListItem/>
+                    <SkillListItem modalToggle={this.modalToggle}/>
+                    <SkillListItem modalToggle={this.modalToggle}/>
                 </Row>
+                <Skill isOpen={this.state.isOpen} toggle={this.modalToggle}/>
             </div>
+
         );
     }
 }

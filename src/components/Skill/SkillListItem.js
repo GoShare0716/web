@@ -9,29 +9,13 @@ import {
     ButtonGroup
 } from 'reactstrap';
 
-import Skill from './Skill';
 import './SkillListItem.css';
 
 export default class SkillListItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: true
-        };
-
-        this.toggle = this.toggle.bind(this);
-    }
-
-    toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
-    }
-
     render() {
         return (
             <Col className="mb-3" xs={12} lg={6}>
-                <Card onClick={this.toggle} className="skill-list-item">
+                <Card onClick={this.props.modalToggle} className="skill-list-item">
                     <CardBlock>
                         <CardTitle>C/C++</CardTitle>
                         <CardText>C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。</CardText>
@@ -43,7 +27,6 @@ export default class SkillListItem extends Component {
                         </ButtonGroup>
                     </CardBlock>
                 </Card>
-                <Skill isOpen={this.state.isOpen} toggle={this.toggle}/>
             </Col>
         );
     }

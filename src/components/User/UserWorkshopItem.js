@@ -9,9 +9,9 @@ import {
     Col
 } from 'reactstrap';
 
-import './WorkshopItem.css';
+import './UserWorkshopItem.css';
 
-export default class WorkshopItem extends Component {
+export default class UserWorkshopItem extends Component {
     render() {
         return (
             <Col className="mb-3" xs={12} sm={6} lg={4}>
