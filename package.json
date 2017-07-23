@@ -5,10 +5,12 @@
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
     "react": "^15.3.0",
-    "react-bootstrap-typeahead": "^2.0.0-alpha.1",
     "react-dom": "^15.3.0",
+    "react-redux": "^5.0.5",
     "react-transition-group": "^1.1.2",
-    "reactstrap": "^4.8.0"
+    "reactstrap": "^4.8.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.10"
