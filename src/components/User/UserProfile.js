@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {
     Button,
     Modal,
-    ModalHeader,
     ModalBody,
     ModalFooter,
     Input,
@@ -15,7 +14,7 @@ class UserProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: true
+            isOpen: false
         };
 
         this.modalToggle = this.modalToggle.bind(this);

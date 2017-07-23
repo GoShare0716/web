@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Button} from 'reactstrap';
+import {Row} from 'reactstrap';
 
 import './User.css';
 import UserProfile from './UserProfile';

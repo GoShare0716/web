@@ -2,12 +2,8 @@ import React, {Component} from 'react';
 import {
     Col,
     Card,
-    Button,
-    ButtonGroup,
     Modal,
-    ModalHeader,
     ModalBody,
-    ModalFooter,
     Input
 } from 'reactstrap';
 import UserEquipItem from './UserEquipItem';

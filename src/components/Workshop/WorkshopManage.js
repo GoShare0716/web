@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Button, ButtonGroup, Table} from 'reactstrap';
+import {Button, ButtonGroup, Table} from 'reactstrap';
 export default class WorkshopManage extends Component {
     render() {
         return (

@@ -11,7 +11,7 @@ export default class SkillList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: true
+            isOpen: false
         };
 
         this.modalToggle = this.modalToggle.bind(this);
