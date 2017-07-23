@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -8,6 +9,8 @@ import {
     NavItem,
     NavLink
 } from 'reactstrap';
+
+import './NavBar.css';
 
 class NavBar extends Component {
     constructor(props) {
@@ -28,18 +31,23 @@ class NavBar extends Component {
     render() {
         return (
             <Navbar color="faded" light toggleable>
-                <NavbarToggler right onClick={this.navBarToggle}/>
-                <NavbarBrand href="/">reactstrap</NavbarBrand>
-                <Collapse isOpen={this.state.isOpen} navbar>
-                    <Nav className="ml-auto" navbar>
-                        <NavItem>
-                            <NavLink href="/components/">Components</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
-                        </NavItem>
-                    </Nav>
-                </Collapse>
+                <div className="nav-bar-container">
+                    <NavbarToggler right onClick={this.navBarToggle}/>
+                    <NavbarBrand tag={Link} to='/'>共學</NavbarBrand>
+                    <Collapse isOpen={this.state.isOpen} navbar>
+                        <Nav className="ml-auto" navbar>
+                            <NavItem>
+                                <NavLink tag={Link} to='/skill'>技能列表</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to='/workshop'>工作坊</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to='/workshop/create'>我要提案</NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
+                </div>
             </Navbar>
         );
     }

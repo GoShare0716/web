@@ -34,6 +34,8 @@ export default class SkillList extends Component {
                 <Row>
                     <SkillListItem modalToggle={this.modalToggle}/>
                     <SkillListItem modalToggle={this.modalToggle}/>
+                    <SkillListItem modalToggle={this.modalToggle}/>
+                    <SkillListItem modalToggle={this.modalToggle}/>
                 </Row>
                 <Skill isOpen={this.state.isOpen} toggle={this.modalToggle}/>
             </div>
