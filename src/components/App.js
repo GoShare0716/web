@@ -1,23 +1,36 @@
 import React, {Component} from 'react';
+
+import {history} from '../utils';
+import {Router, Route, Link} from 'react-router-dom';
+
 import NavBar from './NavBar/NavBar';
 import SkillList from './Skill/SkillList';
+import WorkshopCreate from './Workshop/WorkshopCreate';
 import WorkshopList from './Workshop/WorkshopList';
 import Workshop from './Workshop/Workshop';
-import WorkshopCreate from './Workshop/WorkshopCreate';
 import WorkshopUpdate from './Workshop/WorkshopUpdate';
 import WorkshopManage from './Workshop/WorkshopManage';
 import User from './User/User';
+
 import './App.css';
 
 class App extends Component {
     render() {
         return (
-            <div>
-                <NavBar/>
-                <div className="full">
-                    <SkillList/>
+            <Router history={history}>
+                <div>
+                    <NavBar/>
+                    <div className="full">
+                        <Route exact path="/" component={WorkshopList}/>
+                        <Route exact path="/skill" component={SkillList}/>
+                        <Route exact path="/workshop/create" component={WorkshopCreate}/>
+                        <Route exact path="/workshop" component={WorkshopList}/>
+                        <Route exact path="/workshop/:id" component={Workshop}/>
+                        <Route exact path="/workshop/:id/manage" component={WorkshopManage}/>
+                        <Route exact path="/user/" component={User}/>
+                    </div>
                 </div>
-            </div>
+            </Router>
         );
     }
 }
