@@ -4,12 +4,12 @@ import {
     Card,
     CardText,
     CardBlock,
-    CardTitle,
-    Button,
-    ButtonGroup
+    CardTitle    
 } from 'reactstrap';
 
 import './SkillListItem.css';
+
+import Vote from '../Utils/Vote';
 
 export default class SkillListItem extends Component {
     render() {
@@ -19,12 +19,7 @@ export default class SkillListItem extends Component {
                     <CardBlock>
                         <CardTitle>C/C++</CardTitle>
                         <CardText>C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。</CardText>
-                        <span className="text-muted">賴詰凱、張嘉軒和其他 36 人想學</span>
-                        <hr className="mt-1"/>
-                        <ButtonGroup size="sm">
-                            <Button>我想入門</Button>
-                            <Button>我想精進</Button>
-                        </ButtonGroup>
+                        <Vote col={1}/>
                     </CardBlock>
                 </Card>
             </Col>

@@ -1,3 +1,7 @@
+.vote-content:hover, .vote-checkbox:hover, .vote-checkbox>input:hover {
+    cursor: pointer;
+}
+
 .vote > .input-group-addon {
     width: 39px;
 }
@@ -19,7 +23,6 @@
 
 .vote-progress {
     height: 100%;
-    width: 30%;
     background-color: #e9ebee;
 }
 

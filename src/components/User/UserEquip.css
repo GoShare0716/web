@@ -1,3 +1,7 @@
+.user-skill-equip:hover {
+    cursor: pointer;
+}
+
 .user-skill-equip {
     height: 14.125rem;
     display: flex;

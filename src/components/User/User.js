@@ -30,24 +30,24 @@ export default class User extends Component {
                         <UserWorkshopItem/>
                     </Row>
                 </div>
-                <div className="user-attend">
+                <div className="user-learn">
                     <h3>我想學的技能</h3>
                     <hr/>
                     <Row>
-                        <UserSkillItem/>
-                        <UserSkillItem/>
-                        <UserSkillItem/>
-                        <UserSkillItem/>
+                        <UserSkillItem type="learn"/>
+                        <UserSkillItem type="learn"/>
+                        <UserSkillItem type="learn"/>
+                        <UserSkillItem type="learn"/>
                     </Row>
                 </div>
-                <div className="user-attend">
+                <div className="user-equip">
                     <h3>我會的技能</h3>
                     <hr/>
                     <Row>
-                        <UserSkillItem/>
-                        <UserSkillItem/>
-                        <UserSkillItem/>
-                        <UserSkillItem/>
+                        <UserSkillItem type="equip"/>
+                        <UserSkillItem type="equip"/>
+                        <UserSkillItem type="equip"/>
+                        <UserSkillItem type="equip"/>
                         <UserEquip/>
                     </Row>
                 </div>

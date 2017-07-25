@@ -5,9 +5,21 @@ class MultipleFilter extends Component {
     static defaultProps = {
         title: '分類',
         options: [
-            '全部', '科技', '美學'
+            ['全部', 'all'],
+            ['科技', 'technology'],
+            ['美學', 'aesthetics']
         ],
-        defaultIndex: 0
+        defaultOption: 'all',
+        optionOnClick: () => {}
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedOption: null
+        };
+
+        this.optionOnClick = this.optionOnClick.bind(this);
     }
 
     render() {
@@ -24,13 +36,20 @@ class MultipleFilter extends Component {
     }
 
     renderOptions() {
-        let {options, defaultIndex} = this.props;
-        return options.map((option, index) => {
-            let color = index === defaultIndex
+        let {options, defaultOption} = this.props;
+        return options.map(option => {
+            let color = (this.state.selectedOption || defaultOption) === option[1]
                 ? 'primary'
                 : 'link';
-            return <Button key={index} className="mr-1" size="sm" color={color}>{option}</Button>;
+            return <Button key={option[1]} onClick={e => this.optionOnClick(option[1])} className="mr-1" size="sm" color={color}>{option[0]}</Button>;
         });
+    }
+
+    optionOnClick(selectedOption) {
+        if (this.state.selectedOption !== selectedOption) {
+            this.props.optionOnClick(selectedOption);
+            this.setState({selectedOption});
+        }
     }
 
 }

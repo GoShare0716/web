@@ -3,9 +3,9 @@ import {ListGroup, InputGroup, Input, InputGroupButton, Row} from 'reactstrap';
 import MultipleFilter from '../Utils/MultipleFilter';
 import WorkshopListItem from './WorkshopListItem';
 
-const categoryOptions = ['全部', '科技', '美學'];
-const orderingOptions = ['熱門', '字母順序'];
-const stateOptions = ['全部', '調查中', '已達標', '已結束'];
+const categoryOptions = [['全部', 'all'], ['科技', 'technology'], ['美學', 'aesthetics']];
+const orderingOptions = [['熱門', 'hot'], ['最新', 'new'], ['最近', 'date']];
+const stateOptions = [['全部', 'all'], ['調查中', 'investigating'], ['已達標', 'reached'], ['已結束', 'over']];
 
 export default class Workshop extends Component {
     render() {
@@ -17,9 +17,9 @@ export default class Workshop extends Component {
                     <InputGroupButton color="primary">搜尋</InputGroupButton>
                 </InputGroup>
                 <ListGroup className="mb-3">
-                    <MultipleFilter title="分類" options={categoryOptions} defaultIndex={0}/>
-                    <MultipleFilter title="順序" options={orderingOptions} defaultIndex={0}/>
-                    <MultipleFilter title="狀態" options={stateOptions} defaultIndex={0}/>
+                    <MultipleFilter title="分類" options={categoryOptions} defaultOption={'all'}/>
+                    <MultipleFilter title="順序" options={orderingOptions} defaultOption={'hot'}/>
+                    <MultipleFilter title="狀態" options={stateOptions} defaultOption={'all'}/>
                 </ListGroup>
                 <Row>
                     <WorkshopListItem/>
