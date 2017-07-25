@@ -1,3 +1,7 @@
+.user-workshop-item:hover {
+    cursor: pointer;
+}
+
 .workshop-list-item-tag {
     font-size: 1rem !important;
     position: absolute;

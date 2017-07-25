@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {history} from '../../utils';
 import {
     Col,
     Card,
@@ -6,10 +7,11 @@ import {
     CardBlock,
     CardTitle,
     Button,
-    ButtonGroup,
     CardFooter
 } from 'reactstrap';
 import MultipleButton from '../Utils/MultipleButton';
+
+import './UserSkillItem.css';
 
 const learnOptions = [
         ['我想入門', 'basic'],
@@ -22,15 +24,16 @@ const learnOptions = [
 
 export default class UserSkillItem extends Component {
     static defaultProps = {
-        type: 'equip'
+        type: 'equip',
+        id: 5
     }
 
     render() {
-        let {type} = this.props;
+        let {type, id} = this.props;
         let options = type === 'learn' ? learnOptions : equipOptions;
         return (
             <Col className="mb-3" xs={12} md={6} lg={4}>
-                <Card>
+                <Card className="user-skill-item" onClick={e => history.replace(`/skill/${id}`)}>
                     <CardBlock>
                         <CardTitle>C/C++</CardTitle>
                         <CardText className="card-intro">C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。</CardText>
