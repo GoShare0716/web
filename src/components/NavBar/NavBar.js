@@ -43,7 +43,10 @@ class NavBar extends Component {
                                 <NavLink tag={Link} to='/workshop'>工作坊</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to='/workshop/create'>我要提案</NavLink>
+                                <NavLink tag={Link} to='/create-workshop'>我要提案</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to='/user/me'>個人資料</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
