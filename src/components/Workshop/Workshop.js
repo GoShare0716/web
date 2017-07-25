@@ -1,17 +1,23 @@
 import React, {Component} from 'react';
+import {history} from '../../utils';
 import {Jumbotron, Button} from 'reactstrap';
-
+import Profile from '../Utils/Profile';
 import './Workshop.css'
 
 export default class Workshop extends Component {
+    static defaultProps = {
+        id: 2
+    }
+
     render() {
+        let {id} = this.props;
+
         return (
             <div className="full workshop">
-                <div className="inner workshop-author">
-                    <img className="workshop-author-img" src="https://scontent-tpe1-1.xx.fbcdn.net/v/t31.0-8/14876496_1735976403393352_4070401399338628514_o.jpg?oh=0ff4f0965c69809a048ea68c7dfb5836&oe=59C71556" alt=""/>
-                    <h4>賴詰凱</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, in impedit ut dolores sint facere. Deserunt beatae voluptate natus architecto suscipit deleniti provident labore laboriosam! Sunt deserunt velit odit, sapiente.</p>
-                </div>
+                <Profile className="inner">
+                    <Button onClick={e => history.replace(`/workshop/${id}/update`)} className="mr-2">編輯</Button>
+                    <Button onClick={e => history.replace(`/workshop/${id}/manage`)}>管理</Button>
+                </Profile>
                 <img className="w-100 banner" src="https://placeholdit.imgix.net/~text?w=1080&h=540" alt=""/>
                 <div className="inner article">
                     <h1>開啟資料科學的學習大門 - R入門教學</h1>

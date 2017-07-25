@@ -47,7 +47,6 @@ export default class SkillList extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="outer">
                 <h1 className="mt-5 mb-3">技能列表</h1>

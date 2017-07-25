@@ -1,22 +1,22 @@
-.user-profile {
+.profile {
     text-align: center;
     margin: 3rem 0;
 }
 
-.user-profile-img {
+.profile-img {
     height: 100px;
     width: 100px;
     border-radius: 50%;
     margin: 0 0 1rem 0;
 }
 
-.user-profile ul {
+.profile ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.user-profile li {
+.profile li {
     display: inline-block;
     width: 6rem;
 }

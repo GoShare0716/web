@@ -1,5 +1,4 @@
 import createHistory from 'history/createBrowserHistory';
-import {matchPath} from 'react-router';
 const history = createHistory();
 
 history.listen(location => {

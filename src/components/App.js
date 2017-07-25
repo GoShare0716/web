@@ -27,6 +27,7 @@ class App extends Component {
                         <Route exact path="/workshop" component={WorkshopList}/>
                         <Route exact path="/workshop/:id" component={Workshop}/>
                         <Route exact path="/workshop/:id/manage" component={WorkshopManage}/>
+                        <Route exact path="/workshop/:id/update" component={WorkshopUpdate}/>
                         <Route exact path="/user/me" component={User}/>
                     </div>
                 </div>

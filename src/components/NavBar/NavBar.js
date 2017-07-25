@@ -9,7 +9,7 @@ import {
     NavItem,
     NavLink
 } from 'reactstrap';
-
+import NavBarAuth from './NavBarAuth';
 import './NavBar.css';
 
 class NavBar extends Component {
@@ -37,17 +37,15 @@ class NavBar extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink tag={Link} to='/skill'>技能列表</NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink tag={Link} to='/workshop'>工作坊</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to='/create-workshop'>我要提案</NavLink>
+                                <NavLink tag={Link} to='/skill'>技能列表</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to='/user/me'>個人資料</NavLink>
+                                <NavLink tag={Link} to='/create-workshop'>成為講者</NavLink>
                             </NavItem>
+                            <NavBarAuth/>
                         </Nav>
                     </Collapse>
                 </div>

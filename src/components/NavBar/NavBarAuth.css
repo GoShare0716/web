@@ -1,0 +1,13 @@
+.facebook-picture {
+    height: 36px !important;
+    width: 36px !important;
+    border-radius: 50% !important;
+    margin: auto 0 auto 0.5rem !important;
+    padding: 2px !important;
+    cursor: pointer !important;
+}
+
+.facebook-picture > img {
+    width: 100%;
+    border-radius: 50%;
+}
