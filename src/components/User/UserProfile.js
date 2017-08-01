@@ -5,10 +5,10 @@ import {
     Form,
     FormGroup,
     Label,
-    Input,
     Button
 } from 'reactstrap';
 import Profile from '../Utils/Profile';
+import RichTextBox from '../Utils/RichTextBox';
 import {Field, reduxForm} from 'redux-form';
 
 class UserProfile extends Component {
@@ -60,7 +60,7 @@ class UserProfile extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label>自我介紹</Label>
-                                <Field component="textarea" className="form-control" name="introduction" rows="5"/>
+                                <Field component={RichTextBox} name="introduction"/>                                
                             </FormGroup>
                             <Button color="primary" block type="submit">儲存</Button>
                         </Form>

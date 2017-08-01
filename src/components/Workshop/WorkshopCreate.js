@@ -4,7 +4,6 @@ import {
     Form,
     FormGroup,
     Label,
-    Input,
     Jumbotron
 } from 'reactstrap';
 import AddableText from '../Utils/AddableText';

@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
-import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import {Form, FormGroup, Label, Button} from 'reactstrap';
 import AddableText from '../Utils/AddableText';
+import RichTextBox from '../Utils/RichTextBox';
 import {Field, reduxForm} from 'redux-form';
 
 class WorkshopUpdate extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            text: ''
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(value) {
+        this.setState({text: value})
+        console.log(value)
     }
 
     handleSubmit(form) {
@@ -80,15 +90,15 @@ class WorkshopUpdate extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Label>簡介</Label>
-                        <Field component="textarea" className="form-control" name="description" rows="5"/>
+                        <Field component={RichTextBox} name="description"/>                        
                     </FormGroup>
                     <FormGroup>
                         <Label>詳細簡介</Label>
-                        <Field component="textarea" className="form-control" name="content" rows="10"/>
+                        <Field component={RichTextBox} name="content"/>                        
                     </FormGroup>
                     <FormGroup>
                         <Label>報名成功訊息</Label>
-                        <Field component="textarea" className="form-control" name="attendedMsg" rows="5"/>
+                        <Field component={RichTextBox} name="attendedMsg"/>
                     </FormGroup>
                     <Button color="primary" size="lg" block type="submit">儲存</Button>
                 </Form>
