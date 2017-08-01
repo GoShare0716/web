@@ -15,8 +15,8 @@ export default class Workshop extends Component {
         return (
             <div className="full workshop">
                 <Profile className="inner">
-                    <Button onClick={e => history.replace(`/workshop/${id}/update`)} className="mr-2">編輯</Button>
-                    <Button onClick={e => history.replace(`/workshop/${id}/manage`)}>管理</Button>
+                    <Button onClick={e => history.push(`/workshop/${id}/update`)} className="mr-2">編輯</Button>
+                    <Button onClick={e => history.push(`/workshop/${id}/manage`)}>管理</Button>
                 </Profile>
                 <img className="w-100 banner" src="https://placeholdit.imgix.net/~text?w=1080&h=540" alt=""/>
                 <div className="inner article">

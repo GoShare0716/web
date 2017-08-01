@@ -37,7 +37,7 @@ export default class SkillList extends Component {
         if (this.state.isOpen) {
             this.setState({
                 isOpen: true
-            }, e => history.replace('/skill'));
+            }, e => history.push('/skill'));
 
         } else {
             this.setState({

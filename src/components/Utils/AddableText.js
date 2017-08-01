@@ -4,8 +4,7 @@ import {Button, FormGroup, Label, Input} from 'reactstrap';
 export default class AddableText extends Component {
     static defaultProps = {
         title: '您的課程有任何先決條件嗎？',
-        answerPlaceHolder: '例如：您應該有使用電腦的初級能力',
-        onInputChange: (value) => {console.log(value)}
+        placeholder: '例如：您應該有使用電腦的初級能力'
     };
 
     constructor(props) {
@@ -15,7 +14,7 @@ export default class AddableText extends Component {
             values: ['']
         };
         this.addInput = this.addInput.bind(this);
-        this.onInputChange = this.onInputChange.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     addInput(e) {
@@ -32,15 +31,15 @@ export default class AddableText extends Component {
     renderInputs() {
         let inputArr = [];
         for (let i = 0; i < this.state.count; i++)
-            inputArr.push(<Input onChange={e => this.onInputChange(e.target.value, i)} key={i} className="mb-2" type="text" placeholder={this.props.answerPlaceHolder}/>);
+            inputArr.push(<Input onChange={e => this.onChange(e.target.value, i)} key={i} className="mb-2" type="text" placeholder={this.props.placeholder}/>);
         return inputArr;
     }
 
-    onInputChange(value, index) {
+    onChange(value, index) {
         let values = [...this.state.values];
         values[index] = value;
         this.setState({values});
-        this.props.onInputChange(values.filter(value => value !== ''));
+        this.props.input.onChange(values.filter(value => value !== ''));
     }
 
     render() {

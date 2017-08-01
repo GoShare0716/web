@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {
-    Button,
     Modal,
     ModalBody,
-    ModalFooter,
+    Form,
+    FormGroup,
+    Label,
     Input,
-    Label
+    Button
 } from 'reactstrap';
 import Profile from '../Utils/Profile';
+import {Field, reduxForm} from 'redux-form';
 
 class UserProfile extends Component {
     constructor(props) {
@@ -17,6 +19,7 @@ class UserProfile extends Component {
         };
 
         this.modalToggle = this.modalToggle.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     modalToggle() {
@@ -25,7 +28,12 @@ class UserProfile extends Component {
         });
     }
 
+    handleSubmit(form) {
+        console.log(form)
+    }
+
     render() {
+        const {handleSubmit} = this.props;
         return (
             <Profile>
                 <Button onClick={this.modalToggle}>編輯</Button>
@@ -36,21 +44,27 @@ class UserProfile extends Component {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="mb-3">
+                        <Form onSubmit={handleSubmit(this.handleSubmit)}>
                             <h4 className="mb-3">編輯個人檔案</h4>
-                            <Label>Email</Label>
-                            <Input className="mb-3" type="text"/>
-                            <Label>臉書網址</Label>
-                            <Input className="mb-3" type="text"/>
-                            <Label>個人頁面網址</Label>
-                            <Input className="mb-3" type="text"/>
-                            <Label>自我介紹</Label>
-                            <Input className="mb-3" type="textarea" rows="4"/>
-                        </div>
+                            <FormGroup>
+                                <Label>Email</Label>
+                                <Field component="input" className="form-control" type="text" name="email"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>臉書網址</Label>
+                                <Field component="input" className="form-control" type="text" name="fbUrl"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>個人頁面網址</Label>
+                                <Field component="input" className="form-control" type="text" name="personalWebUrl"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label>自我介紹</Label>
+                                <Field component="textarea" className="form-control" name="introduction" rows="5"/>
+                            </FormGroup>
+                            <Button color="primary" block type="submit">儲存</Button>
+                        </Form>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.modalToggle}>送出</Button>
-                    </ModalFooter>
                 </Modal>
             </Profile>
         );
@@ -58,4 +72,4 @@ class UserProfile extends Component {
 
 }
 
-export default UserProfile;
+export default reduxForm({form: 'userProfile'})(UserProfile)

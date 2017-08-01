@@ -17,7 +17,7 @@ export default class SkillListItem extends Component {
         let {id, title, intro} = this.props;
         return (
             <Col className="mb-3" xs={12} lg={6}>
-                <Card onClick={e => history.replace(`/skill/${id}`)} className="skill-list-item">
+                <Card onClick={e => history.push(`/skill/${id}`)} className="skill-list-item">
                     <CardBlock>
                         <CardTitle>{title}</CardTitle>
                         <CardText className="card-intro">{intro}</CardText>

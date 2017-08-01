@@ -33,7 +33,7 @@ export default class UserSkillItem extends Component {
         let options = type === 'learn' ? learnOptions : equipOptions;
         return (
             <Col className="mb-3" xs={12} md={6} lg={4}>
-                <Card className="user-skill-item" onClick={e => history.replace(`/skill/${id}`)}>
+                <Card className="user-skill-item" onClick={e => history.push(`/skill/${id}`)}>
                     <CardBlock>
                         <CardTitle>C/C++</CardTitle>
                         <CardText className="card-intro">C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。C是一種通用的程式語言，廣泛用於系統軟體與應用軟體的開發。</CardText>
