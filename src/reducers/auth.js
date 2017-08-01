@@ -1,6 +1,6 @@
 const defaultState = {
     authenticated: false
-}
+};
 
 export function auth(state = defaultState, action) {
     switch (action.type) {

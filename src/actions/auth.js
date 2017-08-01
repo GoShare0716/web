@@ -1,5 +1,6 @@
 /*global FB*/
 import {login as loginFromApi} from '../api/auth';
+import {deliverAlert} from './alert';
 
 export const facebookLogin = () => dispatch => {
     FB.getLoginStatus(response => {
@@ -46,6 +47,7 @@ const login = (dispatch, user) => {
     localStorage.setItem('accessToken', '123456');
     localStorage.setItem('thumbnailUrl', user.thumbnailUrl);
     dispatch({type: '@AUTH/LOGIN_SUCCESS'});
+    dispatch(deliverAlert('登入成功', 'success'));
     // loginFromApi(user).then(res => {
     //     console.log(res);
     // ).catch(err => {
