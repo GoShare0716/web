@@ -1,0 +1,38 @@
+.dropzone:after {
+  padding-top: 50%;
+  display: block;
+  content: '';
+}
+
+.dropzone:hover {
+    cursor: pointer;
+}
+
+.dropzone {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.25rem dashed #ccc;
+    border-radius: 0.25rem;
+    width: 100%;
+    color: #666;
+    overflow: hidden;
+}
+
+.dropzone-active {
+    border-color: #5cb85c;
+}
+
+.dropzone-reject {
+    border-color: #d9534f;
+}
+
+.dropzone-image {
+    width: 100%;
+    position: absolute;
+}
+
+.dropzone-message {
+    position: absolute;
+}

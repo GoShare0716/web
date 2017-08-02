@@ -6,6 +6,7 @@ import {facebookLogin, facebookLogout} from '../../actions/auth';
 
 import {
     NavItem,
+    NavLink,
     Dropdown,
     DropdownToggle,
     DropdownMenu,
@@ -37,23 +38,34 @@ class NavBarAuth extends Component {
         console.log(authenticated);
         if (authenticated) {
             return (
-                <NavItem className="my-auto hidden-xs-down">
-                    <Dropdown isOpen={this.state.isOpen} toggle={this.dropdownToggle}>
-                        <DropdownToggle className="facebook-picture">
-                            <img src={localStorage.getItem('thumbnailUrl')} alt="fb"/>
-                        </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem tag={Link} to='/user/me'>個人頁面</DropdownItem>
-                            <DropdownItem onClick={facebookLogout}>登出</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </NavItem>
+                <div>
+                    <NavItem className="hidden-xs-down">
+                        <Dropdown isOpen={this.state.isOpen} toggle={this.dropdownToggle}>
+                            <DropdownToggle className="facebook-picture">
+                                <img src={localStorage.getItem('thumbnailUrl')} alt="fb"/>
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem tag={Link} to='/user/me'>個人頁面</DropdownItem>
+                                <DropdownItem onClick={facebookLogout}>登出</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                    </NavItem>
+                    <NavItem className="hidden-sm-up">
+                        <NavLink tag={Link} to='/user/me'>個人頁面</NavLink>
+                    </NavItem>
+                    <NavItem className="hidden-sm-up">
+                        <NavLink href="" onClick={facebookLogout}>登出</NavLink>
+                    </NavItem>
+                </div>
             );
         }
         return (
             <div>
-                <NavItem>
+                <NavItem className="hidden-xs-down">
                     <Button color="primary" onClick={facebookLogin}>登入</Button>
+                </NavItem>
+                <NavItem className="hidden-sm-up">                    
+                    <NavLink href="" onClick={facebookLogin}>登入</NavLink>
                 </NavItem>
             </div>
         );

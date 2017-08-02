@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
-import {Form, FormGroup, Label, Button} from 'reactstrap';
+import {
+    Form,
+    FormGroup,
+    Label,
+    Button
+} from 'reactstrap';
 import AddableText from '../Utils/AddableText';
 import RichTextBox from '../Utils/RichTextBox';
+import ImageUpload from '../Utils/ImageUpload';
 import {Field, reduxForm} from 'redux-form';
 
 class WorkshopUpdate extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            text: ''
-        }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(value) {
-        this.setState({text: value})
-        console.log(value)
     }
 
     handleSubmit(form) {
@@ -51,11 +48,7 @@ class WorkshopUpdate extends Component {
                     <Field component={AddableText} name="requirement" title="您的工作坊有任何先決條件嗎？" placeholder="例如：您需要修過微積分一"/>
                     <Field component={AddableText} name="targetAudience" title="您的目標學生是誰？" placeholder="例如：任何對攝影有興趣的人"/>
                     <Field component={AddableText} name="goal" title="他們將會學習什麼內容？在您的工作坊結束時，學生將能夠..." placeholder="例如：建立自己的個人網站"/>
-                    <FormGroup>
-                        <Label>封面圖片連結</Label>
-                        <Field component="input" className="form-control" type="url" name="imageUrl"/>
-                        <img className="mt-2 w-100" src="https://placeholdit.imgix.net/~text?w=1080&h=540" alt=""/>
-                    </FormGroup>
+                    <Field component={ImageUpload} name="imageUrl"/>
                     <FormGroup>
                         <Label>開始時間</Label>
                         <Field component="input" className="form-control" type="datetime-local" name="startDatetime"/>
@@ -90,11 +83,11 @@ class WorkshopUpdate extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Label>簡介</Label>
-                        <Field component={RichTextBox} name="description"/>                        
+                        <Field component={RichTextBox} name="description"/>
                     </FormGroup>
                     <FormGroup>
                         <Label>詳細簡介</Label>
-                        <Field component={RichTextBox} name="content"/>                        
+                        <Field component={RichTextBox} name="content"/>
                     </FormGroup>
                     <FormGroup>
                         <Label>報名成功訊息</Label>
