@@ -21,8 +21,8 @@ class App extends Component {
             <Router history={history}>
                 <div>
                     <NavBar/>
-                    <NavBarAlert/>
                     <LoadingBar/>
+                    <NavBarAlert/>                    
                     <div className="full">
                         <Route exact path="/" component={WorkshopList}/>
                         <Route path="/skill" component={SkillList}/>
