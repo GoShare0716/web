@@ -22,6 +22,11 @@ class UserProfile extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        const {initialize, profile} = nextProps;
+        initialize(profile);
+    }
+
     modalToggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -60,7 +65,7 @@ class UserProfile extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label>自我介紹</Label>
-                                <Field component={RichTextBox} name="introduction"/>                                
+                                <Field component={RichTextBox} name="introduction"/>
                             </FormGroup>
                             <Button color="primary" block type="submit">儲存</Button>
                         </Form>
@@ -69,7 +74,6 @@ class UserProfile extends Component {
             </Profile>
         );
     }
-
 }
 
 export default reduxForm({form: 'userProfile'})(UserProfile)
