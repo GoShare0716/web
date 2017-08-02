@@ -5059,6 +5059,12 @@ react-quill@v1.0.0:
     lodash "^4.17.4"
     quill "^1.2.6"
 
+react-redux-loading-bar@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/react-redux-loading-bar/-/react-redux-loading-bar-2.9.2.tgz#f0e604ee35af5ecb25addb10bf24ca3d478c95a8"
+  dependencies:
+    prop-types "^15.5.6"
+
 react-redux@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.5.tgz#f8e8c7b239422576e52d6b7db06439469be9846a"

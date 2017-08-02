@@ -4,6 +4,7 @@ import {Router, Route} from 'react-router-dom';
 
 import NavBar from './NavBar/NavBar';
 import NavBarAlert from './NavBar/NavBarAlert';
+import LoadingBar from 'react-redux-loading-bar';
 import SkillList from './Skill/SkillList';
 import WorkshopCreate from './Workshop/WorkshopCreate';
 import WorkshopList from './Workshop/WorkshopList';
@@ -21,6 +22,7 @@ class App extends Component {
                 <div>
                     <NavBar/>
                     <NavBarAlert/>
+                    <LoadingBar/>
                     <div className="full">
                         <Route exact path="/" component={WorkshopList}/>
                         <Route path="/skill" component={SkillList}/>
