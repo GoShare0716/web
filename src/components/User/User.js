@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {viewUser} from '../../actions/user';
 import {Row} from 'reactstrap';
 
 import './User.css';
@@ -7,11 +10,17 @@ import UserWorkshopItem from './UserWorkshopItem';
 import UserSkillItem from './UserSkillItem';
 import UserEquip from './UserEquip';
 
-export default class User extends Component {
+class User extends Component {
+    componentDidMount() {
+        this.props.viewUser();
+    }
+
     render() {
+        const {profile} = this.props.user;
+        console.log(profile);
         return (
             <div className="outer user">
-                <UserProfile/>
+                <UserProfile profile={profile}/>
                 <div className="user-propose">
                     <h3>我主辦的工作坊</h3>
                     <hr/>
@@ -56,3 +65,16 @@ export default class User extends Component {
         );
     }
 }
+
+function mapStateToProps({user}) {
+    return {user};
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        viewUser
+    }, dispatch);
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);
