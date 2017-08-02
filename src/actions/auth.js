@@ -49,8 +49,10 @@ const callGraphAPI = (dispatch, accessToken) => {
 }
 
 const login = (dispatch, user) => {
+    localStorage.setItem('fbId', user.fbId);
     localStorage.setItem('accessToken', '123456');
     localStorage.setItem('thumbnailUrl', user.thumbnailUrl);
+    localStorage.setItem('role', 'member');
     dispatch({type: '@AUTH/LOGIN_SUCCESS'});
     dispatch(deliverAlert('登入成功', 'success'));
     dispatch(hideLoading());
