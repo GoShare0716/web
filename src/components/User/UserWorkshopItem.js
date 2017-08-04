@@ -10,8 +10,6 @@ import {
     Col
 } from 'reactstrap';
 
-import './UserWorkshopItem.css';
-
 export default class UserWorkshopItem extends Component {
     static defaultProps = {
         id: 5
