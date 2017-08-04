@@ -2,9 +2,27 @@
     cursor: pointer;
 }
 
+.workshop-list-item-title {
+    font-weight: bold;
+    line-height: 1.22;
+    height: 3.625rem;
+}
+
 .workshop-list-item-tag {
     font-size: 1rem !important;
     position: absolute;
     top: 0.5rem;
-    right: 0.5rem;
+    left: -0.25rem;
+}
+
+.workshop-list-item-price-deleted {
+    color: #636c72;
+    text-decoration: line-through;
+    font-size: 0.75rem;
+}
+
+.workshop-list-item-price {
+    color: #0275d8;
+    font-weight: bold;
+    font-size: 1.25rem;
 }

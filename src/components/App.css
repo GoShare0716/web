@@ -26,3 +26,29 @@
     height: 6rem !important;
     overflow: hidden;
 }
+
+.card-image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-image-container:after {
+    padding-top: 50%;
+    display: block;
+    content: '';
+}
+
+.card-image {
+    width: 100%;
+    position: absolute;
+    -webkit-transition: width 0.36s;
+    transition: width 0.36s;
+}
+
+.card-image:hover {
+    width: 125%;
+}

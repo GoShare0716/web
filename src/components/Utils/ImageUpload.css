@@ -1,7 +1,7 @@
 .dropzone:after {
-  padding-top: 50%;
-  display: block;
-  content: '';
+    padding-top: 50%;
+    display: block;
+    content: '';
 }
 
 .dropzone:hover {
