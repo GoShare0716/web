@@ -35,7 +35,6 @@ class NavBarAuth extends Component {
     render() {
         const {facebookLogin, facebookLogout} = this.props;
         const {authenticated} = this.props.auth;
-        console.log(authenticated);
         if (authenticated) {
             return (
                 <div>
@@ -64,7 +63,7 @@ class NavBarAuth extends Component {
                 <NavItem className="hidden-xs-down">
                     <Button color="primary" onClick={facebookLogin}>登入</Button>
                 </NavItem>
-                <NavItem className="hidden-sm-up">                    
+                <NavItem className="hidden-sm-up">
                     <NavLink href="" onClick={facebookLogin}>登入</NavLink>
                 </NavItem>
             </div>

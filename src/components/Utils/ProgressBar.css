@@ -1,0 +1,24 @@
+.progress-bar-container {
+    position: relative;
+    width: 100%;
+    height: 1rem;
+    background-color: #AAA;
+    border-radius: 0.25rem;
+}
+
+.progress-bar-bar {
+    position: absolute;
+    height: 100%;
+    border-radius: 0.25rem;
+}
+
+.progress-bar-text {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.75rem;
+    color: white;
+}
