@@ -1,6 +1,6 @@
 /*global FB*/
 import {showLoading, hideLoading} from 'react-redux-loading-bar';
-import {login as loginFromApi} from '../api/auth';
+// import {login as loginFromApi} from '../api/auth';
 import {deliverAlert} from './alert';
 
 export const facebookLogin = () => dispatch => {
