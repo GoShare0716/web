@@ -7,11 +7,38 @@ import {ListGroup, InputGroup, Input, InputGroupButton, Row} from 'reactstrap';
 import MultipleFilter from '../Utils/MultipleFilter';
 import WorkshopListItem from './WorkshopListItem';
 
-const categoryOptions = [['全部', 'all'], ['科技', 'technology'], ['美學', 'aesthetics']];
-const orderingOptions = [['熱門', 'hot'], ['最新', 'new'], ['最近', 'date']];
-const stateOptions = [['全部', 'all'], ['調查中', 'investigating'], ['已達標', 'reached'], ['已結束', 'over']];
+const categoryOptions = [
+    [
+        '全部', 'all'
+    ],
+    [
+        '科技', 'technology'
+    ],
+    ['美學', 'aesthetics']
+];
+const orderingOptions = [
+    [
+        '熱門', 'hot'
+    ],
+    [
+        '最新', 'new'
+    ],
+    ['最近', 'date']
+];
+const stateOptions = [
+    [
+        '全部', 'all'
+    ],
+    [
+        '調查中', 'investigating'
+    ],
+    [
+        '已達標', 'reached'
+    ],
+    ['已結束', 'over']
+];
 
-class Workshop extends Component {
+class WorkshopList extends Component {
     componentWillMount() {
         this.props.listWorkshop();
 
@@ -50,4 +77,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Workshop);
+export default connect(mapStateToProps, mapDispatchToProps)(WorkshopList);

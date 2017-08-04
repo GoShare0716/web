@@ -9,7 +9,7 @@ class VotingOption extends Component {
     static defaultProps = {
         index: 0,
         title: '我想入門',
-        progress: '80%',
+        progress: 80,
         friends: [
             {
                 id: 5,
@@ -23,20 +23,28 @@ class VotingOption extends Component {
     };
 
     render() {
-        let {index, title, progress, friends, number, checked, onCheckboxChange} = this.props;
+        let {
+            index,
+            title,
+            progress,
+            friends,
+            number,
+            checked,
+            onCheckboxChange
+        } = this.props;
         return (
             <InputGroup className="vote">
                 <InputGroupAddon className="vote-checkbox" onClick={e => onCheckboxChange(e, index)}>
-                    <Input addon type="checkbox" checked={checked} onClick={e => onCheckboxChange(e, index)}/>
+                    <Input addon type="checkbox" checked={checked} onChange={e => onCheckboxChange(e, index)}/>
                 </InputGroupAddon>
                 <div className="vote-content" onClick={e => onCheckboxChange(e, index)}>
                     <div className="vote-progress" style={{
-                        width: progress
+                        width: `${progress}%`
                     }}></div>
                     <div className="vote-title">{title}</div>
                 </div>
                 <div className="d-flex align-items-center">
-                    <span className="hidden-md-down">
+                    <span className="hidden-sm-down">
                         {this.renderFriends(friends)}
                     </span>
                     <div className="vote-number">
@@ -48,7 +56,7 @@ class VotingOption extends Component {
     }
 
     renderFriends(friends) {
-        return friends.map((friend, index) => <UserAvatar className="mr-1" size="32px" key={index} {...friend}/>);
+        return friends.slice(0, Math.min(2, friends.length)).map((friend, index) => <UserAvatar className="mr-1" size="32px" key={index} {...friend}/>);
     }
 }
 
