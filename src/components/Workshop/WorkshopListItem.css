@@ -6,13 +6,8 @@
     font-weight: bold;
     line-height: 1.22;
     height: 3.625rem;
-}
-
-.workshop-list-item-tag {
-    font-size: 1rem !important;
-    position: absolute;
-    top: 0.5rem;
-    left: -0.25rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 .workshop-list-item-price-deleted {
@@ -25,4 +20,37 @@
     color: #0275d8;
     font-weight: bold;
     font-size: 1.25rem;
+}
+
+.workshop-list-item-image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.workshop-list-item-image-container:after {
+    padding-top: 50%;
+    display: block;
+    content: '';
+}
+
+.workshop-list-item-image {
+    width: 100%;
+    position: absolute;
+    -webkit-transition: width 0.36s;
+    transition: width 0.36s;
+}
+
+.workshop-list-item-image:hover {
+    width: 125%;
+}
+
+.workshop-list-item-tag {
+    font-size: 1rem !important;
+    position: absolute;
+    top: 0.5rem;
+    left: -0.25rem;
 }

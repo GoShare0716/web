@@ -6,7 +6,7 @@ import {Row} from 'reactstrap';
 
 import './User.css';
 import UserProfile from './UserProfile';
-import UserWorkshopItem from './UserWorkshopItem';
+import WorkshopListItem from '../Workshop/WorkshopListItem';
 import UserSkillItem from './UserSkillItem';
 import UserEquip from './UserEquip';
 
@@ -25,18 +25,18 @@ class User extends Component {
                     <h3>我主辦的工作坊</h3>
                     <hr/>
                     <Row>
-                        <UserWorkshopItem/>
-                        <UserWorkshopItem/>
+                        <WorkshopListItem/>
+                        <WorkshopListItem/>
                     </Row>
                 </div>
                 <div className="user-attend">
                     <h3>我報名的工作坊</h3>
                     <hr/>
                     <Row>
-                        <UserWorkshopItem/>
-                        <UserWorkshopItem/>
-                        <UserWorkshopItem/>
-                        <UserWorkshopItem/>
+                        <WorkshopListItem/>
+                        <WorkshopListItem/>
+                        <WorkshopListItem/>
+                        <WorkshopListItem/>
                     </Row>
                 </div>
                 <div className="user-learn">

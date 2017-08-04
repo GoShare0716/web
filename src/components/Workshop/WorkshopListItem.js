@@ -20,8 +20,8 @@ export default class WorkshopListItem extends Component {
         return (
             <Col className="mb-3" xs={12} sm={6} lg={4}>
                 <Card className="workshop-list-item" onClick={e => history.push(`/workshop/${id}`)}>
-                    <div className="card-image-container">
-                        <CardImg top className="card-image" src="https://placeholdit.imgix.net/~text?w=160&h=80" alt="card-image"/>
+                    <div className="workshop-list-item-image-container">
+                        <CardImg top className="workshop-list-item-image" src="https://placeholdit.imgix.net/~text?w=160&h=80" alt="card-image"/>
                     </div>
                     <Badge className="workshop-list-item-tag" color="primary">報名倒數 1 天</Badge>
                     <CardBlock>

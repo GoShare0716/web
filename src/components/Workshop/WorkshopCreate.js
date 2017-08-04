@@ -27,9 +27,9 @@ class WorkshopCreate extends Component {
                 <Jumbotron className="create-process">
                     <h3>流程</h3>
                     <ol>
-                        <li>請在個人頁面的自我介紹中附上工作坊相關的簡歷與作品集。</li>
+                        <li>請在個人頁面的自我介紹中附上與工作坊主題相關的簡歷與作品集。</li>
                         <li>完成下列表單並送出審核（發佈前仍可以修改）。</li>
-                        <li>無論是否通過，共學將會盡早聯絡您，並協助您籌辦工作坊。</li>
+                        <li>無論是否通過，我們會盡早聯絡您，協助您籌辦工作坊。</li>
                         <li>審核通過後，即可填寫更詳盡的工作坊內容。</li>
                     </ol>
                 </Jumbotron>

@@ -62,7 +62,11 @@ class WorkshopUpdate extends Component {
                         <Field component="input" className="form-control" type="text" name="location"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label>費用</Label>
+                        <Label>達標前預購價</Label>
+                        <Field component="input" className="form-control" type="number" name="prePrice"/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label>達標後原價</Label>
                         <Field component="input" className="form-control" type="number" name="price"/>
                     </FormGroup>
                     <FormGroup>
