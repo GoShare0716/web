@@ -11,6 +11,7 @@ import WorkshopList from './Workshop/WorkshopList';
 import Workshop from './Workshop/Workshop';
 import WorkshopUpdate from './Workshop/WorkshopUpdate';
 import WorkshopManage from './Workshop/WorkshopManage';
+import WorkshopAttended from './Workshop/WorkshopAttended';
 import User from './User/User';
 
 import './App.css';
@@ -22,7 +23,7 @@ class App extends Component {
                 <div>
                     <NavBar/>
                     <LoadingBar/>
-                    <NavBarAlert/>                    
+                    <NavBarAlert/>
                     <div className="full">
                         <Route exact path="/" component={WorkshopList}/>
                         <Route path="/skill" component={SkillList}/>
@@ -31,6 +32,7 @@ class App extends Component {
                         <Route exact path="/workshop/:id" component={Workshop}/>
                         <Route exact path="/workshop/:id/manage" component={WorkshopManage}/>
                         <Route exact path="/workshop/:id/update" component={WorkshopUpdate}/>
+                        <Route exact path="/workshop/:id/attended" component={WorkshopAttended}/>
                         <Route exact path="/user/me" component={User}/>
                     </div>
                 </div>

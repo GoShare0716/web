@@ -4,7 +4,7 @@ import {alert} from './alert';
 import {loadingBarReducer as loadingBar} from 'react-redux-loading-bar';
 import {auth} from './auth';
 import {user} from './user';
-import {workshopList} from './workshop';
+import {workshopList, workshopView} from './workshop';
 import {skillList} from './skill';
 
 const reducers = combineReducers({
@@ -14,6 +14,7 @@ const reducers = combineReducers({
     auth,
     user,
     workshopList,
+    workshopView,
     skillList
 });
 

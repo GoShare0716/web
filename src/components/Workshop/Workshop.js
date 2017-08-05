@@ -1,83 +1,119 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {history} from '../../utils';
+import moment from 'moment';
+import 'moment/locale/zh-tw';
+import renderHTML from 'react-render-html';
 import {Jumbotron, Button} from 'reactstrap';
+
+import {viewWorkshop} from '../../actions/workshop';
 import Profile from '../Utils/Profile';
+import AttendButton from '../Utils/AttendButton';
+import AttendedJumbotron from '../Utils/AttendedJumbotron';
 import './Workshop.css'
 
-export default class Workshop extends Component {
+class Workshop extends Component {
     static defaultProps = {
         id: 2
     }
 
-    render() {
-        let {id} = this.props;
+    componentWillMount() {
+        this.props.viewWorkshop();
+    }
 
+    render() {
+        console.log(this.props.workshopView);
+        let {
+            id,
+            phase,
+            author,
+            isAuthor,
+            imageUrl,
+            title,
+            goal,
+            requirement,
+            targetAudience,
+            startDatetime,
+            endDatetime,
+            location,
+            prePrice,
+            price,
+            minNumber,
+            maxNumber,
+            deadline,
+            closing,
+            description,
+            content,
+            attendedMsg,
+            friends,
+            attendeesNumber,
+            attended,
+            canceled
+        } = this.props.workshopView;
+        let currentPrice = phase === 'investigating'
+            ? prePrice
+            : price;
         return (
             <div className="full workshop">
-                <Profile className="inner">
-                    <Button onClick={e => history.push(`/workshop/${id}/update`)} className="mr-2">編輯</Button>
-                    <Button onClick={e => history.push(`/workshop/${id}/manage`)}>管理</Button>
+                <Profile className="inner" profile={author}>
+                    {isAuthor && <Button onClick={e => history.push(`/workshop/${id}/update`)} className="mr-2">編輯</Button>}
+                    {isAuthor && <Button onClick={e => history.push(`/workshop/${id}/manage`)}>管理</Button>}
                 </Profile>
-                <img className="w-100 banner" src="https://placeholdit.imgix.net/~text?w=1080&h=540" alt=""/>
+                <div className="banner-container">
+                    <img className="w-100 banner" src={imageUrl} alt=""/>
+                </div>
                 <div className="inner article">
-                    <h1>開啟資料科學的學習大門 - R入門教學</h1>
+                    <h1>{title}</h1>
                     <Jumbotron className="goal">
                         <h3>你將學會...</h3>
-                        <ul>
-                            <li>了解R語言的功能、發展與社群。</li>
-                            <li>學習R的基本知識，撰寫出第一個R的程式，並且準備好學習R在進階分析的應用。</li>
-                        </ul>
-                        <Button className="btn-attend" color="primary" size="lg" block>我要報名</Button>
+                        <ul>{goal.map((g, i) => <li key={i}>{g}</li>)}</ul>
+                        <AttendButton id={id} attended={attended} canceled={canceled}/>
                     </Jumbotron>
                     <div className="requirement">
                         <h3>你需要具備...</h3>
-                        <ul>
-                            <li>一台電腦與穩定的網路連線。</li>
-                            <li>課程將從基礎觀念開始帶同學入門了解R語言，沒有背景限制！</li>
-                        </ul>
+                        <ul>{requirement.map((r, i) => <li key={i}>{r}</li>)}</ul>
                     </div>
                     <div className="target-audience">
                         <h3>這堂課適合給...</h3>
-                        <ul>
-                            <li>沒有學過程式，想要上手R語言的準備進行資料分析的同學。</li>
-                            <li>雖然學過R語言，知道如何用R跑分析，但是卻無法作到以下事情的同學：從分析結果中取得需要的資訊的同學；出錯就無法自行解決的同學；了解什麼是R的物件，並且取得對應的原始碼。</li>
-                            <li>因應需求，要設計R語言課程的老師</li>
-                        </ul>
+                        <ul>{targetAudience.map((t, i) => <li key={i}>{t}</li>)}</ul>
                     </div>
                     <div className="info">
                         <h3>工作坊資訊</h3>
                         <ul>
-                            <li>時間：2017-07-28(週五) 13:00 ~ 2017-11-06(週一) 17:00 (GMT+8)</li>
-                            <li>地點：台北市中正區中山南路11號8樓 (張榮發國際會議中心 801會議廳)</li>
-                            <li>費用：0 元</li>
-                            <li>最低人數：10 人</li>
-                            <li>最高人數：30 人</li>
-                            <li>調查倒數：3 天</li>
-                            <li>報名倒數：11 天</li>
+                            <li>{`時間：${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) hh:mm')} (GMT+8)`}</li>
+                            <li>{`地點：${location}`}</li>
+                            <li>{`費用：${currentPrice} 元`}</li>
+                            <li>{`報名人數：${attendeesNumber} 人`}</li>
+                            <li>{`達標人數：${minNumber} 人`}</li>
+                            <li>{`人數上限：${maxNumber} 人`}</li>
+                            <li>{`調查倒數：${moment(deadline).fromNow(true)}`}</li>
+                            <li>{`報名倒數：${moment(closing).fromNow(true)}`}</li>
                         </ul>
                     </div>
                     <div className="description">
                         <h3>簡介</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        {renderHTML(description)}
                     </div>
                     <div className="content">
                         <h3>詳細介紹</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        {renderHTML(content)}
                     </div>
-                    <Jumbotron className="attend">
-                        <h3>報名注意事項</h3>
-                        <ol>
-                            <li>人數在 7 天內達標才會開課，歡迎分享給有興趣參加的同學。</li>
-                            <li>若沒有達標，將以 Email 通知參加者。</li>
-                            <li>若臨時無法參與工作坊，請儘早取消報名！</li>
-                            <li>取消報名後，無法再次報名。</li>
-                            <li>報名成功後，請填寫課前調查，以供講師安排工作坊內容。</li>
-                        </ol>
-                        <Button className="btn-attend" color="primary" size="lg" block>我要報名</Button>
-                    </Jumbotron>
+                    <AttendedJumbotron id={id} attended={attended} canceled={canceled}/>
                 </div>
             </div>
         );
     }
 }
+
+function mapStateToProps({workshopView}) {
+    return {workshopView};
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        viewWorkshop
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Workshop);

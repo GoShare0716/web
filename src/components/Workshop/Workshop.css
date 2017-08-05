@@ -1,12 +1,12 @@
 @import url(//fonts.googleapis.com/earlyaccess/cwtexming.css);
 @import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);
-
 .workshop {
     font-size: 1.25rem;
     line-height: 1.58;
+    font-family: 'cwTeXMing', serif;
 }
 
-.workshop h1, .workshop h2, .workshop h3 , .workshop h4 {
+.workshop h1, .workshop h2, .workshop h3, .workshop h4 {
     font-weight: bold;
     font-family: 'cwTeXHei', sans-serif;
     margin: 0 0 0.25rem 0;
@@ -26,16 +26,29 @@
     line-height: 1.22;
 }
 
-.workshop p {
-    font-family: 'cwTeXMing', serif;
-}
-
-.banner {
+.banner-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
     margin: 0 0 3rem 0;
 }
 
-.article p~p {
-    margin: 2rem 0 0 0;
+.banner-container:after {
+    padding-top: 50%;
+    display: block;
+    content: '';
+}
+
+.banner {
+    width: 100%;
+    position: absolute;
+}
+
+.article p~h4 {
+    margin-top: 2rem;
 }
 
 .goal {
@@ -46,14 +59,6 @@
     margin-top: 0px;
 }
 
-.attend {
-    margin: 3rem 0 0 0;
-}
-
-.attend h3 {
-    margin-top: 0px;
-}
-
-.btn-attend {
-    margin: 2rem 0 0 0;
+.content {
+    margin-bottom: 3rem;
 }
