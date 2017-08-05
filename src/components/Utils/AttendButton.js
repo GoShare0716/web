@@ -37,7 +37,7 @@ class AttendButton extends Component {
         }
         return (
             <div>
-                <Button color="primary" size="lg" block disabled={disabled} color={color}>{primary}</Button>
+                <Button size="lg" block disabled={disabled} color={color}>{primary}</Button>
                 <div className="text-right">{secondary}<a href="">{cancel}</a></div>
 
             </div>

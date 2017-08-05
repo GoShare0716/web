@@ -5,7 +5,7 @@ import {loadingBarReducer as loadingBar} from 'react-redux-loading-bar';
 import {auth} from './auth';
 import {user} from './user';
 import {workshopList, workshopView} from './workshop';
-import {skillList} from './skill';
+import {skillList, skillView} from './skill';
 
 const reducers = combineReducers({
     form,
@@ -15,7 +15,8 @@ const reducers = combineReducers({
     user,
     workshopList,
     workshopView,
-    skillList
+    skillList,
+    skillView
 });
 
 export default reducers;

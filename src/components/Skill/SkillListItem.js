@@ -19,26 +19,15 @@ export default class SkillListItem extends Component {
             id,
             name,
             description,
-            basic,
-            advanced,
-            voteLevel
+            vote
         } = this.props;
-        const defaultCheckedIndex = {
-                'null': -1,
-                'basic': 0,
-                'advanced': 1
-            }[voteLevel],
-            progress = [
-                basic.number / (basic.number + advanced.number) * 100,
-                advanced.number / (basic.number + advanced.number) * 100
-            ];
         return (
             <Col className="mb-3" xs={12} lg={6}>
                 <Card onClick={e => history.push(`/skill/${id}`)} className="skill-list-item">
                     <CardBlock>
                         <CardTitle>{name}</CardTitle>
                         <CardText className="card-intro">{description}</CardText>
-                        <Vote col={1} defaultCheckedIndex={defaultCheckedIndex} progress={progress} title={VOTE_TITLE} friends={[basic.friends, advanced.friends]} number={[basic.number, advanced.number]}/>
+                        <Vote col={1} title={VOTE_TITLE} vote={vote}/>
                     </CardBlock>
                 </Card>
             </Col>
