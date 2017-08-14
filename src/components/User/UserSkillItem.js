@@ -40,7 +40,7 @@ export default class UserSkillItem extends Component {
                     </CardBlock>
                     <CardFooter className="d-flex justify-content-between">
                         <MultipleButton options={options} />
-                        <Button size="sm" color="danger">刪除</Button>
+                        <Button size="sm" color="danger">取消</Button>
                     </CardFooter>
                 </Card>
             </Col>

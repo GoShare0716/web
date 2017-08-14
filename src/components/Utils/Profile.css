@@ -10,6 +10,14 @@
     margin: 0 0 1rem 0;
 }
 
+.profile-img:hover {
+    cursor: pointer;
+}
+
+.profile-name:hover {
+    cursor: pointer;
+}
+
 .profile ul {
     list-style-type: none;
     margin: 0;
