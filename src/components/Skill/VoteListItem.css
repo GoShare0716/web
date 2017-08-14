@@ -1,0 +1,56 @@
+.vote-list-item {
+    border-bottom: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.vote-list-item-voter {
+    display: flex;
+    align-items: center;
+}
+
+.vote-list-item-voter>img {
+    width: 24px;
+    height: 24px;
+    margin-left: -7px;
+    border-radius: 50%;
+}
+
+.vote-list-item-voter>img:first-child {
+    margin-left: 0;
+}
+
+.vote-list-item-number {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+}
+
+.vote-list-item-action {
+    width: 50%;
+}
+
+.vote-list-item-action > button {
+    width: 100%;
+}
+
+.vote-list-item-action:first-child > button {
+    border-radius: 0 0 0 0.25rem;
+    border-right: 0;
+}
+
+.vote-list-item-action:last-child > button {
+    border-radius: 0 0 0.25rem 0;
+}
+
+.vote-list-item-action i {
+    font-size: 0.5rem;
+    margin-right: 0.25rem;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+}
+
+.vote-list-item-action-container {
+    width: 100%;
+    display: flex;
+}

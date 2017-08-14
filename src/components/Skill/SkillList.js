@@ -9,12 +9,10 @@ import {listSkill} from '../../actions/skill';
 
 import MultipleFilter from '../Utils/MultipleFilter';
 import SkillListItem from './SkillListItem';
+import VoteListItem from './VoteListItem';
 import Skill from './Skill';
 
 const categoryOptions = [
-    [
-        '全部', 'all'
-    ],
     [
         '科技', 'technology'
     ],
@@ -52,18 +50,20 @@ class SkillList extends Component {
     }
 
     renderSkillListItem() {
-        return this.props.skillList.map(skillItem => <SkillListItem key={skillItem.id} {...skillItem}/>);
+        return this.props.skillList.map((s, i) => <VoteListItem key={i} rank={i + 1} {...s}/>);
     }
 
     render() {
         return (
             <div className="outer">
-                <h1 className="mt-5 mb-3">技能列表</h1>
+                <h1 className="mt-5">技能票選</h1>
+                <h5 className="mb-3">想學什麼？我們找人來教！</h5>
                 <ListGroup className="w-100 mb-3">
-                    <MultipleFilter title="分類" options={categoryOptions} defaultOption={'all'} optionOnClick={selectedOption => console.log(selectedOption)}/>
-                    <MultipleFilter title="順序" options={orderingOptions} defaultOption={'hot'} optionOnClick={selectedOption => console.log(selectedOption)}/>
+                    <MultipleFilter title="分類" options={categoryOptions} defaultOption={'technology'} optionOnClick={selectedOption => console.log(selectedOption)}/>
                 </ListGroup>
-                <Row>{this.renderSkillListItem()}</Row>
+                <Row>
+                    {this.renderSkillListItem()}
+                </Row>
                 <Route path='/skill/:id' render={props => <Skill {...props} isOpen={this.state.isOpen} toggle={this.modalToggle}/>}/>
             </div>
         );
