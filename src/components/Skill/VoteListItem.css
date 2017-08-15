@@ -1,56 +1,114 @@
-.vote-list-item {
-    border-bottom: 0 !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-}
-
-.vote-list-item-voter {
+.vote-list-item-voter
+{
     display: flex;
+
     align-items: center;
 }
 
-.vote-list-item-voter>img {
+.vote-list-item-image-container
+{
+    position: relative;
+
+    display: flex;
+    overflow: hidden;
+
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.vote-list-item-image-container:after
+{
+    display: block;
+
+    padding-top: 50%;
+
+    content: '';
+}
+
+.vote-list-item-image
+{
+    position: absolute;
+
+    width: 100%;
+
+    -webkit-transition: width .36s;
+            transition: width .36s;
+}
+
+.vote-list-item-image:hover {
+    width: 125%;
+}
+
+.vote-list-item-title
+{
+    font-weight: bold;
+    line-height: 1.22;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 3.625rem;
+}
+
+.vote-list-item-badge
+{
+    font-size: .9rem;
+
+    position: absolute;
+    top: -.25rem;
+    left: .5rem;
+
+    display: flex;
+
+    width: 2rem;
+    height: 2rem;
+    font-weight: 700;
+    color: #4a4a4a;
+    border-radius: .25rem;
+    background-color: rgb(255, 209, 0);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.vote-list-item-voter > img
+{
     width: 24px;
     height: 24px;
     margin-left: -7px;
+
     border-radius: 50%;
 }
 
-.vote-list-item-voter>img:first-child {
+.vote-list-item-voter > img:first-child
+{
     margin-left: 0;
 }
 
-.vote-list-item-number {
-    font-size: 0.75rem;
-    margin-left: 0.5rem;
+.vote-list-item-number
+{
+    font-size: .75rem;
+
+    margin-left: .5rem;
 }
 
-.vote-list-item-action {
-    width: 50%;
+.vote-list-item-action
+{
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
 }
 
-.vote-list-item-action > button {
-    width: 100%;
-}
+.vote-list-item-action i
+{
+    font-size: .5rem;
 
-.vote-list-item-action:first-child > button {
-    border-radius: 0 0 0 0.25rem;
-    border-right: 0;
-}
-
-.vote-list-item-action:last-child > button {
-    border-radius: 0 0 0.25rem 0;
-}
-
-.vote-list-item-action i {
-    font-size: 0.5rem;
-    margin-right: 0.25rem;
     width: 12px;
     height: 12px;
-    text-align: center;
-}
+    margin-right: .25rem;
 
-.vote-list-item-action-container {
-    width: 100%;
-    display: flex;
+    text-align: center;
 }

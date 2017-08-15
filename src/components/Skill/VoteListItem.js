@@ -56,66 +56,41 @@ class VoteListItem extends Component {
         return (
             <Col className="mb-3" xs={12} sm={6} lg={4}>
                 <Card className="vote-list-item">
-                    <div className="workshop-list-item-image-container">
-                        <CardImg top className="workshop-list-item-image" src={imageUrl} alt="card-image"/>
+                    <div className="vote-list-item-image-container">
+                        <CardImg top className="vote-list-item-image" src={imageUrl} alt="card-image"/>
                     </div>
-                    <Badge className="workshop-list-item-badge" color="primary">#{rank}</Badge>
+                    <div className="vote-list-item-badge" color="primary">{`#${rank}`}</div>
                     <CardBlock>
-                        <h4 className="workshop-list-item-title">{name}</h4>
-                        <div className="text-muted mb-2">
+                        <h4 className="vote-list-item-title">{name}</h4>
+                        <div className="text-muted">
                             <span>相關</span>
                             <span className="mx-1">·</span>
                             <a href="#">0 基礎網頁設計工作坊</a>
                         </div>
+
+                    </CardBlock>
+                    <CardFooter className="vote-list-item-action">
                         <div className="vote-list-item-voter">
                             {this.renderVoterAvatar([
                                 ...basic.friends,
                                 ...advanced.friends
                             ])}
-                            <span className="vote-list-item-number text-muted">{basic.number + advanced.number}
-                                位同學</span>
+                            <span className="vote-list-item-number text-muted">{`${basic.number + advanced.number} 位同學`}</span>
                         </div>
-                    </CardBlock>
-
+                        <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
+                            <DropdownToggle size="sm"><i className="fa fa-heart" aria-hidden="true"/>我想學</DropdownToggle>
+                            <DropdownMenu>
+                                <DropdownItem><i className="fa fa-paper-plane" aria-hidden="true"/>入門</DropdownItem>
+                                <DropdownItem><i className="fa fa-rocket" aria-hidden="true"/>精通</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                    </CardFooter>
 
                 </Card>
-                <div className="vote-list-item-action-container">
-                    <Dropdown className="vote-list-item-action" isOpen={this.state.isOpen} toggle={this.toggle}>
-                        <DropdownToggle><i className="fa fa-star" aria-hidden="true"/>我擅長</DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem><i className="fa fa-paper-plane" aria-hidden="true"/>入門</DropdownItem>
-                            <DropdownItem><i className="fa fa-rocket" aria-hidden="true"/>精通</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                    <Dropdown className="vote-list-item-action" isOpen={this.state.isOpen} toggle={this.toggle}>
-                        <DropdownToggle><i className="fa fa-heart" aria-hidden="true"/>我想學</DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem><i className="fa fa-paper-plane" aria-hidden="true"/>入門</DropdownItem>
-                            <DropdownItem><i className="fa fa-rocket" aria-hidden="true"/>精通</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </div>
+
             </Col>
         );
     }
-
 }
-
-// <CardFooter className="d-flex justify-content-between align-items-center">
-//     <Dropdown className="vote-list-item-vote" isOpen={this.state.isOpen} toggle={this.toggle}>
-//         <DropdownToggle><i className="fa fa-star" aria-hidden="true"/>我會</DropdownToggle>
-//         <DropdownMenu>
-//             <DropdownItem><i className="fa fa-paper-plane" aria-hidden="true"/>入門</DropdownItem>
-//             <DropdownItem><i className="fa fa-rocket" aria-hidden="true"/>精通</DropdownItem>
-//         </DropdownMenu>
-//     </Dropdown>
-//     <Dropdown className="vote-list-item-vote" isOpen={this.state.isOpen} toggle={this.toggle}>
-//         <DropdownToggle><i className="fa fa-heart" aria-hidden="true"/>想學</DropdownToggle>
-//         <DropdownMenu>
-//             <DropdownItem><i className="fa fa-paper-plane" aria-hidden="true"/>入門</DropdownItem>
-//             <DropdownItem><i className="fa fa-rocket" aria-hidden="true"/>精通</DropdownItem>
-//         </DropdownMenu>
-//     </Dropdown>
-// </CardFooter>
 
 export default VoteListItem;
