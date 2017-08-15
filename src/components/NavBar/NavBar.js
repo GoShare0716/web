@@ -1,16 +1,21 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import './NavBar.css';
+
 import {
     Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
-    NavLink
+    NavLink,
+    Navbar,
+    NavbarBrand,
+    NavbarToggler
 } from 'reactstrap';
+import React, {Component} from 'react';
+
+import {Link} from 'react-router-dom';
 import NavBarAuth from './NavBarAuth';
-import './NavBar.css';
+
+
+
 
 class NavBar extends Component {
     constructor(props) {
@@ -38,9 +43,6 @@ class NavBar extends Component {
                         <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <NavLink tag={Link} to='/workshop'>工作坊</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} to='/skill'>技能列表</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink tag={Link} to='/create-workshop'>成為講者</NavLink>

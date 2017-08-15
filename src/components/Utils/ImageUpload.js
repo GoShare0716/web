@@ -1,15 +1,24 @@
-import React, {Component} from 'react';
+import './ImageUpload.css';
+
 import {
+    FormFeedback,
     FormGroup,
-    Label,
     Input,
     InputGroup,
-    InputGroupButton
+    InputGroupButton,
+    Label
 } from 'reactstrap';
+import React, {Component} from 'react';
+
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {touch} from 'redux-form';
 
-import './ImageUpload.css';
+
+
+
 
 class ImageUpload extends Component {
     constructor(props) {
@@ -22,9 +31,7 @@ class ImageUpload extends Component {
     }
 
     onDrop(accepted, rejected) {
-        const {input: {
-                onChange
-            }} = this.props;
+        const {onChange} = this.props.input;
         if (accepted[0] && !this.state.uploading) {
             onChange('');
             this.setState({uploading: true, message: '上傳中...'});
@@ -47,31 +54,46 @@ class ImageUpload extends Component {
     render() {
         const {
             input: {
+                name,
                 value,
                 onChange
+            },
+            meta: {
+                form,
+                touched,
+                error
             }
         } = this.props;
         const {uploading, message} = this.state;
         return (
-            <FormGroup>
+            <FormGroup color={touched && error
+                ? 'danger'
+                : ''}>
                 <Label>封面圖片連結</Label>
                 <InputGroup>
-                    <Input type="url" value={value} onChange={onChange} disabled={uploading}/>
-                    <InputGroupButton color="primary" disabled={uploading} onClick={() => {
-                        this.dropzoneRef.open()
-                    }}>上傳圖片</InputGroupButton>
+                    <Input type="url" value={value} onChange={onChange} disabled={uploading} onBlur={e => this.props.touch(form, name)}/>
+                    <InputGroupButton color="primary" disabled={uploading} onClick={() => this.dropzoneRef.open()}>上傳圖片</InputGroupButton>
                 </InputGroup>
+                <FormFeedback>{touched && error
+                        ? <span>{error}</span>
+                        : ''}</FormFeedback>
                 <Dropzone className="dropzone mt-2" activeClassName="dropzone-active" rejectClassName="dropzone-reject" multiple={false} accept="image/jpeg, image/png" maxSize={10485760} onDrop={this.onDrop} disableClick={uploading} ref={(node) => {
                     this.dropzoneRef = node;
                 }}>
                     {value !== '' && <img className="dropzone-image" src={value} alt=""/>}
                     {value === '' && <p className="dropzone-message">{message}</p>}
                 </Dropzone>
-            </FormGroup>
 
+            </FormGroup>
         );
     }
 
 }
 
-export default ImageUpload;
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        touch
+    }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(ImageUpload);

@@ -1,14 +1,17 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {viewUser} from '../../actions/user';
-import {Row} from 'reactstrap';
-
 import './User.css';
+
+import React, {Component} from 'react';
+
+import {Row} from 'reactstrap';
 import UserProfile from './UserProfile';
 import WorkshopListItem from '../Workshop/WorkshopListItem';
-import UserSkillItem from './UserSkillItem';
-import UserEquip from './UserEquip';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {viewUser} from '../../actions/user';
+
+
+
+
 
 class User extends Component {
     componentDidMount() {
@@ -16,8 +19,7 @@ class User extends Component {
     }
 
     render() {
-        const {profile, createWorkshops, attendWorkshops, voteSkills, equipSkills} = this.props.user;
-        console.log(profile);
+        const {profile, createWorkshops, attendWorkshops} = this.props.user;
         return (
             <div className="outer user">
                 <UserProfile profile={profile}/>
@@ -31,28 +33,6 @@ class User extends Component {
                     <hr/>
                     <Row>{attendWorkshops.map((a, i) => <WorkshopListItem key={a.id} {...a}/>)}</Row>
                 </div>
-                <div className="user-learn">
-                    <h3>我想學的技能</h3>
-                    <hr/>
-                    <Row>
-                        <UserSkillItem type="learn"/>
-                        <UserSkillItem type="learn"/>
-                        <UserSkillItem type="learn"/>
-                        <UserSkillItem type="learn"/>
-                    </Row>
-                </div>
-                <div className="user-equip">
-                    <h3>我會的技能</h3>
-                    <hr/>
-                    <Row>
-                        <UserSkillItem type="equip"/>
-                        <UserSkillItem type="equip"/>
-                        <UserSkillItem type="equip"/>
-                        <UserSkillItem type="equip"/>
-                        <UserEquip/>
-                    </Row>
-                </div>
-
             </div>
         );
     }

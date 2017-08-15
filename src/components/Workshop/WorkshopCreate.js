@@ -1,13 +1,48 @@
-import React, {Component} from 'react';
-import {
-    Button,
-    Form,
-    FormGroup,
-    Label,
-    Jumbotron
-} from 'reactstrap';
-import AddableText from '../Utils/AddableText';
+import {Button, Form, Jumbotron} from 'reactstrap';
 import {Field, reduxForm} from 'redux-form';
+import React, {Component} from 'react';
+
+import AddableText from '../Utils/AddableText';
+import RenderField from '../Utils/RenderField';
+import RenderRadio from '../Utils/RenderRadio';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {createWorkshop} from '../../actions/workshop';
+
+
+
+
+
+
+const CATEGORY_OPTIONS = [
+    {
+        text: '科技',
+        value: 'technology'
+    }, {
+        text: '美學',
+        value: 'aesthetics'
+    }
+];
+
+const validate = values => {
+    const errors = {};
+    if (!values.title) {
+        errors.title = 'Required'
+    }
+    if (!values.category) {
+        errors.category = 'Required'
+    }
+    if (!values.requirement || values.requirement.filter(r => r !== '').length === 0) {
+        errors.requirement = 'Required'
+    }
+    if (!values.targetAudience || values.targetAudience.filter(r => r !== '').length === 0) {
+        errors.targetAudience = 'Required'
+    }
+    if (!values.goal || values.goal.filter(r => r !== '').length === 0) {
+        errors.goal = 'Required'
+    }
+    return errors;
+}
 
 class WorkshopCreate extends Component {
     constructor(props) {
@@ -17,6 +52,7 @@ class WorkshopCreate extends Component {
 
     handleSubmit(form) {
         console.log(form)
+        this.props.createWorkshop(form);
     }
 
     render() {
@@ -35,28 +71,11 @@ class WorkshopCreate extends Component {
                 </Jumbotron>
                 <div className="create-form">
                     <Form onSubmit={handleSubmit(this.handleSubmit)}>
-                        <FormGroup>
-                            <Label>工作坊標題</Label>
-                            <Field component="input" className="form-control" type="text" name="title" placeholder="例如：電腦繪圖入門" />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label>工作坊類別</Label>
-                            <FormGroup check>
-                                <Label check>
-                                    <Field component="input" className="form-check-input" type="radio" name="category" value="technology"/>
-                                    <span>科技</span>
-                                </Label>
-                            </FormGroup>
-                            <FormGroup className="mb-0" check>
-                                <Label check>
-                                    <Field component="input" className="form-check-input" type="radio" name="category" value="aesthetics"/>
-                                    <span>美學</span>
-                                </Label>
-                            </FormGroup>
-                        </FormGroup>
-                        <Field component={AddableText} name="requirement" title="您的工作坊有任何先決條件嗎？" placeholder="例如：您需要修過微積分一"/>
-                        <Field component={AddableText} name="targetAudience" title="您的目標學生是誰？" placeholder="例如：任何對攝影有興趣的人"/>
-                        <Field component={AddableText} name="goal" title="他們將會學習什麼內容？在您的工作坊結束時，學生將能夠..." placeholder="例如：建立自己的個人網站"/>
+                        <Field component={RenderField} label="工作坊標題" type="text" name="title" placeholder="例如：電腦繪圖入門"/>
+                        <Field component={RenderRadio} label="工作坊類別" name="category" options={CATEGORY_OPTIONS}/>
+                        <Field component={AddableText} label="您的工作坊有任何先決條件嗎？" name="requirement" placeholder="例如：您需要修過微積分一"/>
+                        <Field component={AddableText} label="您的目標學生是誰？" name="targetAudience" placeholder="例如：任何對攝影有興趣的人"/>
+                        <Field component={AddableText} label="他們將會學習什麼內容？在您的工作坊結束時，學生將能夠..." name="goal" placeholder="例如：建立自己的個人網站"/>
                         <Button color="primary" size="lg" block type="submit">送出審核</Button>
                     </Form>
                 </div>
@@ -65,4 +84,13 @@ class WorkshopCreate extends Component {
     }
 }
 
-export default reduxForm({form: 'workshopCreate'})(WorkshopCreate)
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        createWorkshop
+    }, dispatch);
+}
+
+WorkshopCreate = reduxForm({form: 'workshopCreate', validate})(WorkshopCreate)
+WorkshopCreate = connect(null, mapDispatchToProps)(WorkshopCreate);
+
+export default WorkshopCreate;
