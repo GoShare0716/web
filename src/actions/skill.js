@@ -64,7 +64,7 @@ const SKILL_LIST = [
         id: 1,
         name: 'Javascript',
         description: 'JavaScript，一種高級程式語言，通過解釋執行，是一門動態類型，物件導向（基於原型）的直譯語言。JavaScript是一門基於原型、函數先行的語言，是一門多範式的語言，它支持物件導向編程，命令式編程，以及函數式編程。',
-        imageUrl: 'https://udemy-images.udemy.com/course/750x422/495484_385c_3.jpg',
+        imageUrl: 'http://1ke.co/files/course/2017/05-16/155510ea3d57934560.jpg?4.9.3',
         vote: {
             basic: {
                 number: 20,

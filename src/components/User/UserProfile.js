@@ -1,15 +1,19 @@
-import React, {Component} from 'react';
 import {
-    Modal,
-    ModalBody,
+    Button,
     Form,
     FormGroup,
     Label,
-    Button
+    Modal,
+    ModalBody
 } from 'reactstrap';
+import {Field, reduxForm} from 'redux-form';
+import React, {Component} from 'react';
+
 import Profile from '../Utils/Profile';
 import RichTextBox from '../Utils/RichTextBox';
-import {Field, reduxForm} from 'redux-form';
+
+
+
 
 class UserProfile extends Component {
     constructor(props) {

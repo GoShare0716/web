@@ -3,14 +3,21 @@ import {Button, Row, Col} from 'reactstrap';
 
 class MultipleFilter extends Component {
     static defaultProps = {
-        title: '分類',
+        label: '分類',
         options: [
-            ['全部', 'all'],
-            ['科技', 'technology'],
-            ['美學', 'aesthetics']
+            {
+                text: '全部',
+                value: 'all'
+            }, {
+                text: '科技',
+                value: 'technology'
+            }, {
+                text: '美學',
+                value: 'aesthetics'
+            }
         ],
         defaultOption: 'all',
-        optionOnClick: () => {}
+        onChange: () => {}
     }
 
     constructor(props) {
@@ -19,14 +26,14 @@ class MultipleFilter extends Component {
             selectedOption: null
         };
 
-        this.optionOnClick = this.optionOnClick.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     render() {
         return (
             <div className="list-group-item">
                 <Row className="m-0">
-                    <Col xs="auto">{this.props.title}</Col>
+                    <Col xs="auto">{this.props.label}</Col>
                     <Col>
                         {this.renderOptions()}
                     </Col>
@@ -36,18 +43,18 @@ class MultipleFilter extends Component {
     }
 
     renderOptions() {
-        let {options, defaultOption} = this.props;
+        const {options, defaultOption} = this.props;
         return options.map(option => {
-            let color = (this.state.selectedOption || defaultOption) === option[1]
+            const color = (this.state.selectedOption || defaultOption) === option.value
                 ? 'primary'
                 : 'link';
-            return <Button key={option[1]} onClick={e => this.optionOnClick(option[1])} className="mr-1" size="sm" color={color}>{option[0]}</Button>;
+            return <Button key={option.value} onClick={e => this.onChange(option.value)} className="mr-1" size="sm" color={color}>{option.text}</Button>;
         });
     }
 
-    optionOnClick(selectedOption) {
+    onChange(selectedOption) {
         if (this.state.selectedOption !== selectedOption) {
-            this.props.optionOnClick(selectedOption);
+            this.props.onChange(selectedOption);
             this.setState({selectedOption});
         }
     }

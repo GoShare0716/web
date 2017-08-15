@@ -2,6 +2,10 @@ export const listWorkshop = () => dispatch => {
     dispatch({type: '@WORKSHOP/LIST', payload: WORKSHOP_LIST});
 };
 
+export const createWorkshop = () => dispatch => {
+    console.log('createWorkshop');
+};
+
 export const viewWorkshop = () => dispatch => {
     dispatch({type: '@WORKSHOP/VIEW', payload: WORKSHOP_VIEW});
 };
@@ -20,6 +24,7 @@ const WORKSHOP_VIEW = {
     isAuthor: true,
     imageUrl: 'https://www.bradhussey.ca/wp-content/uploads/2013/09/Banner.png',
     title: '0 基礎網頁設計工作坊',
+    category: 'technology',
     goal: [
         '使用 HTML/CSS 建立自己的網頁', '修改現成的模板', '將靜態網頁發布至 Github Page'
     ],
@@ -39,9 +44,20 @@ const WORKSHOP_VIEW = {
     description: '<h4>Hello, world!</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam amet aperiam, cum, saepe totam ea non doloremque nostrum maxime, aspernatur libero, sapiente delectus. Illo maiores nemo, beatae quas quam ipsam?</p>',
     content: '<h4>HTML</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p><h4>CSS</h4><p>Est eveniet ut minima a repudiandae tempora maiores corporis, nihil incidunt? Tenetur quasi suscipit labore, perspiciatis odit quis blanditiis atque possimus libero!</p>',
     attendedMsg: '<h4>ALERT!!!</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas magnam, necessitatibus obcaecati eum mollitia velit. At autem odit magni obcaecati, provident, natus recusandae neque, laborum consequatur quos alias, molestias ratione.</p>',
-    friends: [],
-    attendeesNumber: 5,
-    attended: true,
+    attendees: {
+        friends: [
+            {
+                id: 2,
+                name: '張嘉軒'
+            },
+            {
+                id: 3,
+                name: '林湘庭'
+            },
+        ],
+        number: 10,
+    },
+    attended: false,
     canceled: false
 };
 

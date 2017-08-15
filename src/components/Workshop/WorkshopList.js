@@ -7,45 +7,68 @@ import {ListGroup, InputGroup, Input, InputGroupButton, Row} from 'reactstrap';
 import MultipleFilter from '../Utils/MultipleFilter';
 import WorkshopListItem from './WorkshopListItem';
 
-const categoryOptions = [
-    [
-        '全部', 'all'
-    ],
-    [
-        '科技', 'technology'
-    ],
-    ['美學', 'aesthetics']
+const CATEGORY_OPTIONS = [
+    {
+        text: '全部',
+        value: 'all'
+    }, {
+        text: '科技',
+        value: 'technology'
+    }, {
+        text: '美學',
+        value: 'aesthetics'
+    }
 ];
-const orderingOptions = [
-    [
-        '熱門', 'hot'
-    ],
-    [
-        '最新', 'new'
-    ],
-    ['最近', 'date']
+const ORDERING_OPTIONS = [
+    {
+        text: '熱門',
+        value: 'hot'
+    }, {
+        text: '最新',
+        value: 'new'
+    }, {
+        text: '最近',
+        value: 'date'
+    }
 ];
-const stateOptions = [
-    [
-        '全部', 'all'
-    ],
-    [
-        '調查中', 'investigating'
-    ],
-    [
-        '已達標', 'reached'
-    ],
-    ['已結束', 'over']
+const STATE_OPTIONS = [
+    {
+        text: '全部',
+        value: 'all'
+    }, {
+        text: '調查中',
+        value: 'investigating'
+    }, {
+        text: '已達標',
+        value: 'reached'
+    }, {
+        text: '已結束',
+        value: 'over'
+    }
 ];
 
 class WorkshopList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            category: 'all',
+            ordering: 'hot',
+            state: 'all'
+        };
+        this.onFilterChange = this.onFilterChange.bind(this);
+    }
+
+    onFilterChange(nextState) {
+        this.setState(nextState);
+        // TODO: this.props.listWorkshop(filter);
+    }
+
     componentWillMount() {
         this.props.listWorkshop();
-
     }
 
     renderWorkshopItem() {
-        return this.props.workshopList.map(workshopItem => <WorkshopListItem key={workshopItem.id} {...workshopItem}/>)
+        return this.props.workshopList.map((w, i) => <WorkshopListItem key={i} {...w}/>)
     }
 
     render() {
@@ -57,9 +80,9 @@ class WorkshopList extends Component {
                     <InputGroupButton color="primary">搜尋</InputGroupButton>
                 </InputGroup>
                 <ListGroup className="mb-3">
-                    <MultipleFilter title="分類" options={categoryOptions} defaultOption={'all'}/>
-                    <MultipleFilter title="順序" options={orderingOptions} defaultOption={'hot'}/>
-                    <MultipleFilter title="狀態" options={stateOptions} defaultOption={'all'}/>
+                    <MultipleFilter label="分類" options={CATEGORY_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({category: option})}/>
+                    <MultipleFilter label="順序" options={ORDERING_OPTIONS} defaultOption={'hot'} onChange={option => this.onFilterChange({ordering: option})}/>
+                    <MultipleFilter label="狀態" options={STATE_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({state: option})}/>
                 </ListGroup>
                 <Row>{this.renderWorkshopItem()}</Row>
             </div>

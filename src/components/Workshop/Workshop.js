@@ -1,17 +1,25 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {history} from '../../utils';
-import moment from 'moment';
 import 'moment/locale/zh-tw';
-import renderHTML from 'react-render-html';
-import {Jumbotron, Button} from 'reactstrap';
+import './Workshop.css'
 
-import {viewWorkshop} from '../../actions/workshop';
-import Profile from '../Utils/Profile';
+import {Button, Jumbotron} from 'reactstrap';
+import React, {Component} from 'react';
+
 import AttendButton from '../Utils/AttendButton';
 import AttendedJumbotron from '../Utils/AttendedJumbotron';
-import './Workshop.css'
+import Profile from '../Utils/Profile';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {history} from '../../utils';
+import moment from 'moment';
+import renderHTML from 'react-render-html';
+import {viewWorkshop} from '../../actions/workshop';
+
+
+
+
+
+
+
 
 class Workshop extends Component {
     static defaultProps = {
@@ -23,7 +31,6 @@ class Workshop extends Component {
     }
 
     render() {
-        console.log(this.props.workshopView);
         let {
             id,
             phase,
@@ -46,8 +53,7 @@ class Workshop extends Component {
             description,
             content,
             attendedMsg,
-            friends,
-            attendeesNumber,
+            attendees,
             attended,
             canceled
         } = this.props.workshopView;
@@ -68,7 +74,7 @@ class Workshop extends Component {
                     <Jumbotron className="goal">
                         <h3>你將學會...</h3>
                         <ul>{goal.map((g, i) => <li key={i}>{g}</li>)}</ul>
-                        <AttendButton id={id} attended={attended} canceled={canceled}/>
+                        <AttendButton id={id} attended={attended} canceled={canceled} attendees={attendees}/>
                     </Jumbotron>
                     <div className="requirement">
                         <h3>你需要具備...</h3>
@@ -84,7 +90,7 @@ class Workshop extends Component {
                             <li>{`時間：${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) hh:mm')} (GMT+8)`}</li>
                             <li>{`地點：${location}`}</li>
                             <li>{`費用：${currentPrice} 元`}</li>
-                            <li>{`報名人數：${attendeesNumber} 人`}</li>
+                            <li>{`報名人數：${attendees.number} 人`}</li>
                             <li>{`達標人數：${minNumber} 人`}</li>
                             <li>{`人數上限：${maxNumber} 人`}</li>
                             <li>{`調查倒數：${moment(deadline).fromNow(true)}`}</li>
@@ -99,7 +105,7 @@ class Workshop extends Component {
                         <h3>詳細介紹</h3>
                         {renderHTML(content)}
                     </div>
-                    <AttendedJumbotron id={id} attended={attended} canceled={canceled}/>
+                    <AttendedJumbotron id={id} attended={attended} canceled={canceled} attendees={attendees}/>
                 </div>
             </div>
         );

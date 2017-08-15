@@ -1,20 +1,26 @@
-import React, {Component} from 'react';
-import {history} from '../utils';
-import {Router, Route} from 'react-router-dom';
+import './App.css';
 
+import React, {Component} from 'react';
+import {Route, Router} from 'react-router-dom';
+
+import LoadingBar from 'react-redux-loading-bar';
 import NavBar from './NavBar/NavBar';
 import NavBarAlert from './NavBar/NavBarAlert';
-import LoadingBar from 'react-redux-loading-bar';
-import SkillList from './Skill/SkillList';
+import User from './User/User';
+import Workshop from './Workshop/Workshop';
+import WorkshopAttended from './Workshop/WorkshopAttended';
 import WorkshopCreate from './Workshop/WorkshopCreate';
 import WorkshopList from './Workshop/WorkshopList';
-import Workshop from './Workshop/Workshop';
-import WorkshopUpdate from './Workshop/WorkshopUpdate';
 import WorkshopManage from './Workshop/WorkshopManage';
-import WorkshopAttended from './Workshop/WorkshopAttended';
-import User from './User/User';
+import WorkshopUpdate from './Workshop/WorkshopUpdate';
+import {history} from '../utils';
 
-import './App.css';
+
+
+
+
+
+
 
 class App extends Component {
     render() {
@@ -26,7 +32,6 @@ class App extends Component {
                     <NavBarAlert/>
                     <div className="full">
                         <Route exact path="/" component={WorkshopList}/>
-                        <Route path="/skill" component={SkillList}/>
                         <Route exact path="/create-workshop" component={WorkshopCreate}/>
                         <Route exact path="/workshop" component={WorkshopList}/>
                         <Route exact path="/workshop/:id" component={Workshop}/>
