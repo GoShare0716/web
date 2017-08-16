@@ -1,0 +1,30 @@
+.workshop-update .ql-editor
+{
+    font-family: 'cwTeXMing', serif !important;
+    font-size: 1.25rem !important;
+    line-height: 1.58 !important;
+
+    color: rgb(41, 43, 44) !important;
+}
+
+.workshop-update .ql-editor h4
+{
+    font-family: 'Noto Sans TC', sans-serif !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    line-height: 1.22 !important;
+
+    margin-top: 2rem !important;
+}
+
+.workshop-update .ql-editor p
+{
+    margin-top: 2rem !important;
+}
+
+.workshop-update .ql-editor h4:first-child,
+.workshop-update .ql-editor p:first-child,
+.workshop-update .ql-editor h4+p
+{
+    margin-top: 0 !important;
+}

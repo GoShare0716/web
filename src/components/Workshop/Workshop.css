@@ -1,64 +1,91 @@
 @import url(//fonts.googleapis.com/earlyaccess/cwtexming.css);
-@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);
-.workshop {
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+.workshop
+{
+    font-family: 'cwTeXMing', serif;
     font-size: 1.25rem;
     line-height: 1.58;
-    font-family: 'cwTeXMing', serif;
 }
 
-.workshop h1, .workshop h2, .workshop h3, .workshop h4 {
+.workshop-profile
+{
+    display: flex;
+
+    width: 100%;
+    margin-bottom: 3rem;
+
+    color: white !important;
+    background-position: center;
+    background-size: cover;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.workshop h1,
+.workshop h2,
+.workshop h3,
+.workshop h4
+{
+    font-family: 'Noto Sans TC', sans-serif;
     font-weight: bold;
-    font-family: 'cwTeXHei', sans-serif;
-    margin: 0 0 0.25rem 0;
+
+    margin: 0 0 .25rem 0;
 }
 
-.workshop h1 {
+.workshop h1
+{
     line-height: 1.04;
 }
 
-.workshop h3 {
+.workshop h3
+{
     line-height: 1.15;
+
     margin-top: 3rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: .5rem;
 }
 
-.workshop h4 {
+.workshop h4
+{
     line-height: 1.22;
 }
 
-.banner-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
-    margin: 0 0 3rem 0;
-}
-
-.banner-container:after {
-    padding-top: 50%;
-    display: block;
-    content: '';
-}
-
-.banner {
-    width: 100%;
-    position: absolute;
-}
-
-.article p~h4 {
+.article p,
+.article h4
+{
     margin-top: 2rem;
 }
 
-.goal {
-    margin: 0.5rem 0 0 0;
+.article h3+h4,
+.article h4:first-child,
+.article p:first-child,
+.article h4+p
+{
+    margin-top: 0 !important;
 }
 
-.goal h3 {
-    margin-top: 0px;
+.workshop-progress
+{
+    margin: 1rem 0 0 0 !important;
+    padding: 2rem !important;
+
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }
 
-.content {
+.workshop-progress h3
+{
+    margin: 0;
+}
+
+.workshop-progress-attend button
+{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.content
+{
     margin-bottom: 3rem;
 }

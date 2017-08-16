@@ -1,3 +1,5 @@
+import './WorkshopUpdate.css';
+
 import {Button, Form} from 'reactstrap';
 import {Field, reduxForm} from 'redux-form';
 import React, {Component} from 'react';
@@ -68,7 +70,7 @@ class WorkshopUpdate extends Component {
     render() {
         const {handleSubmit} = this.props;
         return (
-            <div className="inner">
+            <div className="inner workshop-update">
                 <Form onSubmit={handleSubmit(this.handleSubmit)}>
                     <h1 className="mt-5 mb-3">編輯工作坊</h1>
                     <Field component={RenderField} label="標題" type="text" name="title" placeholder="例如：電腦繪圖入門"/>

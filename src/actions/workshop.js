@@ -22,7 +22,7 @@ const WORKSHOP_VIEW = {
         introduction: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque omnis quod culpa minus temporibus! Eveniet magni esse deserunt ratione minus amet animi, qui cupiditate sunt perferendis, inventore labore modi unde.'
     },
     isAuthor: true,
-    imageUrl: 'https://www.bradhussey.ca/wp-content/uploads/2013/09/Banner.png',
+    imageUrl: 'https://proguide.com.sg/wp-content/uploads/2017/03/Course-Graphics-10-1.png',
     title: '0 基礎網頁設計工作坊',
     category: 'technology',
     goal: [
@@ -55,7 +55,7 @@ const WORKSHOP_VIEW = {
                 name: '林湘庭'
             },
         ],
-        number: 10,
+        number: 5,
     },
     attended: false,
     canceled: false
