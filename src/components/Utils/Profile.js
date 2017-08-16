@@ -1,6 +1,10 @@
-import React, {Component} from 'react';
-import {history} from '../../utils';
 import './Profile.css';
+
+import React, {Component} from 'react';
+
+import {history} from '../../utils';
+
+
 
 class Profile extends Component {
     static defaultProps = {
