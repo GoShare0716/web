@@ -5,7 +5,6 @@ import {Col, Jumbotron, Row} from 'reactstrap';
 import React, {Component} from 'react';
 
 import AttendButton from '../Utils/AttendButton';
-import AttendedJumbotron from '../Utils/AttendedJumbotron';
 import {Link} from 'react-router-dom';
 import Profile from '../Utils/Profile';
 import ProgressBar from '../Utils/ProgressBar';
@@ -23,11 +22,8 @@ import {viewWorkshop} from '../../actions/workshop';
 
 
 class Workshop extends Component {
-    static defaultProps = {
-        id: 2
-    }
-
     componentWillMount() {
+        const {id} = this.props.match.params;
         this.props.viewWorkshop();
     }
 
@@ -59,7 +55,8 @@ class Workshop extends Component {
             canceled
         } = this.props.workshopView;
 
-        let targetText,
+        let preTitle,
+            targetText,
             targetNumber,
             restDayText,
             restDayNumber,
@@ -68,7 +65,14 @@ class Workshop extends Component {
             priceNumber;
 
         switch (phase) {
+            case 'judging':
+                preTitle = '【審核中】';
+                break;
+            case 'judge_na':
+                preTitle = '【審核失敗】';
+                break;
             case 'investigating':
+                preTitle = '';
                 targetText = '達標人數';
                 targetNumber = minNumber;
                 restDayText = '調查倒數';
@@ -78,6 +82,7 @@ class Workshop extends Component {
                 priceNumber = prePrice;
                 break;
             default:
+                preTitle = '';
                 targetText = '人數上限';
                 targetNumber = maxNumber;
                 restDayText = '報名倒數';
@@ -97,9 +102,9 @@ class Workshop extends Component {
                         {isAuthor && <Link to={`/workshop/${id}/manage`} className="btn btn-secondary">管理</Link>}
                     </Profile>
                 </div>
-                <div className="inner article">
-                    <h1>{title}</h1>
-                    <Jumbotron className="workshop-progress">
+                <div className="inner workshop-article">
+                    <h1>{preTitle}{title}</h1>
+                    {phase !== 'judging' && phase !== 'judge_na' && <Jumbotron className="workshop-progress">
                         <Row className="text-center mb-2">
                             <Col xs={6} sm={3}>
                                 <small>報名人數</small>
@@ -131,11 +136,11 @@ class Workshop extends Component {
                                 <h3>{`NT$${priceNumber}`}</h3>
                             </Col>
                         </Row>
-                    </Jumbotron>
-                    <div className="workshop-progress-attend">
-                        <AttendButton id={id} attended={attended} canceled={canceled} attendees={attendees}/>
-                    </div>
-                    <div className="info">
+                    </Jumbotron>}
+                    {phase !== 'judging' && phase !== 'judge_na' && <div className="workshop-progress-attend">
+                        <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} attendees={attendees}/>
+                    </div>}
+                    <div className="workshop-info">
                         <h3>工作坊資訊</h3>
                         <ul>
                             <li>{`時間：${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) hh:mm')} (GMT+8)`}</li>
@@ -146,23 +151,35 @@ class Workshop extends Component {
                         <h3>你將學會...</h3>
                         <ul>{goal.map((g, i) => <li key={i}>{g}</li>)}</ul>
                     </div>
-                    <div className="requirement">
+                    <div className="workshop-requirement">
                         <h3>你需要具備...</h3>
                         <ul>{requirement.map((r, i) => <li key={i}>{r}</li>)}</ul>
                     </div>
-                    <div className="target-audience">
+                    <div className="workshop-target-audience">
                         <h3>這堂課適合給...</h3>
                         <ul>{targetAudience.map((t, i) => <li key={i}>{t}</li>)}</ul>
                     </div>
-                    <div className="description">
+                    <div className="workshop-description">
                         <h3>簡介</h3>
                         {renderHTML(description)}
                     </div>
-                    <div className="content">
+                    <div className="workshop-content">
                         <h3>詳細介紹</h3>
                         {renderHTML(content)}
                     </div>
-                    <AttendedJumbotron id={id} attended={attended} canceled={canceled} attendees={attendees}/>
+                    <Jumbotron id="workshop-attend" className="workshop-attend">
+                        <h3>注意事項</h3>
+                        <ol>
+                            <li>人數在 7 天內達標才會開課，歡迎分享給有興趣參加的同學。</li>
+                            <li>若沒有達標，將以 Email 通知參加者。</li>
+                            <li>若臨時無法參與工作坊，請儘早取消報名！</li>
+                            <li>取消報名後，無法再次報名。</li>
+                            <li>報名成功後，請填寫課前調查，以供講師安排工作坊內容。</li>
+                        </ol>
+                        {attended && !canceled && <h3>行前通知</h3>}
+                        {attended && !canceled && renderHTML(attendedMsg)}
+                        <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} attendees={attendees}/>
+                    </Jumbotron>
                 </div>
             </div>
         );

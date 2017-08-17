@@ -1,12 +1,5 @@
 @import url(//fonts.googleapis.com/earlyaccess/cwtexming.css);
 @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
-.workshop
-{
-    font-family: 'cwTeXMing', serif;
-    font-size: 1.25rem;
-    line-height: 1.58;
-}
-
 .workshop-profile
 {
     display: flex;
@@ -22,48 +15,59 @@
     align-items: center;
 }
 
-.workshop h1,
-.workshop h2,
-.workshop h3,
-.workshop h4
+.workshop-article
+{
+    font-family: 'cwTeXMing', serif;
+    font-size: 1.25rem;
+    line-height: 1.58;
+}
+
+.workshop-article h1,
+.workshop-article h3,
+.workshop-article h4
 {
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: bold;
 
-    margin: 0 0 .25rem 0;
+    margin: 3rem 0 0 0;
 }
 
-.workshop h1
+.workshop-article h1
 {
     line-height: 1.04;
+
+    margin: 0;
 }
 
-.workshop h3
+.workshop-article h3
 {
     line-height: 1.15;
-
-    margin-top: 3rem;
-    margin-bottom: .5rem;
 }
 
-.workshop h4
+.workshop-article h4
 {
     line-height: 1.22;
 }
 
-.article p,
-.article h4,
-.article img,
+.workshop-article p,
+.workshop-article img,
+.workshop-article ol,
+.workshop-article ul
 {
-    margin-top: 2rem;
+    margin: 2rem 0 0 0;
 }
 
-.article h3 + h4,
-.article h3 + p,
-.article h3 + img,
-.article h4 + p
+.workshop-article h3 + h4,
+.workshop-article h3 + p,
+.workshop-article h3 + img,
+.workshop-article h3 + ol,
+.workshop-article h3 + ul,
+.workshop-article h4 + p,
+.workshop-article h4 + img,
+.workshop-article h4 + ol,
+.workshop-article h4 + ul
 {
-    margin-top: 0 !important;
+    margin: .5rem 0 0 0 !important;
 }
 
 .workshop-progress
@@ -86,7 +90,16 @@
     border-top-right-radius: 0;
 }
 
-.content
+.workshop-attend
 {
-    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
+
+.workshop-attend > h3:first-child
+{
+    margin-top: 0;
+}
+
+.workshop-attend button{
+    margin-top: 2rem;
 }

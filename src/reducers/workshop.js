@@ -16,6 +16,7 @@ const defaultWorkshopViewState = {
     targetAudience: [],
     description: '',
     content: '',
+    attendedMsg: '',
     startDatetime: 0,
     endDatetime: 0,
     deadline: 0,
