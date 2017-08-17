@@ -52,15 +52,16 @@
 }
 
 .article p,
-.article h4
+.article h4,
+.article img,
 {
     margin-top: 2rem;
 }
 
-.article h3+h4,
-.article h4:first-child,
-.article p:first-child,
-.article h4+p
+.article h3 + h4,
+.article h3 + p,
+.article h3 + img,
+.article h4 + p
 {
     margin-top: 0 !important;
 }

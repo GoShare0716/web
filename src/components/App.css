@@ -1,20 +1,27 @@
-.full {
-    width: 100%;
+.full
+{
     display: flex;
     flex-direction: column;
+
+    width: 100%;
+
     align-items: center;
 }
 
-.inner, .outer {
+.inner,
+.outer
+{
     width: 100%;
     padding: 0 20px;
 }
 
-.inner {
+.inner
+{
     max-width: 740px;
 }
 
-.outer {
+.outer
+{
     max-width: 1000px;
 }
 
@@ -22,7 +29,12 @@
     margin-bottom: 2rem !important;
 }
 
-.card-intro {
-    height: 6rem !important;
-    overflow: hidden;
+.unlink:link,
+.unlink:visited,
+.unlink:hover,
+.unlink:active
+{
+    text-decoration: none;
+
+    color: inherit;
 }
