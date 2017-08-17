@@ -8,7 +8,6 @@ import NavBar from './NavBar/NavBar';
 import NavBarAlert from './NavBar/NavBarAlert';
 import User from './User/User';
 import Workshop from './Workshop/Workshop';
-import WorkshopAttended from './Workshop/WorkshopAttended';
 import WorkshopCreate from './Workshop/WorkshopCreate';
 import WorkshopList from './Workshop/WorkshopList';
 import WorkshopManage from './Workshop/WorkshopManage';
@@ -37,7 +36,6 @@ class App extends Component {
                         <Route exact path="/workshop/:id" component={Workshop}/>
                         <Route exact path="/workshop/:id/manage" component={WorkshopManage}/>
                         <Route exact path="/workshop/:id/update" component={WorkshopUpdate}/>
-                        <Route exact path="/workshop/:id/attended" component={WorkshopAttended}/>
                         <Route exact path="/user/me" component={User}/>
                     </div>
                 </div>

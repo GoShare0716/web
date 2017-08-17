@@ -25,7 +25,8 @@
     max-width: 1000px;
 }
 
-.form-group {
+.form-group
+{
     margin-bottom: 2rem !important;
 }
 
@@ -37,4 +38,17 @@
     text-decoration: none;
 
     color: inherit;
+}
+
+.link
+{
+    color: #0275d8;
+}
+
+.link:hover
+{
+    cursor: pointer;
+    text-decoration: underline;
+
+    color: #025aa5;
 }

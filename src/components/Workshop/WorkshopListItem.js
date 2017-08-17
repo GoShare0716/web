@@ -75,7 +75,6 @@ export default class WorkshopListItem extends Component {
             default:
 
         }
-        // onClick={e => history.push(`/workshop/${id}`)}
         return (
             <Col className="mb-3" xs={12} sm={6} lg={4}>
                 <Link to={`/workshop/${id}`} className="unlink">
@@ -90,6 +89,8 @@ export default class WorkshopListItem extends Component {
                                 <span>{name}</span>
                                 <span className="mx-1">·</span>
                                 <span>{moment(startDatetime).format('M 月 D 日')}</span>
+                                <span className="mx-1">·</span>
+                                <span>3 位朋友</span>
                             </div>
                             <ProgressBar className="mb-2" color={progressBarColor} value={progressBarValue} text={progressBarText}/>
                             <div className="d-flex align-items-center justify-content-end">

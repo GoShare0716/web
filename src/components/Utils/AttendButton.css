@@ -1,0 +1,13 @@
+.attend-button-attendees > img
+{
+    width: 24px;
+    height: 24px;
+    margin: 0 0 0 -7px;
+
+    border-radius: 50%;
+}
+
+.attend-button-attendees > img:first-child
+{
+    margin-left: 0;
+}

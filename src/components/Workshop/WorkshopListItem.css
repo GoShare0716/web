@@ -1,56 +1,73 @@
-.workshop-list-item:hover {
-    cursor: pointer;
-}
-
-.workshop-list-item-title {
+.workshop-list-item-title
+{
     font-weight: bold;
     line-height: 1.22;
-    height: 3.625rem;
-    width: 100%;
+
     overflow: hidden;
+
+    width: 100%;
+    height: 3.625rem;
 }
 
-.workshop-list-item-price-deleted {
-    color: #636c72;
+.workshop-list-item-price-deleted
+{
+    font-size: .75rem;
+
     text-decoration: line-through;
-    font-size: 0.75rem;
+
+    color: #636c72;
 }
 
-.workshop-list-item-price {
-    color: #0275d8;
-    font-weight: bold;
+.workshop-list-item-price
+{
     font-size: 1.25rem;
+    font-weight: bold;
+
+    color: #0275d8;
 }
 
-.workshop-list-item-image-container {
+.workshop-list-item-image-container
+{
     position: relative;
+
     display: flex;
+    overflow: hidden;
+
+    width: 100%;
+
     align-items: center;
     justify-content: center;
-    width: 100%;
-    overflow: hidden;
 }
 
-.workshop-list-item-image-container:after {
-    padding-top: 50%;
+.workshop-list-item-image-container:after
+{
     display: block;
+
+    padding-top: 50%;
+
     content: '';
 }
 
-.workshop-list-item-image {
-    width: 100%;
+.workshop-list-item-image
+{
     position: absolute;
-    -webkit-transition: width 0.36s;
-    transition: width 0.36s;
+
+    width: 100%;
+
+    -webkit-transition: width .36s;
+            transition: width .36s;
 }
 
-.workshop-list-item-image:hover {
+.workshop-list-item-image:hover
+{
     width: 125%;
 }
 
-.workshop-list-item-badge {
+.workshop-list-item-badge
+{
     font-size: 1rem !important;
+
     position: absolute;
-    top: 0.5rem;
-    left: -0.25rem;
+    top: .5rem;
+    left: -.25rem;
 }
