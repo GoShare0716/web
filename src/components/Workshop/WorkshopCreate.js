@@ -26,20 +26,20 @@ const CATEGORY_OPTIONS = [
 
 const validate = values => {
     const errors = {};
-    if (!values.title) {
-        errors.title = 'Required'
+    if (!values.title || !values.title.trim()) {
+        errors.title = '標題不可為空';
     }
     if (!values.category) {
-        errors.category = 'Required'
+        errors.category = '類別不可為空';
     }
-    if (!values.requirement || values.requirement.filter(r => r !== '').length === 0) {
-        errors.requirement = 'Required'
+    if (!values.requirement || values.requirement.filter(r => r.trim() !== '').length === 0) {
+        errors.requirement = '請至少填寫一項先決條件';
     }
-    if (!values.targetAudience || values.targetAudience.filter(r => r !== '').length === 0) {
-        errors.targetAudience = 'Required'
+    if (!values.targetAudience || values.targetAudience.filter(t => t.trim() !== '').length === 0) {
+        errors.targetAudience = '請至少填寫一種目標學生';
     }
-    if (!values.goal || values.goal.filter(r => r !== '').length === 0) {
-        errors.goal = 'Required'
+    if (!values.goal || values.goal.filter(g => g.trim() !== '').length === 0) {
+        errors.goal = '請至少填寫一個學習內容';
     }
     return errors;
 }

@@ -21,6 +21,10 @@ import {touch} from 'redux-form';
 
 
 class ImageUpload extends Component {
+    static defaultProps = {
+        disabled: false
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -53,6 +57,7 @@ class ImageUpload extends Component {
 
     render() {
         const {
+            disabled,
             input: {
                 name,
                 value,
@@ -71,19 +76,18 @@ class ImageUpload extends Component {
                 : ''}>
                 <Label>封面圖片連結</Label>
                 <InputGroup>
-                    <Input type="url" value={value} onChange={onChange} disabled={uploading} onBlur={e => this.props.touch(form, name)}/>
-                    <InputGroupButton color="primary" disabled={uploading} onClick={() => this.dropzoneRef.open()}>上傳圖片</InputGroupButton>
+                    <Input type="url" value={value} onChange={onChange} disabled={disabled || uploading} onBlur={e => this.props.touch(form, name)}/>
+                    <InputGroupButton color="primary" disabled={disabled || uploading} onClick={() => this.dropzoneRef.open()}>上傳圖片</InputGroupButton>
                 </InputGroup>
                 <FormFeedback>{touched && error
                         ? <span>{error}</span>
                         : ''}</FormFeedback>
-                <Dropzone className="dropzone mt-2" activeClassName="dropzone-active" rejectClassName="dropzone-reject" multiple={false} accept="image/jpeg, image/png" maxSize={10485760} onDrop={this.onDrop} disableClick={uploading} ref={(node) => {
+                <Dropzone className="dropzone mt-2" activeClassName="dropzone-active" rejectClassName="dropzone-reject" multiple={false} accept="image/jpeg, image/png" maxSize={10485760} onDrop={this.onDrop} disableClick={disabled || uploading} ref={(node) => {
                     this.dropzoneRef = node;
                 }}>
                     {value !== '' && <img className="dropzone-image" src={value} alt=""/>}
                     {value === '' && <p className="dropzone-message">{message}</p>}
                 </Dropzone>
-
             </FormGroup>
         );
     }

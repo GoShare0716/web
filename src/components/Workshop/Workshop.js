@@ -31,6 +31,7 @@ class Workshop extends Component {
         let {
             id,
             phase,
+            role,
             author,
             isAuthor,
             imageUrl,
@@ -98,8 +99,8 @@ class Workshop extends Component {
                     backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .8), rgba(0, 0, 0, .6)), url(${imageUrl})`
                 }}>
                     <Profile className="inner" profile={author}>
-                        {isAuthor && <Link to={`/workshop/${id}/update`} className="btn btn-secondary mr-2">編輯</Link>}
-                        {isAuthor && <Link to={`/workshop/${id}/manage`} className="btn btn-secondary">管理</Link>}
+                        {(role === 'admin' || isAuthor) && <Link to={`/workshop/${id}/update`} className="btn btn-secondary mr-2">編輯</Link>}
+                        {(role === 'admin' || isAuthor) && <Link to={`/workshop/${id}/manage`} className="btn btn-secondary">管理</Link>}
                     </Profile>
                 </div>
                 <div className="inner workshop-article">

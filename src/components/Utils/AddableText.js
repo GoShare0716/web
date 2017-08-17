@@ -10,8 +10,7 @@ import {touch} from 'redux-form';
 
 class AddableText extends Component {
     static defaultProps = {
-        label: '您的課程有任何先決條件嗎？',
-        placeholder: '例如：您應該有使用電腦的初級能力'
+        disabled: false
     };
 
     constructor(props) {
@@ -40,8 +39,8 @@ class AddableText extends Component {
         });
     }
 
-    renderInputs(form, name) {
-        return this.state.values.map((v, i) => (<Input className="mb-2" type="text" placeholder={this.props.placeholder} key={i} value={v} onChange={e => this.onChange(e.target.value, i)} onBlur={e => this.props.touch(form, name)}/>));
+    renderInputs(form, name, disabled) {
+        return this.state.values.map((v, i) => (<Input className="mb-2" type="text" placeholder={this.props.placeholder} key={i} value={v} onChange={e => this.onChange(e.target.value, i)} onBlur={e => this.props.touch(form, name)} disabled={disabled}/>));
     }
 
     onChange(value, index) {
@@ -66,6 +65,7 @@ class AddableText extends Component {
     render() {
         const {
             label,
+            disabled,
             input: {
                 name
             },
@@ -80,8 +80,8 @@ class AddableText extends Component {
                 ? 'danger'
                 : ''}>
                 <Label>{label}</Label>
-                {this.renderInputs(form, name)}
-                <Button onClick={this.addInput}>新增一個答案</Button>
+                {this.renderInputs(form, name, disabled)}
+                <Button onClick={this.addInput} disabled={disabled}>新增一個答案</Button>
                 <FormFeedback>{touched && error
                         ? <span>{error}</span>
                         : ''}</FormFeedback>

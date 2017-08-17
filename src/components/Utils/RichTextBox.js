@@ -17,6 +17,7 @@ import {touch} from 'redux-form';
 
 class RichTextBox extends Component {
     static defaultProps = {
+        disabled: false,
         modules: {
             toolbar: {
                 container: [
@@ -104,6 +105,7 @@ class RichTextBox extends Component {
     render() {
         const {
             label,
+            disabled,
             input: {
                 name,
                 value,
@@ -124,7 +126,7 @@ class RichTextBox extends Component {
                 <FormFeedback>{touched && error
                         ? <span>{error}</span>
                         : ''}</FormFeedback>
-                <ReactQuill className="rich-text-box" modules={this.modules} value={value} onChange={onChange} onBlur={() => this.props.touch(form, name)} ref={node => this.quillRef = node}/>
+                <ReactQuill className="rich-text-box" modules={this.modules} value={value} onChange={onChange} readOnly={disabled} onBlur={() => this.props.touch(form, name)} ref={node => this.quillRef = node}/>
                 <Dropzone className="w-100" multiple={false} accept="image/jpeg, image/png" maxSize={10485760} onDrop={this.onDrop} disableClick={this.state.uploading} ref={node => this.dropzoneRef = node}/>
             </FormGroup>
 

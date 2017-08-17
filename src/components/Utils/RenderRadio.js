@@ -6,11 +6,15 @@ import {Field} from 'redux-form';
 
 
 class RenderRadio extends Component {
-    renderOptions(input, options) {
+    static defaultProps = {
+        disabled: false
+    };
+
+    renderOptions(input, options, disabled) {
         return options.map((o, i) => (
             <FormGroup key={i} check>
                 <Label check>
-                    <Field component="input" className="form-check-input" {...input} type="radio" value={o.value}/>
+                    <Field component="input" className="form-check-input" {...input} type="radio" value={o.value} disabled={disabled}/>
                     <span>{o.text}</span>
                 </Label>
             </FormGroup>
@@ -22,6 +26,7 @@ class RenderRadio extends Component {
             label,
             input,
             options,
+            disabled,
             meta: {
                 touched,
                 error
@@ -32,7 +37,7 @@ class RenderRadio extends Component {
                 ? 'danger'
                 : ''}>
                 <Label>{label}</Label>
-                {this.renderOptions(input, options)}
+                {this.renderOptions(input, options, disabled)}
                 <FormFeedback>{touched && error
                         ? <span>{error}</span>
                         : ''}</FormFeedback>

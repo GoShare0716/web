@@ -14,19 +14,30 @@
     font-weight: bold !important;
     line-height: 1.22 !important;
 
-    margin-top: 2rem !important;
+    margin: 3rem 0 0 0 !important;
 }
 
 .workshop-update .ql-editor p,
+.workshop-update .ql-editor blockquote,
+.workshop-update .ql-editor pre,
+.workshop-update .ql-editor ol,
+.workshop-update .ql-editor ul,
 .workshop-update .ql-editor img
 {
     margin-top: 2rem !important;
 }
 
-.workshop-update .ql-editor h4:first-child,
-.workshop-update .ql-editor p:first-child,
-.workshop-update .ql-editor img:first-child,
-.workshop-update .ql-editor h4+p
+.workshop-update .ql-editor *:first-child
 {
     margin-top: 0 !important;
+}
+
+.workshop-update .ql-editor h4 + p,
+.workshop-update .ql-editor h4 + blockquote,
+.workshop-update .ql-editor h4 + pre,
+.workshop-update .ql-editor h4 + ol,
+.workshop-update .ql-editor h4 + ul,
+.workshop-update .ql-editor h4 + img
+{
+    margin: .5rem 0 0 0 !important;
 }
