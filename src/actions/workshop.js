@@ -11,6 +11,7 @@ export const viewWorkshop = () => dispatch => {
 };
 
 const WORKSHOP_MODULE = {
+    role: 'member',
     author: {
         id: 1,
         pictureUrl: 'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/14907205_1735976403393352_4070401399338628514_n.jpg?oh=70a840220c248b11e3674c348421d695&oe=5A299617',
@@ -114,7 +115,7 @@ const WORKSHOP = {
         startDatetime: new Date("2017/9/1 20:00").getTime(),
         endDatetime: new Date("2017/9/1 22:00").getTime(),
         deadline: new Date("2017/8/22 23:59").getTime(),
-        closing: new Date("2017/8/25 23:59").getTime(),
+        closing: new Date("2017/8/25 23:59").getTime()
     },
     over: {
         ...WORKSHOP_MODULE,
@@ -128,7 +129,7 @@ const WORKSHOP = {
         attendees: {
             friends: [],
             number: 12
-        },
+        }
     },
     closing: {
         ...WORKSHOP_MODULE,
@@ -142,7 +143,7 @@ const WORKSHOP = {
         attendees: {
             friends: [],
             number: 14
-        },
+        }
     },
     full: {
         ...WORKSHOP_MODULE,
@@ -156,7 +157,7 @@ const WORKSHOP = {
         attendees: {
             friends: [],
             number: 20
-        },
+        }
     },
     reached: {
         ...WORKSHOP_MODULE,
@@ -170,7 +171,7 @@ const WORKSHOP = {
         attendees: {
             friends: [],
             number: 11
-        },
+        }
     },
     unreached: {
         ...WORKSHOP_MODULE,
@@ -179,7 +180,7 @@ const WORKSHOP = {
         startDatetime: new Date("2017/9/1 20:00").getTime(),
         endDatetime: new Date("2017/9/1 22:00").getTime(),
         deadline: new Date("2017/8/13 23:59").getTime(),
-        closing: new Date("2017/8/16 23:59").getTime(),
+        closing: new Date("2017/8/16 23:59").getTime()
     }
 }
 

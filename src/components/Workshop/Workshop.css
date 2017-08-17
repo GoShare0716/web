@@ -50,22 +50,28 @@
 }
 
 .workshop-article p,
-.workshop-article img,
+.workshop-article blockquote,
+.workshop-article pre,
 .workshop-article ol,
-.workshop-article ul
+.workshop-article ul,
+.workshop-article img
 {
     margin: 2rem 0 0 0;
 }
 
 .workshop-article h3 + h4,
 .workshop-article h3 + p,
-.workshop-article h3 + img,
+.workshop-article h3 + blockquote,
+.workshop-article h3 + pre,
 .workshop-article h3 + ol,
 .workshop-article h3 + ul,
+.workshop-article h3 + img,
 .workshop-article h4 + p,
-.workshop-article h4 + img,
+.workshop-article h4 + blockquote,
+.workshop-article h4 + pre,
 .workshop-article h4 + ol,
-.workshop-article h4 + ul
+.workshop-article h4 + ul,
+.workshop-article h4 + img
 {
     margin: .5rem 0 0 0 !important;
 }
