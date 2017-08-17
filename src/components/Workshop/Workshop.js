@@ -1,16 +1,16 @@
 import 'moment/locale/zh-tw';
 import './Workshop.css'
 
-import {Button, Col, Jumbotron, Row} from 'reactstrap';
+import {Col, Jumbotron, Row} from 'reactstrap';
 import React, {Component} from 'react';
 
 import AttendButton from '../Utils/AttendButton';
 import AttendedJumbotron from '../Utils/AttendedJumbotron';
+import {Link} from 'react-router-dom';
 import Profile from '../Utils/Profile';
 import ProgressBar from '../Utils/ProgressBar';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {history} from '../../utils';
 import moment from 'moment';
 import renderHTML from 'react-render-html';
 import {viewWorkshop} from '../../actions/workshop';
@@ -93,8 +93,8 @@ class Workshop extends Component {
                     backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .8), rgba(0, 0, 0, .6)), url(${imageUrl})`
                 }}>
                     <Profile className="inner" profile={author}>
-                        {isAuthor && <Button onClick={e => history.push(`/workshop/${id}/update`)} className="mr-2">編輯</Button>}
-                        {isAuthor && <Button onClick={e => history.push(`/workshop/${id}/manage`)}>管理</Button>}
+                        {isAuthor && <Link to={`/workshop/${id}/update`} className="btn btn-secondary mr-2">編輯</Link>}
+                        {isAuthor && <Link to={`/workshop/${id}/manage`} className="btn btn-secondary">管理</Link>}
                     </Profile>
                 </div>
                 <div className="inner article">

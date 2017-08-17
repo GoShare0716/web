@@ -17,13 +17,15 @@
     margin-top: 2rem !important;
 }
 
-.workshop-update .ql-editor p
+.workshop-update .ql-editor p,
+.workshop-update .ql-editor img
 {
     margin-top: 2rem !important;
 }
 
 .workshop-update .ql-editor h4:first-child,
 .workshop-update .ql-editor p:first-child,
+.workshop-update .ql-editor img:first-child,
 .workshop-update .ql-editor h4+p
 {
     margin-top: 0 !important;
