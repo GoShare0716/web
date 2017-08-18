@@ -9,6 +9,8 @@ import {history} from '../utils';
 
 // import {login as loginFromApi} from '../api/auth';
 
+var scroll = require('scroll');
+var page = require('scroll-doc')();
 
 export const facebookLogin = () => dispatch => {
     dispatch(showLoading());
@@ -59,7 +61,8 @@ const login = (dispatch, user) => {
     localStorage.setItem('fbId', user.fbId);
     localStorage.setItem('accessToken', '123456');
     localStorage.setItem('thumbnailUrl', user.thumbnailUrl);
-    localStorage.setItem('role', 'member');
+    localStorage.setItem('role', 'admin');
+    // localStorage.setItem('role', 'member');
     dispatch({type: '@AUTH/LOGIN_SUCCESS'});
     dispatch(deliverAlert('登入成功', 'success'));
     dispatch(hideLoading());
@@ -86,7 +89,11 @@ export const facebookLogout = () => dispatch => {
     history.push('/');
 };
 
-export const unauthenticated = () => dispatch => {
-    history.push('/');
+export const unauthenticated = (redirect = true) => dispatch => {
+    if (redirect) {
+        history.push('/');
+    } else {
+        scroll.top(page, 0);
+    }
     dispatch(deliverAlert('請先登入', 'warning'));
 };

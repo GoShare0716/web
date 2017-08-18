@@ -24,7 +24,7 @@ import {viewWorkshop} from '../../actions/workshop';
 class Workshop extends Component {
     componentWillMount() {
         const {id} = this.props.match.params;
-        this.props.viewWorkshop();
+        this.props.viewWorkshop(id);
     }
 
     render() {

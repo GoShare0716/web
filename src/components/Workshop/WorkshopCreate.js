@@ -59,7 +59,6 @@ class WorkshopCreate extends Component {
     }
 
     handleSubmit(form) {
-        console.log(form)
         this.props.createWorkshop(form);
     }
 

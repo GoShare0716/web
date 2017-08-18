@@ -1,11 +1,20 @@
+import {
+    Form,
+    Input,
+    ListGroup,
+    Row
+} from 'reactstrap';
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {listWorkshop} from '../../actions/workshop';
 
-import {ListGroup, InputGroup, Input, InputGroupButton, Row} from 'reactstrap';
 import MultipleFilter from '../Utils/MultipleFilter';
 import WorkshopListItem from './WorkshopListItem';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {listWorkshop} from '../../actions/workshop';
+
+
+
+
 
 const CATEGORY_OPTIONS = [
     {
@@ -24,10 +33,10 @@ const ORDERING_OPTIONS = [
         text: '熱門',
         value: 'hot'
     }, {
-        text: '最新',
+        text: '最近',
         value: 'new'
     }, {
-        text: '最近',
+        text: '活動日期',
         value: 'date'
     }
 ];
@@ -51,40 +60,48 @@ class WorkshopList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchText: '',
             category: 'all',
             ordering: 'hot',
             state: 'all'
         };
+        this.onSearchSubmit = this.onSearchSubmit.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
+        this.performSearch = this.performSearch.bind(this);
+    }
+
+    onSearchSubmit(e) {
+        e.preventDefault();
+        this.performSearch();
     }
 
     onFilterChange(nextState) {
-        this.setState(nextState);
-        // TODO: this.props.listWorkshop(filter);
+        this.setState(nextState, this.performSearch);
+    }
+
+    performSearch() {
+        const {seartchText, category, ordering, state} = this.state;
+        this.props.listWorkshop(seartchText, category, ordering, state);
     }
 
     componentWillMount() {
-        this.props.listWorkshop();
-    }
-
-    renderWorkshopItem() {
-        return this.props.workshopList.map((w, i) => <WorkshopListItem key={i} {...w}/>)
+        const {seartchText, category, ordering, state} = this.state;
+        this.props.listWorkshop(seartchText, category, ordering, state);
     }
 
     render() {
         return (
             <div className="outer">
                 <h1 className="mt-5 mb-3">工作坊</h1>
-                <InputGroup className="mb-3">
-                    <Input placeholder="搜尋喜歡的工作坊"/>
-                    <InputGroupButton color="primary">搜尋</InputGroupButton>
-                </InputGroup>
+                <Form className="mb-3" onSubmit={this.onSearchSubmit}>
+                    <Input value={this.state.searchText} onChange={e => this.setState({searchText: e.target.value})} placeholder="搜尋喜歡的工作坊"/>
+                </Form>
                 <ListGroup className="mb-3">
                     <MultipleFilter label="分類" options={CATEGORY_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({category: option})}/>
                     <MultipleFilter label="順序" options={ORDERING_OPTIONS} defaultOption={'hot'} onChange={option => this.onFilterChange({ordering: option})}/>
                     <MultipleFilter label="狀態" options={STATE_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({state: option})}/>
                 </ListGroup>
-                <Row>{this.renderWorkshopItem()}</Row>
+                <Row>{this.props.workshopList.map((w, i) => <WorkshopListItem key={i} {...w}/>)}</Row>
             </div>
         );
     }

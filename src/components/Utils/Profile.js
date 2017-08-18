@@ -3,6 +3,7 @@ import './Profile.css';
 import React, {Component} from 'react';
 
 import {history} from '../../utils';
+import renderHTML from 'react-render-html';
 
 
 
@@ -42,7 +43,7 @@ class Profile extends Component {
                         <span>個人頁面</span>
                     </a>
                 </div>
-                <p className="mb-2">{introduction}</p>
+                <p className="mb-2">{renderHTML(introduction)}</p>
                 {this.props.children}
             </div>
         );

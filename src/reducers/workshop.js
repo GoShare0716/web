@@ -36,6 +36,12 @@ export const workshopView = (state = INIT_WORKSHOP_VIEW, action) => {
             action.payload.deadline = moment(deadline).format('YYYY-MM-DD[T]HH:mm');
             action.payload.closing = moment(closing).format('YYYY-MM-DD[T]HH:mm');
             return action.payload;
+        case '@WORKSHOP/ATTEND':
+            console.log(action.payload);
+            return {
+                ...state,
+                ...action.payload
+            };
         default:
             return state;
     }
