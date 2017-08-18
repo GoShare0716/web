@@ -11,7 +11,9 @@ import RenderRadio from '../Utils/RenderRadio';
 import RichTextBox from '../Utils/RichTextBox';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {unauthenticated} from '../../actions/auth';
 import {viewWorkshop} from '../../actions/workshop';
+
 
 
 
@@ -29,12 +31,12 @@ const CATEGORY_OPTIONS = [
     }
 ];
 
-const getDisabled = ({role, phase}) => {
+const getDisabled = (phase) => {
     let createDisabled,
         deadlineDisabled,
         restDisabled,
         submitDisabled;
-    if (role === 'admin') {
+    if (localStorage.getItem('role') === 'admin') {
         createDisabled = deadlineDisabled = restDisabled = submitDisabled = false;
     } else {
         createDisabled = false;
@@ -49,8 +51,8 @@ const getDisabled = ({role, phase}) => {
     return {createDisabled, deadlineDisabled, restDisabled, submitDisabled};
 };
 
-const validate = (values, {initialValues}) => {
-    const {createDisabled, restDisabled} = getDisabled(initialValues);
+const validate = (values, {initialValues: phase}) => {
+    const {createDisabled, restDisabled} = getDisabled(phase);
     const errors = {};
     if (!createDisabled) {
         if (!values.title || !values.title.trim()) {
@@ -132,11 +134,18 @@ class WorkshopUpdate extends Component {
     }
 
     componentWillMount() {
-        this.props.viewWorkshop();
+        const {auth, viewWorkshop, unauthenticated} = this.props;
+        if (auth.authenticated) {
+            viewWorkshop();
+        } else {
+            unauthenticated();
+        }
     }
 
-    componentWillReceiveProps({initialValues}) {
-        this.setState(getDisabled(initialValues));
+    componentWillReceiveProps({initialValues: {
+            phase
+        }}) {
+        this.setState(getDisabled(phase));
     }
 
     render() {
@@ -171,12 +180,13 @@ class WorkshopUpdate extends Component {
     }
 }
 
-function mapStateToProps({workshopView}) {
-    return {initialValues: workshopView};
+function mapStateToProps({auth, workshopView}) {
+    return {auth, initialValues: workshopView};
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        unauthenticated,
         viewWorkshop
     }, dispatch);
 }

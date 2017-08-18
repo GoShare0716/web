@@ -1,12 +1,6 @@
 import './User.css';
 
-import {
-    Button,
-    Form,
-    Modal,
-    ModalBody,
-    Row
-} from 'reactstrap';
+import {Button, Form, Modal, ModalBody, Row} from 'reactstrap';
 import {Field, reduxForm} from 'redux-form';
 import React, {Component} from 'react';
 
@@ -16,6 +10,7 @@ import RichTextBox from '../Utils/RichTextBox';
 import WorkshopListItem from '../Workshop/WorkshopListItem';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {unauthenticated} from '../../actions/auth';
 import {viewUser} from '../../actions/user';
 
 
@@ -37,9 +32,7 @@ const MODULES = {
                     'background': []
                 }
             ],
-            [
-                'link'
-            ],
+            ['link'],
             ['clean']
         ]
     }
@@ -48,7 +41,9 @@ const MODULES = {
 const validate = values => {
     const errors = {};
     if (!values.email) {
-        errors.email = 'Required'
+        errors.email = 'Email 不可為空';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = '請輸入正確的 Email';
     }
     return errors;
 }
@@ -71,11 +66,17 @@ class User extends Component {
     }
 
     handleSubmit(form) {
-        console.log(form)
+        console.log(form);
+        this.modalToggle();
     }
 
-    componentDidMount() {
-        this.props.viewUser();
+    componentWillMount() {
+        const {auth, unauthenticated, viewUser} = this.props;
+        if (!auth.authenticated && this.props.match.params.id === 'me') {
+            unauthenticated();
+        } else {
+            viewUser();
+        }
     }
 
     render() {
@@ -99,7 +100,7 @@ class User extends Component {
                                 </button>
                             </div>
                             <Form onSubmit={handleSubmit(this.handleSubmit)}>
-                                <h4 className="mb-3">編輯個人檔案</h4>
+                                <h3 className="mb-3">編輯個人檔案</h3>
                                 <Field component={RenderField} label="Email" type="text" name="email"/>
                                 <Field component={RenderField} label="臉書網址" type="text" name="fbUrl"/>
                                 <Field component={RenderField} label="個人頁面網址" type="text" name="personalWebUrl"/>
@@ -124,12 +125,13 @@ class User extends Component {
     }
 }
 
-function mapStateToProps({user}) {
-    return {user, initialValues: user.profile};
+function mapStateToProps({auth, user}) {
+    return {auth, user, initialValues: user.profile};
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        unauthenticated,
         viewUser
     }, dispatch);
 }

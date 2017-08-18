@@ -1,60 +1,65 @@
-import React, {Component} from 'react';
 import {Button, ButtonGroup} from 'reactstrap';
+import React, {Component} from 'react';
+
 
 class MultipleButton extends Component {
     static defaultProps = {
         options: [
-            [
-                '入門', 'basic'
-            ],
-            ['精進', 'advanced']
+            {
+                text: '入門',
+                value: 'basic'
+            },
+            {
+                text: '精進',
+                value: 'advanced'
+            }
         ],
-        checkedOption: '',
-        onButtonClick: (option) => {},
+        value: null,
+        onChange: (option) => {},
         cancellable: false,
-        size: 'sm',
+        size: '',
         style: {},
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            checkedOption: this.props.checkedOption
+            value: this.props.value
         };
 
-        this.onButtonClick = this.onButtonClick.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    componentWillReceiveProps({checkedOption}) {
-        if (checkedOption !== this.state.checkedOption) {
-            this.setState({checkedOption});
+    componentWillReceiveProps({value}) {
+        if (value !== this.state.value) {
+            this.setState({value});
         }
     }
 
-    onButtonClick(e, option) {
+    onChange(e, nextValue) {
         e.stopPropagation();
-        let {checkedOption} = this.state;
+        let {value} = this.state;
         if (this.props.cancellable) {
-            this.props.onButtonClick(option);
+            this.props.onChange(nextValue);
             this.setState({
-                checkedOption: checkedOption === option
-                    ? -1
-                    : option
+                value: value === nextValue
+                    ? null
+                    : nextValue
             });
         } else {
-            if (checkedOption !== option) {
-                this.props.onButtonClick(option);
-                this.setState({checkedOption: option});
+            if (value !== nextValue) {
+                this.props.onChange(nextValue);
+                this.setState({value: nextValue});
             }
         }
     }
 
     renderButton() {
-        return this.props.options.map(option => {
-            let color = this.state.checkedOption === option[1]
+        return this.props.options.map((option, index) => {
+            let color = this.state.value === option.value
                 ? 'primary'
                 : 'secondary';
-            return <Button key={option} onClick={e => this.onButtonClick(e, option[1])} color={color}>{option[0]}</Button>;
+            return <Button key={index} onClick={e => this.onChange(e, option.value)} color={color}>{option.text}</Button>;
         });
     }
 

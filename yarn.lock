@@ -5047,6 +5047,10 @@ react-attr-converter@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-attr-converter/-/react-attr-converter-0.3.1.tgz#4a2abf6d907b7ddae4d862dfec80e489ce41ad6e"
 
+react-csv@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-csv/-/react-csv-1.0.8.tgz#92bacdb5edbc52cd2ed50f31bbd1d946e8e32acf"
+
 react-dev-utils@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-3.0.2.tgz#1a42263e9b6aa11dcb45d69dfe5eb1b354bd5531"

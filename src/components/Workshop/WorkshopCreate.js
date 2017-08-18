@@ -8,6 +8,7 @@ import RenderRadio from '../Utils/RenderRadio';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {createWorkshop} from '../../actions/workshop';
+import {unauthenticated} from '../../actions/auth';
 
 
 
@@ -50,6 +51,13 @@ class WorkshopCreate extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillMount() {
+        const {auth, unauthenticated} = this.props;
+        if (!auth.authenticated) {
+            unauthenticated();
+        }
+    }
+
     handleSubmit(form) {
         console.log(form)
         this.props.createWorkshop(form);
@@ -84,13 +92,18 @@ class WorkshopCreate extends Component {
     }
 }
 
+function mapStateToProps({auth}) {
+    return {auth};
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        unauthenticated,
         createWorkshop
     }, dispatch);
 }
 
 WorkshopCreate = reduxForm({form: 'workshopCreate', validate})(WorkshopCreate)
-WorkshopCreate = connect(null, mapDispatchToProps)(WorkshopCreate);
+WorkshopCreate = connect(mapStateToProps, mapDispatchToProps)(WorkshopCreate);
 
 export default WorkshopCreate;
