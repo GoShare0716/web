@@ -3,6 +3,7 @@ import './WorkshopUpdate.css';
 import {Button, Form} from 'reactstrap';
 import {Field, reduxForm} from 'redux-form';
 import React, {Component} from 'react';
+import {updateWorkshop, viewWorkshop} from '../../actions/workshop';
 
 import AddableText from '../Utils/AddableText';
 import ImageUpload from '../Utils/ImageUpload';
@@ -12,7 +13,6 @@ import RichTextBox from '../Utils/RichTextBox';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {unauthenticated} from '../../actions/auth';
-import {viewWorkshop} from '../../actions/workshop';
 
 
 
@@ -130,13 +130,14 @@ class WorkshopUpdate extends Component {
     }
 
     handleSubmit(form) {
-        console.log(form)
+        this.props.updateWorkshop(form);
     }
 
     componentWillMount() {
         const {auth, viewWorkshop, unauthenticated} = this.props;
+        const {id} = this.props.match.params;
         if (auth.authenticated) {
-            viewWorkshop();
+            viewWorkshop(id);
         } else {
             unauthenticated();
         }
@@ -187,7 +188,8 @@ function mapStateToProps({auth, workshopView}) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         unauthenticated,
-        viewWorkshop
+        viewWorkshop,
+        updateWorkshop
     }, dispatch);
 }
 

@@ -54,10 +54,13 @@ export default class WorkshopListItem extends Component {
                 priceText = `NT$${prePrice}`;
                 priceColor = '#0275d8';
                 break;
+            case 'full':
             case 'reached':
-                badge = `報名倒數 ${moment(closing).fromNow(true)}`
-                badgeColor = 'success';
                 let rest = maxNumber - number;
+                badge = rest === 0
+                    ? `活動倒數 ${moment(startDatetime).fromNow(true)}`
+                    : `報名倒數 ${moment(closing).fromNow(true)}`;
+                badgeColor = 'success';
                 progressBarText = rest === 0
                     ? '已額滿'
                     : `最後 ${rest} 個座位`;
@@ -67,10 +70,25 @@ export default class WorkshopListItem extends Component {
                 priceText = `NT$${price}`;
                 priceColor = '#5cb85c';
                 break;
+            case 'closing':
+                badge = `活動倒數 ${moment(startDatetime).fromNow(true)}`;
+                badgeColor = 'success';
+                progressBarText = '報名截止';
+                progressBarColor = '#5cb85c';
+                progressBarValue = number * 100 / maxNumber;
+                priceDeletedText = '';
+                priceText = `NT$${price}`;
+                priceColor = '#5cb85c';
+                break;
             case 'over':
-                badge = '已結束';
+            case 'unreached':
+                badge = phase === 'over'
+                    ? '已結束'
+                    : '未達標';
                 badgeColor = 'default';
+                progressBarText = '';
                 progressBarColor = 'primary';
+                progressBarValue = 0;
                 priceDeletedText = '';
                 priceText = `NT$${price}`;
                 priceColor = '#AAA';
