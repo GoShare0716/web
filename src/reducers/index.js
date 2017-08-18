@@ -1,11 +1,15 @@
+import {workshopList, workshopManage, workshopView} from './workshop';
+
+import {alert} from './alert';
+import {auth} from './auth';
 import {combineReducers} from 'redux';
 import {reducer as form} from 'redux-form';
-import {alert} from './alert';
 import {loadingBarReducer as loadingBar} from 'react-redux-loading-bar';
-import {auth} from './auth';
 import {user} from './user';
-import {workshopList, workshopView} from './workshop';
-import {skillList, skillView} from './skill';
+
+
+
+
 
 const reducers = combineReducers({
     form,
@@ -15,8 +19,7 @@ const reducers = combineReducers({
     user,
     workshopList,
     workshopView,
-    skillList,
-    skillView
+    workshopManage,
 });
 
 export default reducers;

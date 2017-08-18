@@ -1,7 +1,14 @@
 /*global FB*/
-import {showLoading, hideLoading} from 'react-redux-loading-bar';
-// import {login as loginFromApi} from '../api/auth';
+import {hideLoading, showLoading} from 'react-redux-loading-bar';
+
 import {deliverAlert} from './alert';
+import {history} from '../utils';
+
+
+
+
+// import {login as loginFromApi} from '../api/auth';
+
 
 export const facebookLogin = () => dispatch => {
     dispatch(showLoading());
@@ -76,4 +83,10 @@ export const facebookLogout = () => dispatch => {
             dispatch({type: '@AUTH/LOGOUT'});
         }
     });
+    history.push('/');
+};
+
+export const unauthenticated = () => dispatch => {
+    history.push('/');
+    dispatch(deliverAlert('請先登入', 'warning'));
 };

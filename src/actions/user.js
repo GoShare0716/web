@@ -26,7 +26,20 @@ const USER_VIEW = {
             startDatetime: 1503489600000,
             prePrice: 0,
             price: 50,
-            attendeesNumber: 5,
+            attendees: {
+                friends: [
+                    {
+                        id: 2,
+                        name: '張嘉軒',
+                        thumbnailUrl: "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-1/p32x32/16998846_1290498551040215_6726353178621101254_n.jpg?oh=87ca08598e9aa9589eeb1ad456e33c66&oe=59FF081B"
+                    }, {
+                        id: 3,
+                        name: '林湘庭',
+                        thumbnailUrl: "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-1/p40x40/16426235_1335337256541448_4112461475677668738_n.jpg?oh=44bcbeb78e0f146ae8a22b56e20fd444&oe=5A0AD7C3"
+                    }
+                ],
+                number: 5
+            },
             phase: 'investigating'
         }
     ],
@@ -45,7 +58,10 @@ const USER_VIEW = {
             startDatetime: 1503489600000,
             prePrice: 50,
             price: 150,
-            attendeesNumber: 12,
+            attendees: {
+                friends: [],
+                number: 9
+            },
             phase: 'reached'
         }, {
             id: 3,
@@ -61,7 +77,16 @@ const USER_VIEW = {
             startDatetime: 1503489600000,
             prePrice: 50,
             price: 200,
-            attendeesNumber: 8,
+            attendees: {
+                friends: [
+                    {
+                        id: 2,
+                        name: '張嘉軒',
+                        thumbnailUrl: "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-1/p32x32/16998846_1290498551040215_6726353178621101254_n.jpg?oh=87ca08598e9aa9589eeb1ad456e33c66&oe=59FF081B"
+                    }
+                ],
+                number: 11
+            },
             phase: 'investigating'
         }, {
             id: 4,
@@ -77,7 +102,16 @@ const USER_VIEW = {
             startDatetime: 1501761600000,
             prePrice: 0,
             price: 150,
-            attendeesNumber: 9,
+            attendees: {
+                friends: [
+                    {
+                        id: 3,
+                        name: '林湘庭',
+                        thumbnailUrl: "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-1/p40x40/16426235_1335337256541448_4112461475677668738_n.jpg?oh=44bcbeb78e0f146ae8a22b56e20fd444&oe=5A0AD7C3"
+                    }
+                ],
+                number: 9
+            },
             phase: 'over'
         }
     ]

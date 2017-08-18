@@ -28,7 +28,10 @@ export default class WorkshopListItem extends Component {
             startDatetime,
             prePrice,
             price,
-            attendeesNumber,
+            attendees: {
+                friends,
+                number
+            },
             phase
         } = this.props;
         let badge,
@@ -44,22 +47,22 @@ export default class WorkshopListItem extends Component {
             case 'investigating':
                 badge = `調查倒數 ${moment(deadline).fromNow(true)}`;
                 badgeColor = 'primary';
-                progressBarText = `還要 ${minNumber - attendeesNumber} 人達標`
+                progressBarText = `還要 ${minNumber - number} 人達標`
                 progressBarColor = '#0275d8';
-                progressBarValue = attendeesNumber * 100 / minNumber;
-                priceDeletedText = `達標後 NT$${price}`;
+                progressBarValue = number * 100 / minNumber;
+                priceDeletedText = `NT$${price}`;
                 priceText = `NT$${prePrice}`;
                 priceColor = '#0275d8';
                 break;
             case 'reached':
                 badge = `報名倒數 ${moment(closing).fromNow(true)}`
                 badgeColor = 'success';
-                let rest = maxNumber - attendeesNumber;
+                let rest = maxNumber - number;
                 progressBarText = rest === 0
                     ? '已額滿'
                     : `最後 ${rest} 個座位`;
                 progressBarColor = '#5cb85c';
-                progressBarValue = attendeesNumber * 100 / maxNumber;
+                progressBarValue = number * 100 / maxNumber;
                 priceDeletedText = '';
                 priceText = `NT$${price}`;
                 priceColor = '#5cb85c';
@@ -89,8 +92,8 @@ export default class WorkshopListItem extends Component {
                                 <span>{name}</span>
                                 <span className="mx-1">·</span>
                                 <span>{moment(startDatetime).format('M 月 D 日')}</span>
-                                <span className="mx-1">·</span>
-                                <span>3 位朋友</span>
+                                {friends.length > 0 && <span className="mx-1">·</span>}
+                                {friends.length > 0 && <span>{`${friends.length} 位朋友`}</span>}
                             </div>
                             <ProgressBar className="mb-2" color={progressBarColor} value={progressBarValue} text={progressBarText}/>
                             <div className="d-flex align-items-center justify-content-end">

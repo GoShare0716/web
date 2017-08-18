@@ -10,8 +10,48 @@ export const viewWorkshop = () => dispatch => {
     dispatch({type: '@WORKSHOP/VIEW', payload: WORKSHOP.investigating});
 };
 
+export const getWorkshopState = () => dispatch => {
+    dispatch({type: '@WORKSHOP/GET_STATE', payload: 'judging'});
+};
+
+export const setWorkshopState = (state) => dispatch => {
+    dispatch({type: '@WORKSHOP/SET_STATE', payload: state});
+};
+
+export const getWorkshopPublished = () => dispatch => {
+    dispatch({type: '@WORKSHOP/GET_PUBLISHED', payload: false});
+};
+
+export const setWorkshopPublished = (published) => dispatch => {
+    dispatch({type: '@WORKSHOP/SET_PUBLISHED', payload: published});
+};
+
+export const getWorkshopAttendees = () => dispatch => {
+    dispatch({type: '@WORKSHOP/GET_ATTENDEES', payload: WORKSHOP_ATTENDEES});
+};
+
+const WORKSHOP_ATTENDEES = [
+    {
+        userId: 9,
+        name: '賴詰凱',
+        email: 'skyle0115@gmail.com',
+        canceled: false
+    },
+    {
+        userId: 4,
+        name: '林湘庭',
+        email: 'tiffany@gmail.com',
+        canceled: true
+    },
+    {
+        userId: 3,
+        name: '張嘉軒',
+        email: 'chang@gmail.com',
+        canceled: false
+    }
+];
+
 const WORKSHOP_MODULE = {
-    role: 'member',
     author: {
         id: 1,
         pictureUrl: 'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/14907205_1735976403393352_4070401399338628514_n.jpg?oh=70a840220c248b11e3674c348421d695&oe=5A299617',
@@ -199,7 +239,20 @@ const WORKSHOP_LIST = [
         startDatetime: 1503489600000,
         prePrice: 0,
         price: 50,
-        attendeesNumber: 5,
+        attendees: {
+            friends: [
+                {
+                    id: 2,
+                    name: '張嘉軒',
+                    thumbnailUrl: "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-1/p32x32/16998846_1290498551040215_6726353178621101254_n.jpg?oh=87ca08598e9aa9589eeb1ad456e33c66&oe=59FF081B"
+                }, {
+                    id: 3,
+                    name: '林湘庭',
+                    thumbnailUrl: "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-1/p40x40/16426235_1335337256541448_4112461475677668738_n.jpg?oh=44bcbeb78e0f146ae8a22b56e20fd444&oe=5A0AD7C3"
+                }
+            ],
+            number: 5
+        },
         phase: 'investigating'
     }, {
         id: 2,
@@ -215,7 +268,16 @@ const WORKSHOP_LIST = [
         startDatetime: 1503489600000,
         prePrice: 50,
         price: 150,
-        attendeesNumber: 12,
+        attendees: {
+            friends: [
+                {
+                    id: 2,
+                    name: '張嘉軒',
+                    thumbnailUrl: "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-1/p32x32/16998846_1290498551040215_6726353178621101254_n.jpg?oh=87ca08598e9aa9589eeb1ad456e33c66&oe=59FF081B"
+                }
+            ],
+            number: 11
+        },
         phase: 'reached'
     }, {
         id: 3,
@@ -231,7 +293,16 @@ const WORKSHOP_LIST = [
         startDatetime: 1503489600000,
         prePrice: 50,
         price: 200,
-        attendeesNumber: 8,
+        attendees: {
+            friends: [
+                {
+                    id: 3,
+                    name: '林湘庭',
+                    thumbnailUrl: "https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-1/p40x40/16426235_1335337256541448_4112461475677668738_n.jpg?oh=44bcbeb78e0f146ae8a22b56e20fd444&oe=5A0AD7C3"
+                }
+            ],
+            number: 9
+        },
         phase: 'investigating'
     }, {
         id: 4,
@@ -247,7 +318,10 @@ const WORKSHOP_LIST = [
         startDatetime: 1501761600000,
         prePrice: 0,
         price: 150,
-        attendeesNumber: 9,
+        attendees: {
+            friends: [],
+            number: 9
+        },
         phase: 'over'
     }
 ];

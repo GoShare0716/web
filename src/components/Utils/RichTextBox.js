@@ -18,39 +18,44 @@ import {touch} from 'redux-form';
 class RichTextBox extends Component {
     static defaultProps = {
         disabled: false,
-        modules: {
-            toolbar: {
-                container: [
-                    [
-                        {
-                            'header': [4, false]
-                        }
-                    ],
-                    [
-                        'bold', 'italic', 'underline', 'strike'
-                    ],
-                    [
-                        'blockquote', 'code-block'
-                    ],
-                    [
-                        {
-                            'color': []
-                        }, {
-                            'background': []
-                        }
-                    ],
-                    [
-                        {
-                            'list': 'ordered'
-                        }, {
-                            'list': 'bullet'
-                        }
-                    ],
-                    [
-                        'link', 'image'
-                    ],
-                    ['clean']
-                ]
+        modules: {}
+    };
+
+    modules = {
+        toolbar: {
+            container: [
+                [
+                    {
+                        'header': [4, false]
+                    }
+                ],
+                [
+                    'bold', 'italic', 'underline', 'strike'
+                ],
+                [
+                    'blockquote', 'code-block'
+                ],
+                [
+                    {
+                        'color': []
+                    }, {
+                        'background': []
+                    }
+                ],
+                [
+                    {
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }
+                ],
+                [
+                    'link', 'image'
+                ],
+                ['clean']
+            ],
+            handlers: {
+                'image': this.imageHandler.bind(this)
             }
         }
     };
@@ -61,9 +66,9 @@ class RichTextBox extends Component {
             uploading: false
         };
 
-        this.modules = this.props.modules;
-        this.modules.toolbar.handlers = {
-            'image': this.imageHandler.bind(this)
+        this.modules = {
+            ...this.modules,
+            ...this.props.modules
         };
         this.onDrop = this.onDrop.bind(this);
     }
@@ -97,8 +102,6 @@ class RichTextBox extends Component {
     }
 
     imageHandler() {
-        const editor = this.quillRef.getEditor();
-        console.log(editor.getSelection());
         this.dropzoneRef.open();
     }
 

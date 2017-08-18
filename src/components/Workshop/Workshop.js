@@ -31,7 +31,6 @@ class Workshop extends Component {
         let {
             id,
             phase,
-            role,
             author,
             isAuthor,
             imageUrl,
@@ -55,6 +54,7 @@ class Workshop extends Component {
             attended,
             canceled
         } = this.props.workshopView;
+        const role = localStorage.getItem('role');
 
         let preTitle,
             targetText,
