@@ -1,5 +1,5 @@
 import 'moment/locale/zh-tw';
-import './WorkshopListItem.css';
+import './WorkshopItem.css';
 
 import {Badge, Card, CardBlock, CardImg, Col} from 'reactstrap';
 import React, {Component} from 'react';
@@ -12,9 +12,9 @@ import moment from 'moment';
 
 
 
-export default class WorkshopListItem extends Component {
+export default class WorkshopItem extends Component {
     render() {
-        let {
+        const {
             id,
             imageUrl,
             title,
@@ -44,10 +44,30 @@ export default class WorkshopListItem extends Component {
             priceColor;
 
         switch (phase) {
+            case 'judging':
+                badge = '待審核';
+                badgeColor = 'warning';
+                progressBarText = '';
+                progressBarColor = '#f0ad4e';
+                progressBarValue = 100;
+                priceDeletedText = `NT$${price}`;
+                priceText = `NT$${prePrice}`;
+                priceColor = '#f0ad4e';
+                break;
+            case 'judge_na':
+                badge = '未通過';
+                badgeColor = 'danger';
+                progressBarText = '';
+                progressBarColor = '#d9534f';
+                progressBarValue = 100;
+                priceDeletedText = `NT$${price}`;
+                priceText = `NT$${prePrice}`;
+                priceColor = '#d9534f';
+                break;
             case 'investigating':
                 badge = `調查倒數 ${moment(deadline).fromNow(true)}`;
                 badgeColor = 'primary';
-                progressBarText = `還要 ${minNumber - number} 人達標`
+                progressBarText = `還要 ${minNumber - number} 人達標`;
                 progressBarColor = '#0275d8';
                 progressBarValue = number * 100 / minNumber;
                 priceDeletedText = `NT$${price}`;
@@ -101,7 +121,7 @@ export default class WorkshopListItem extends Component {
                 <Link to={`/workshop/${id}`} className="unlink">
                     <Card className="workshop-list-item">
                         <div className="workshop-list-item-image-container">
-                            <CardImg top className="workshop-list-item-image" src={imageUrl} alt="card-image"/>
+                            <CardImg top className="workshop-list-item-image" src={imageUrl} alt=""/>
                         </div>
                         <Badge className="workshop-list-item-badge" color={badgeColor}>{badge}</Badge>
                         <CardBlock>

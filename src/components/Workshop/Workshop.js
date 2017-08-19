@@ -22,9 +22,15 @@ import {viewWorkshop} from '../../actions/workshop';
 
 
 class Workshop extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: this.props.match.params.id
+        };
+    }
+
     componentWillMount() {
-        const {id} = this.props.match.params;
-        this.props.viewWorkshop(id);
+        this.props.viewWorkshop(this.state.id);
     }
 
     render() {
@@ -59,6 +65,7 @@ class Workshop extends Component {
         let preTitle,
             targetText,
             targetNumber,
+            restNumberText,
             restDayText,
             restDayNumber,
             progressBarColor,
@@ -67,7 +74,7 @@ class Workshop extends Component {
 
         switch (phase) {
             case 'judging':
-                preTitle = '【審核中】';
+                preTitle = '【待審核】';
                 break;
             case 'judge_na':
                 preTitle = '【審核失敗】';
@@ -76,21 +83,59 @@ class Workshop extends Component {
                 preTitle = '';
                 targetText = '達標人數';
                 targetNumber = minNumber;
+                restNumberText = '距達標還有';
                 restDayText = '調查倒數';
                 restDayNumber = moment(deadline).fromNow(true);
                 progressBarColor = '#0275d8';
                 priceText = '募課預售價';
                 priceNumber = prePrice;
                 break;
-            default:
+            case 'over':
                 preTitle = '';
                 targetText = '人數上限';
                 targetNumber = maxNumber;
+                restNumberText = '剩餘座位';
+                restDayText = '活動倒數';
+                restDayNumber = '已結束';
+                progressBarColor = '#5cb85c';
+                priceText = '門票';
+                priceNumber = price;
+                break;
+            case 'closing':
+                preTitle = '';
+                targetText = '人數上限';
+                targetNumber = maxNumber;
+                restNumberText = '剩餘座位';
+                restDayText = '活動倒數';
+                restDayNumber = moment(startDatetime).fromNow(true);
+                progressBarColor = '#5cb85c';
+                priceText = '門票';
+                priceNumber = price;
+                break;
+            case 'full':
+            case 'reached':
+                preTitle = '';
+                targetText = '人數上限';
+                targetNumber = maxNumber;
+                restNumberText = '剩餘座位';
                 restDayText = '報名倒數';
                 restDayNumber = moment(closing).fromNow(true);
                 progressBarColor = '#5cb85c';
                 priceText = '門票';
                 priceNumber = price;
+                break;
+            case 'unreached':
+                preTitle = '';
+                targetText = '達標人數';
+                targetNumber = minNumber;
+                restNumberText = '距達標還有';
+                restDayText = '調查倒數';
+                restDayNumber = '未達標';
+                progressBarColor = '#0275d8';
+                priceText = '募課預售價';
+                priceNumber = prePrice;
+                break;
+            default:
         }
 
         return (
@@ -105,41 +150,43 @@ class Workshop extends Component {
                 </div>
                 <div className="inner workshop-article">
                     <h1>{preTitle}{title}</h1>
-                    {phase !== 'judging' && phase !== 'judge_na' && <Jumbotron className="workshop-progress">
-                        <Row className="text-center mb-2">
-                            <Col xs={6} sm={3}>
-                                <small>報名人數</small>
-                                <h3>{`${attendees.number} 人`}</h3>
-                            </Col>
-                            <Col xs={6} sm={3}>
-                                <small>{targetText}</small>
-                                <h3>{`${targetNumber} 人`}</h3>
-                            </Col>
-                            <Col xs={6} sm={3}>
-                                <small>還需要</small>
-                                <h3>{`${targetNumber - attendees.number} 人`}</h3>
-                            </Col>
-                            <Col xs={6} sm={3}>
-                                <small>{restDayText}</small>
-                                <h3>{restDayNumber}</h3>
-                            </Col>
-                        </Row>
-                        <ProgressBar className="mb-2" height={'0.5rem'} color={progressBarColor} value={attendees.number * 100 / targetNumber}/>
-                        <Row className="text-center">
-                            {phase === 'investigating' && <Col>
-                                <small>達標後售價</small>
-                                <h3>
-                                    <del>{`NT$${price}`}</del>
-                                </h3>
-                            </Col>}
-                            <Col>
-                                <small>{priceText}</small>
-                                <h3>{`NT$${priceNumber}`}</h3>
-                            </Col>
-                        </Row>
-                    </Jumbotron>}
-                    {phase !== 'judging' && phase !== 'judge_na' && <div className="workshop-progress-attend">
-                        <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} attendees={attendees}/>
+                    {phase !== 'judging' && phase !== 'judge_na' && <div>
+                        <Jumbotron className="workshop-progress">
+                            <Row className="text-center mb-2">
+                                <Col xs={6} sm={3}>
+                                    <small>報名人數</small>
+                                    <h3>{`${attendees.number} 人`}</h3>
+                                </Col>
+                                <Col xs={6} sm={3}>
+                                    <small>{targetText}</small>
+                                    <h3>{`${targetNumber} 人`}</h3>
+                                </Col>
+                                <Col xs={6} sm={3}>
+                                    <small>{restNumberText}</small>
+                                    <h3>{`${targetNumber - attendees.number} 人`}</h3>
+                                </Col>
+                                <Col xs={6} sm={3}>
+                                    <small>{restDayText}</small>
+                                    <h3>{restDayNumber}</h3>
+                                </Col>
+                            </Row>
+                            <ProgressBar className="mb-2" height={'0.5rem'} color={progressBarColor} value={attendees.number * 100 / targetNumber}/>
+                            <Row className="text-center">
+                                {(phase === 'investigating' || phase === 'unreached') && <Col>
+                                    <small>達標後售價</small>
+                                    <h3>
+                                        <del>{`NT$${price}`}</del>
+                                    </h3>
+                                </Col>}
+                                <Col>
+                                    <small>{priceText}</small>
+                                    <h3>{`NT$${priceNumber}`}</h3>
+                                </Col>
+                            </Row>
+                        </Jumbotron>
+                        <div className="workshop-progress-attend">
+                            <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} attendees={attendees}/>
+                        </div>
                     </div>}
                     <div className="workshop-info">
                         <h3>工作坊資訊</h3>

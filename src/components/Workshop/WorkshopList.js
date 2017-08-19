@@ -7,7 +7,7 @@ import {
 import React, {Component} from 'react';
 
 import MultipleFilter from '../Utils/MultipleFilter';
-import WorkshopListItem from './WorkshopListItem';
+import WorkshopItem from '../Utils/WorkshopItem';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {listWorkshop} from '../../actions/workshop';
@@ -101,7 +101,7 @@ class WorkshopList extends Component {
                     <MultipleFilter label="順序" options={ORDERING_OPTIONS} defaultOption={'hot'} onChange={option => this.onFilterChange({ordering: option})}/>
                     <MultipleFilter label="狀態" options={STATE_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({state: option})}/>
                 </ListGroup>
-                <Row>{this.props.workshopList.map((w, i) => <WorkshopListItem key={i} {...w}/>)}</Row>
+                <Row>{this.props.workshopList.map((w, i) => <WorkshopItem key={i} {...w}/>)}</Row>
             </div>
         );
     }

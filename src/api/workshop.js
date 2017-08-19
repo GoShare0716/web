@@ -54,6 +54,11 @@ export const setWorkshopPublished = (id, published) => {
     }, getConfig());
 };
 
+export const getWorkshopAttendees = (id) => {
+    let url = `${baseUrl}/workshops/${id}/attendees`;
+    return axios.get(url, getConfig());
+};
+
 export const attendWorkshop = (id) => {
     let url = `${baseUrl}/workshops/${id}`;
     return axios.post(url, {}, getConfig());
