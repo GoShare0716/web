@@ -1,19 +1,24 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {facebookLogin, facebookLogout} from '../../actions/auth';
+import './NavBarAuth.css';
 
 import {
-    NavItem,
-    NavLink,
+    Button,
     Dropdown,
-    DropdownToggle,
-    DropdownMenu,
     DropdownItem,
-    Button
+    DropdownMenu,
+    DropdownToggle,
+    NavItem,
+    NavLink
 } from 'reactstrap';
-import './NavBarAuth.css';
+import React, {Component} from 'react';
+import {facebookLogin, facebookLogout} from '../../actions/auth';
+
+import {Link} from 'react-router-dom';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
+
+
+
 
 class NavBarAuth extends Component {
     constructor(props) {
@@ -53,18 +58,18 @@ class NavBarAuth extends Component {
                         <NavLink tag={Link} to='/user/me'>個人頁面</NavLink>
                     </NavItem>
                     <NavItem className="hidden-sm-up">
-                        <NavLink href="" onClick={facebookLogout}>登出</NavLink>
+                        <span className="link nav-link" onClick={facebookLogout}>登出</span>
                     </NavItem>
                 </div>
             );
         }
         return (
             <div>
-                <NavItem className="hidden-xs-down">
+                <NavItem className="ml-2 hidden-xs-down">
                     <Button color="primary" onClick={facebookLogin}>登入</Button>
                 </NavItem>
                 <NavItem className="hidden-sm-up">
-                    <NavLink href="" onClick={facebookLogin}>登入</NavLink>
+                    <span className="link nav-link" onClick={facebookLogin}>登入</span>
                 </NavItem>
             </div>
         );

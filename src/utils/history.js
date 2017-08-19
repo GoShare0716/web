@@ -11,7 +11,7 @@ history.listen(location => {
         if (location.action === 'POP' || location.hash !== '') {
             const ele = document.getElementById(location.hash.substring(1));
             if (ele) {
-                scroll.top(page, ele.offsetTop);
+                scroll.top(page, ele.offsetTop - 56);
             }
             return;
         }

@@ -1,6 +1,21 @@
-.nav-bar-container {
+.nav-bar-container
+{
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+}
+
+.nav-bar
+{
     display: flex;
-    margin: 0 auto;
-    max-width: 960px;
+
     width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+@media (max-width: 575px)
+{
+    .nav-bar
+    {
+        display: block;
+    }
 }

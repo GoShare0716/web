@@ -1,14 +1,19 @@
+import './NavBarAlert.css';
+
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 
 import {Alert} from 'reactstrap';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import {hideAlert} from '../../actions/alert';
+
+
+
 
 class NavBarAlert extends Component {
     render() {
         let {msg, type, isOpen} = this.props.alert;
-        return <Alert color={type} isOpen={isOpen} toggle={() => this.props.hideAlert()}>{msg}</Alert>;
+        return <Alert className="nav-bar-alert" color={type} isOpen={isOpen} toggle={() => this.props.hideAlert()}>{msg}</Alert>;
     }
 }
 

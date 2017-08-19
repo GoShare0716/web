@@ -30,13 +30,13 @@ const CATEGORY_OPTIONS = [
 ];
 const ORDERING_OPTIONS = [
     {
-        text: '熱門',
+        text: '熱門程度',
         value: 'hot'
     }, {
-        text: '最近',
+        text: '由新到舊',
         value: 'new'
     }, {
-        text: '活動日期',
+        text: '即將開始',
         value: 'date'
     }
 ];

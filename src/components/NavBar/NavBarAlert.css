@@ -1,0 +1,17 @@
+.nav-bar-alert
+{
+    position: fixed;
+    z-index: 1029;
+    top: 56px;
+    left: 0;
+
+    width: 100%;
+}
+
+.nav-bar-alert button.close
+{
+    top: 0 !important;
+    right: 0 !important;
+
+    padding: 0 !important;
+}

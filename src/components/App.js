@@ -26,8 +26,8 @@ class App extends Component {
         return (
             <Router history={history}>
                 <div>
-                    <NavBar/>
-                    <LoadingBar/>
+                    <Route path="/" component={NavBar}/>
+                    <LoadingBar className="loading-bar"/>
                     <NavBarAlert/>
                     <div className="full">
                         <Route exact path="/" component={WorkshopList}/>
