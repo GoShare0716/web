@@ -8,7 +8,7 @@ import {setUserEmail, setUserFbUrl, setUserIntroduction, setUserPersonalWebUrl, 
 import Profile from '../Utils/Profile';
 import RenderField from '../Utils/RenderField';
 import RichTextBox from '../Utils/RichTextBox';
-import WorkshopListItem from '../Workshop/WorkshopListItem';
+import WorkshopItem from '../Utils/WorkshopItem';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {unauthenticated} from '../../actions/auth';
@@ -119,12 +119,12 @@ class User extends Component {
                 <div className="user-propose">
                     <h3>我主辦的工作坊</h3>
                     <hr/>
-                    <Row>{createWorkshops.map((c, i) => <WorkshopListItem key={c.id} {...c}/>)}</Row>
+                    <Row>{createWorkshops.map((c, i) => <WorkshopItem key={c.id} {...c}/>)}</Row>
                 </div>
                 <div className="user-attend">
                     <h3>我報名的工作坊</h3>
                     <hr/>
-                    <Row>{attendWorkshops.map((a, i) => <WorkshopListItem key={a.id} {...a}/>)}</Row>
+                    <Row>{attendWorkshops.map((a, i) => <WorkshopItem key={a.id} {...a}/>)}</Row>
                 </div>
             </div>
         );
