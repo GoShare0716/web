@@ -42,7 +42,7 @@ class NavBarAuth extends Component {
         const {authenticated} = this.props.auth;
         if (authenticated) {
             return (
-                <div>
+                <div className="nav-bar-auth">
                     <NavItem className="hidden-xs-down">
                         <Dropdown isOpen={this.state.isOpen} toggle={this.dropdownToggle}>
                             <DropdownToggle className="facebook-picture">

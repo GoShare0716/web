@@ -5,7 +5,6 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Navbar,
     NavbarBrand,
     NavbarToggler
 } from 'reactstrap';

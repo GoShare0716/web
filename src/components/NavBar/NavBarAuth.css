@@ -1,4 +1,8 @@
-.facebook-picture {
+.nav-bar-auth button.dropdown-item:hover {
+    cursor: pointer;
+}
+
+.nav-bar-auth .facebook-picture {
     height: 36px !important;
     width: 36px !important;
     border-radius: 50% !important;
@@ -7,7 +11,7 @@
     cursor: pointer !important;
 }
 
-.facebook-picture > img {
+.nav-bar-auth .facebook-picture > img {
     width: 100%;
     border-radius: 50%;
 }
