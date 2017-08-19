@@ -1,6 +1,9 @@
 import {
+    Button,
     Form,
     Input,
+    InputGroup,
+    InputGroupButton,
     ListGroup,
     Row
 } from 'reactstrap';
@@ -94,7 +97,12 @@ class WorkshopList extends Component {
             <div className="outer">
                 <h1 className="mt-5 mb-3">工作坊</h1>
                 <Form className="mb-3" onSubmit={this.onSearchSubmit}>
-                    <Input value={this.state.searchText} onChange={e => this.setState({searchText: e.target.value})} placeholder="搜尋喜歡的工作坊"/>
+                    <InputGroup>
+                        <Input value={this.state.searchText} onChange={e => this.setState({searchText: e.target.value})} placeholder="搜尋喜歡的工作坊"/>
+                        <InputGroupButton>
+                            <Button color="primary" type="submit">搜尋</Button>
+                        </InputGroupButton>
+                    </InputGroup>
                 </Form>
                 <ListGroup className="mb-3">
                     <MultipleFilter label="分類" options={CATEGORY_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({category: option})}/>
