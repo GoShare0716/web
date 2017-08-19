@@ -82,7 +82,7 @@ class WorkshopManage extends Component {
                 <tr key={i}>
                     <th scope="row">{i + 1}</th>
                     <td>
-                        <Link to={`/user/${a.userId}`}>{a.name}</Link>
+                        <Link to={`/user/${a.id}`}>{a.name}</Link>
                     </td>
                     <td>{a.email}</td>
                     <td>{a.canceled
@@ -111,7 +111,10 @@ class WorkshopManage extends Component {
         const role = localStorage.getItem('role');
         return (
             <div className="inner">
-                <h1 className="mt-5 mb-3">管理工作坊</h1>
+                <div className="d-flex justify-content-between align-items-end mt-5 mb-3">
+                    <h1 className="m-0">管理工作坊</h1>
+                    <Link to={`/workshop/${id}`}>返回工作坊</Link>
+                </div>                
                 <div className="mb-3">
                     {role === 'admin' && <div className="d-flex justify-content-between align-items-center">
                         <span>工作坊狀態</span>

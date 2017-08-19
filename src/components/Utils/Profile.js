@@ -43,7 +43,7 @@ class Profile extends Component {
                         <span>個人頁面</span>
                     </a>
                 </div>
-                <p className="mb-2">{renderHTML(introduction)}</p>
+                <div className="mb-2">{renderHTML(introduction)}</div>
                 {this.props.children}
             </div>
         );

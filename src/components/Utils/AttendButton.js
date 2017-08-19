@@ -42,9 +42,8 @@ class AttendButton extends Component {
         });
     }
 
-    onCancelClick() {
-        const {id, attendWorkshop} = this.props;
-        attendWorkshop(id);
+    onCancelClick(id) {        
+        this.props.attendWorkshop(id);
         this.modalToggle();
     }
 
@@ -145,7 +144,7 @@ class AttendButton extends Component {
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={this.modalToggle}>再考慮一下</Button>
-                        <Button color="danger" onClick={this.onCancelClick}>取消報名</Button>
+                        <Button color="danger" onClick={e => this.onCancelClick(id)}>取消報名</Button>
                     </ModalFooter>
                 </Modal>
             </div>

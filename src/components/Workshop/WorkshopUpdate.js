@@ -7,6 +7,7 @@ import {updateWorkshop, viewWorkshop} from '../../actions/workshop';
 
 import AddableText from '../Utils/AddableText';
 import ImageUpload from '../Utils/ImageUpload';
+import {Link} from 'react-router-dom';
 import RenderField from '../Utils/RenderField';
 import RenderRadio from '../Utils/RenderRadio';
 import RichTextBox from '../Utils/RichTextBox';
@@ -121,6 +122,7 @@ class WorkshopUpdate extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.match.params.id,
             createDisabled: false,
             deadlineDisabled: false,
             restDisabled: false,
@@ -135,9 +137,8 @@ class WorkshopUpdate extends Component {
 
     componentWillMount() {
         const {auth, viewWorkshop, unauthenticated} = this.props;
-        const {id} = this.props.match.params;
         if (auth.authenticated) {
-            viewWorkshop(id);
+            viewWorkshop(this.state.id);
         } else {
             unauthenticated();
         }
@@ -150,12 +151,15 @@ class WorkshopUpdate extends Component {
     }
 
     render() {
-        const {createDisabled, deadlineDisabled, restDisabled, submitDisabled} = this.state;
+        const {id, createDisabled, deadlineDisabled, restDisabled, submitDisabled} = this.state;
         const {handleSubmit} = this.props;
         return (
             <div className="inner workshop-update">
                 <Form onSubmit={handleSubmit(this.handleSubmit)}>
-                    <h1 className="mt-5 mb-3">編輯工作坊</h1>
+                    <div className="d-flex justify-content-between align-items-end mt-5 mb-3">
+                        <h1 className="m-0">編輯工作坊</h1>
+                        <Link to={`/workshop/${id}`}>返回工作坊</Link>
+                    </div>
                     <Field component={RenderField} label="標題" type="text" name="title" placeholder="例如：電腦繪圖入門" disabled={createDisabled}/>
                     <Field component={RenderRadio} label="類別" name="category" options={CATEGORY_OPTIONS} disabled={createDisabled}/>
                     <Field component={AddableText} label="您的工作坊有任何先決條件嗎？" name="requirement" placeholder="例如：您需要修過微積分一" disabled={createDisabled}/>

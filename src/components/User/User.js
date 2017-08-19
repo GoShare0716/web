@@ -3,6 +3,7 @@ import './User.css';
 import {Button, Form, Modal, ModalBody, Row} from 'reactstrap';
 import {Field, reduxForm} from 'redux-form';
 import React, {Component} from 'react';
+import {setUserEmail, setUserFbUrl, setUserIntroduction, setUserPersonalWebUrl, viewUser} from '../../actions/user';
 
 import Profile from '../Utils/Profile';
 import RenderField from '../Utils/RenderField';
@@ -11,7 +12,6 @@ import WorkshopListItem from '../Workshop/WorkshopListItem';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {unauthenticated} from '../../actions/auth';
-import {viewUser} from '../../actions/user';
 
 
 
@@ -43,7 +43,7 @@ const validate = values => {
     if (!values.email) {
         errors.email = 'Email 不可為空';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = '請輸入正確的 Email';
+        errors.email = 'Email 格式錯誤';
     }
     return errors;
 }
@@ -52,6 +52,7 @@ class User extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id: this.props.match.params.id,
             isModalOpen: false
         };
 
@@ -62,11 +63,16 @@ class User extends Component {
     modalToggle() {
         this.setState({
             isModalOpen: !this.state.isModalOpen
-        });
+        }, this.props.reset);
     }
 
-    handleSubmit(form) {
-        console.log(form);
+    handleSubmit({email, fbUrl, personalWebUrl, introduction}) {
+        const {setUserEmail, setUserFbUrl, setUserPersonalWebUrl, setUserIntroduction} = this.props;
+        const {id} = this.state;
+        setUserEmail(id, email);
+        setUserFbUrl(id, fbUrl);
+        setUserPersonalWebUrl(id, personalWebUrl);
+        setUserIntroduction(id, introduction);
         this.modalToggle();
     }
 
@@ -75,7 +81,7 @@ class User extends Component {
         if (!auth.authenticated && this.props.match.params.id === 'me') {
             unauthenticated();
         } else {
-            viewUser();
+            viewUser(this.state.id);
         }
     }
 
@@ -132,7 +138,11 @@ function mapStateToProps({auth, user}) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         unauthenticated,
-        viewUser
+        viewUser,
+        setUserEmail,
+        setUserFbUrl,
+        setUserPersonalWebUrl,
+        setUserIntroduction
     }, dispatch);
 }
 

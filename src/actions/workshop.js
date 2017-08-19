@@ -2,6 +2,7 @@ import {
     attendWorkshop as attendWorkshopFromApi,
     createWorkshop as createWorkshopFromApi,
     deleteWorkshop as deleteWorkshopFromApi,
+    getWorkshopAttendees as getWorkshopAttendeesFromApi,
     getWorkshopPublished as getWorkshopPublishedFromApi,
     getWorkshopState as getWorkshopStateFromApi,
     listWorkshop as listWorkshopFromApi,
@@ -125,8 +126,17 @@ export const setWorkshopPublished = (id, published) => async dispatch => {
     }
 };
 
-export const getWorkshopAttendees = () => dispatch => {
-    dispatch({type: '@WORKSHOP/GET_ATTENDEES', payload: WORKSHOP_ATTENDEES});
+export const getWorkshopAttendees = (id) => async dispatch => {
+    dispatch(showLoading());
+    try {
+        const res = await getWorkshopAttendeesFromApi(id);
+        const data = res.data;
+        dispatch({type: '@WORKSHOP/GET_ATTENDEES', payload: data});
+    } catch (e) {
+        dispatch(deliverAlert('參加人名單取得失敗', 'danger'));
+    } finally {
+        dispatch(hideLoading());
+    }
 };
 
 export const attendWorkshop = id => async dispatch => {
@@ -156,22 +166,3 @@ export const deleteWorkshop = id => async dispatch => {
         dispatch(hideLoading());
     }
 };
-
-const WORKSHOP_ATTENDEES = [
-    {
-        userId: 9,
-        name: '賴詰凱',
-        email: 'skyle0115@gmail.com',
-        canceled: false
-    }, {
-        userId: 4,
-        name: '林湘庭',
-        email: 'tiffany@gmail.com',
-        canceled: true
-    }, {
-        userId: 3,
-        name: '張嘉軒',
-        email: 'chang@gmail.com',
-        canceled: false
-    }
-];

@@ -49,6 +49,11 @@
     line-height: 1.22;
 }
 
+.workshop-article img
+{
+    width: 100%;
+}
+
 .workshop-article p,
 .workshop-article blockquote,
 .workshop-article pre,
