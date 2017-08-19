@@ -1,8 +1,16 @@
 import axios from 'axios';
 
-const baseUrl = 'http://goshareback-end-test-dev.us-west-2.elasticbeanstalk.com/api';
 
-export function login(user) {
+const baseUrl = 'http://localhost:3090/api';
+
+const getConfig = () => ({
+    headers: {
+        fbId: localStorage.getItem('fbId'),
+        accessToken: localStorage.getItem('accessToken')
+    }
+});
+
+export const login = (auth) => {
     let url = `${baseUrl}/login/facebook`;
-    return axios.post(url, user);
-}
+    return axios.post(url, auth, getConfig());
+};

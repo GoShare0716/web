@@ -3,11 +3,10 @@ import {hideLoading, showLoading} from 'react-redux-loading-bar';
 
 import {deliverAlert} from './alert';
 import {history} from '../utils';
+import {login as loginFromApi} from '../api/auth';
 
 
 
-
-// import {login as loginFromApi} from '../api/auth';
 
 var scroll = require('scroll');
 var page = require('scroll-doc')();
@@ -23,6 +22,7 @@ export const facebookLogin = () => dispatch => {
                     callGraphAPI(dispatch, response.authResponse.accessToken);
                 } else {
                     dispatch({type: '@AUTH/LOGIN_FAIL'});
+                    dispatch(deliverAlert('登入失敗', 'danger'));
                     dispatch(hideLoading());
                 }
             }, {scope: 'public_profile,email,user_friends'});
@@ -34,12 +34,14 @@ const callGraphAPI = (dispatch, accessToken) => {
     FB.api(`/me?access_token=${accessToken}&fields=id,name,picture,email`, response => {
         if (response.error) {
             dispatch({type: '@AUTH/LOGIN_FAIL'});
+            dispatch(deliverAlert('登入失敗', 'danger'));
             dispatch(hideLoading());
         } else {
             const {email, id, name, picture} = response;
             FB.api(`/me/picture?access_token=${accessToken}&width=100&height=100`, response => {
                 if (response.error) {
                     dispatch({type: '@AUTH/LOGIN_FAIL'});
+                    dispatch(deliverAlert('登入失敗', 'danger'));
                     dispatch(hideLoading());
                 } else {
                     const user = {
@@ -57,22 +59,22 @@ const callGraphAPI = (dispatch, accessToken) => {
     });
 }
 
-const login = (dispatch, user) => {
-    localStorage.setItem('fbId', user.fbId);
-    localStorage.setItem('accessToken', '123456');
-    localStorage.setItem('thumbnailUrl', user.thumbnailUrl);
-    // localStorage.setItem('role', 'admin');
-    localStorage.setItem('role', 'member');
-    dispatch({type: '@AUTH/LOGIN_SUCCESS'});
-    dispatch(deliverAlert('登入成功', 'success'));
-    dispatch(hideLoading());
-    // loginFromApi(user).then(res => {
-    //     console.log(res);
-    // ).catch(err => {
-    //
-    // }).then(() => {
-    //
-    // });
+const login = async(dispatch, user) => {
+    try {
+        const res = await loginFromApi(user);
+        const {fbId, accessToken, role} = res.data;
+        localStorage.setItem('fbId', fbId);
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('thumbnailUrl', user.thumbnailUrl);
+        localStorage.setItem('role', role);
+        dispatch({type: '@AUTH/LOGIN_SUCCESS'});
+        dispatch(deliverAlert('登入成功', 'success'));
+    } catch (e) {
+        dispatch({type: '@AUTH/LOGIN_FAIL'});
+        dispatch(deliverAlert('登入失敗', 'danger'));
+    } finally {
+        dispatch(hideLoading());
+    }
 }
 
 export const facebookLogout = () => dispatch => {

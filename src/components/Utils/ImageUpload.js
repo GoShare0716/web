@@ -14,7 +14,9 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {deliverAlert} from '../../actions/alert';
 import {touch} from 'redux-form';
+
 
 
 
@@ -48,7 +50,7 @@ class ImageUpload extends Component {
             }).then(res => {
                 onChange(res.data.data.link);
             }).catch(err => {
-                console.log(err);
+                this.props.deliverAlert('上傳失敗', 'danger');
             }).then(() => {
                 this.setState({uploading: false, message: '拖曳或點擊上傳圖片'});
             });
@@ -96,7 +98,8 @@ class ImageUpload extends Component {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        touch
+        touch,
+        deliverAlert
     }, dispatch);
 }
 

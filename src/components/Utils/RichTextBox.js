@@ -8,6 +8,7 @@ import ReactQuill from 'react-quill';
 import axios from 'axios';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {deliverAlert} from '../../actions/alert';
 import {touch} from 'redux-form';
 
 
@@ -91,9 +92,8 @@ class RichTextBox extends Component {
                 editor.enable(true);
                 editor.deleteText(range.index, 12);
                 editor.insertEmbed(range.index, 'image', res.data.data.link, "user");
-                console.log(res.data.data.link);
             }).catch(err => {
-                console.log(err);
+                this.props.deliverAlert('上傳失敗', 'danger');
             }).then(() => {
                 this.setState({uploading: false});
                 editor.enable(true);
@@ -140,7 +140,8 @@ class RichTextBox extends Component {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        touch
+        touch,
+        deliverAlert
     }, dispatch);
 }
 
