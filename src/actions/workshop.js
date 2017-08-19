@@ -92,7 +92,6 @@ export const setWorkshopState = (id, state) => async dispatch => {
         const data = res.data;
         dispatch({type: '@WORKSHOP/SET_STATE', payload: data});
     } catch (e) {
-        console.log(e);
         dispatch(deliverAlert('狀態更新失敗', 'danger'));
     } finally {
         dispatch(hideLoading());
@@ -119,7 +118,6 @@ export const setWorkshopPublished = (id, published) => async dispatch => {
         const data = res.data;
         dispatch({type: '@WORKSHOP/SET_PUBLISHED', payload: data});
     } catch (e) {
-        console.log(e);
         dispatch(deliverAlert('顯示狀態更新失敗', 'danger'));
     } finally {
         dispatch(hideLoading());
@@ -146,7 +144,6 @@ export const attendWorkshop = id => async dispatch => {
         const data = res.data;
         dispatch({type: '@WORKSHOP/ATTEND', payload: data});
     } catch (e) {
-        console.log(e);
         dispatch(deliverAlert('報名失敗', 'danger'));
     } finally {
         dispatch(hideLoading());
@@ -160,7 +157,6 @@ export const deleteWorkshop = id => async dispatch => {
         history.push('/workshop');
         dispatch(deliverAlert('刪除成功', 'success'));
     } catch (e) {
-        console.log(e);
         dispatch(deliverAlert('刪除失敗', 'danger'));
     } finally {
         dispatch(hideLoading());
