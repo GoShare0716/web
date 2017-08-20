@@ -92,6 +92,9 @@ const validate = (values, {initialValues: phase}) => {
         } else if (parseInt(values.price, 10) < 0) {
             errors.price = '達標後售價不可為負數';
         }
+        if (values.prePrice && values.price && parseInt(values.prePrice, 10) > parseInt(values.price, 10)) {
+            errors.price = '達標後售價需大於募課預售價';
+        }
         if (!values.minNumber) {
             errors.minNumber = '最低人數不可為空';
         } else if (parseInt(values.minNumber, 10) < 0) {

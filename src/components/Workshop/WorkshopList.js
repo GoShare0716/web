@@ -93,6 +93,14 @@ class WorkshopList extends Component {
     }
 
     render() {
+        let state_options = localStorage.getItem('role') === 'admin'
+            ? [
+                ...STATE_OPTIONS, {
+                    text: '管理員',
+                    value: 'admin'
+                }
+            ]
+            : STATE_OPTIONS;
         return (
             <div className="outer">
                 <h1 className="mt-5 mb-3">工作坊</h1>
@@ -107,7 +115,7 @@ class WorkshopList extends Component {
                 <ListGroup className="mb-3">
                     <MultipleFilter label="分類" options={CATEGORY_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({category: option})}/>
                     <MultipleFilter label="順序" options={ORDERING_OPTIONS} defaultOption={'hot'} onChange={option => this.onFilterChange({ordering: option})}/>
-                    <MultipleFilter label="狀態" options={STATE_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({state: option})}/>
+                    <MultipleFilter label="狀態" options={state_options} defaultOption={'all'} onChange={option => this.onFilterChange({state: option})}/>
                 </ListGroup>
                 <Row>{this.props.workshopList.map((w, i) => <WorkshopItem key={i} {...w}/>)}</Row>
             </div>

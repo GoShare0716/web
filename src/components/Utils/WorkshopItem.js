@@ -21,19 +21,27 @@ export default class WorkshopItem extends Component {
             author: {
                 name
             },
-            minNumber,
-            maxNumber,
             deadline,
             closing,
             startDatetime,
+            phase
+        } = this.props;
+        let {
+            minNumber,
+            maxNumber,
             prePrice,
             price,
             attendees: {
                 friends,
                 number
-            },
-            phase
+            }
         } = this.props;
+        minNumber = parseInt(minNumber, 10);
+        maxNumber = parseInt(maxNumber, 10);
+        prePrice = parseInt(prePrice, 10);
+        price = parseInt(price, 10);
+        number = parseInt(number, 10);
+
         let badge,
             badgeColor,
             progressBarValue,
@@ -70,8 +78,12 @@ export default class WorkshopItem extends Component {
                 progressBarText = `還要 ${minNumber - number} 人達標`;
                 progressBarColor = '#0275d8';
                 progressBarValue = number * 100 / minNumber;
-                priceDeletedText = `NT$${price}`;
-                priceText = `NT$${prePrice}`;
+                priceDeletedText = price === 0
+                    ? ''
+                    : `NT$${price}`;
+                priceText = prePrice === 0
+                    ? '免費'
+                    : `NT$${prePrice}`;
                 priceColor = '#0275d8';
                 break;
             case 'full':
@@ -87,7 +99,9 @@ export default class WorkshopItem extends Component {
                 progressBarColor = '#5cb85c';
                 progressBarValue = number * 100 / maxNumber;
                 priceDeletedText = '';
-                priceText = `NT$${price}`;
+                priceText = price === 0
+                    ? '免費'
+                    : `NT$${price}`;
                 priceColor = '#5cb85c';
                 break;
             case 'closing':
@@ -97,7 +111,9 @@ export default class WorkshopItem extends Component {
                 progressBarColor = '#5cb85c';
                 progressBarValue = number * 100 / maxNumber;
                 priceDeletedText = '';
-                priceText = `NT$${price}`;
+                priceText = price === 0
+                    ? '免費'
+                    : `NT$${price}`;
                 priceColor = '#5cb85c';
                 break;
             case 'over':
@@ -110,7 +126,9 @@ export default class WorkshopItem extends Component {
                 progressBarColor = 'primary';
                 progressBarValue = 0;
                 priceDeletedText = '';
-                priceText = `NT$${price}`;
+                priceText = price === 0
+                    ? '免費'
+                    : `NT$${price}`;
                 priceColor = '#AAA';
                 break;
             default:

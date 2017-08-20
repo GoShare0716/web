@@ -101,6 +101,7 @@ class Workshop extends Component {
                 priceText = '門票';
                 priceNumber = price;
                 break;
+            case 'full':
             case 'closing':
                 preTitle = '';
                 targetText = '人數上限';
@@ -112,7 +113,6 @@ class Workshop extends Component {
                 priceText = '門票';
                 priceNumber = price;
                 break;
-            case 'full':
             case 'reached':
                 preTitle = '';
                 targetText = '人數上限';
