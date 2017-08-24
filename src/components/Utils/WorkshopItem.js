@@ -78,7 +78,7 @@ export default class WorkshopItem extends Component {
                 progressBarText = `還要 ${minNumber - number} 人達標`;
                 progressBarColor = '#0275d8';
                 progressBarValue = number * 100 / minNumber;
-                priceDeletedText = price === 0
+                priceDeletedText = price === prePrice
                     ? ''
                     : `NT$${price}`;
                 priceText = prePrice === 0

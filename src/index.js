@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import 'react-quill/dist/quill.snow.css'
+import 'react-quill/dist/quill.snow.css';
 
 import {applyMiddleware, compose, createStore} from 'redux';
 

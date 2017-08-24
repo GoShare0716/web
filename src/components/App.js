@@ -3,6 +3,7 @@ import './App.css';
 import React, {Component} from 'react';
 import {Route, Router} from 'react-router-dom';
 
+import LandingPage from './LandingPage/LandingPage';
 import LoadingBar from 'react-redux-loading-bar';
 import NavBar from './NavBar/NavBar';
 import NavBarAlert from './NavBar/NavBarAlert';
@@ -30,7 +31,7 @@ class App extends Component {
                     <LoadingBar className="loading-bar"/>
                     <NavBarAlert/>
                     <div className="full">
-                        <Route exact path="/" component={WorkshopList}/>
+                        <Route exact path="/" component={LandingPage}/>
                         <Route exact path="/create-workshop" component={WorkshopCreate}/>
                         <Route exact path="/workshop" component={WorkshopList}/>
                         <Route exact path="/workshop/:id" component={Workshop}/>

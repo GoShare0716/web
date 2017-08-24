@@ -31,14 +31,11 @@ class NavBar extends Component {
             isOpen: !this.state.isOpen
         });
     }
-    // <div className="nav-bar-container">
-//             <Navbar color="inverse" inverse light toggleable fixed="top" style={{
-            //     backgroundColor: 'rgba(41, 43, 44, 0.8)'
-            // }}>
+
     render() {
         const {pathname} = this.props.location;
         return (
-            <nav className="nav-bar-container navbar fixed-top bg-faded navbar-light navbar-toggleable">
+            <nav className="nav-bar-container navbar fixed-top navbar-light navbar-toggleable">
                 <div className="nav-bar">
                     <NavbarToggler right onClick={this.navBarToggle}/>
                     <NavbarBrand tag={Link} to='/'>共學</NavbarBrand>

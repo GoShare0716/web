@@ -51,15 +51,13 @@ class WorkshopCreate extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentWillMount() {
+    handleSubmit(form) {
         const {auth, unauthenticated} = this.props;
         if (!auth.authenticated) {
-            unauthenticated();
+            unauthenticated(false);
+        } else {
+            this.props.createWorkshop(form);
         }
-    }
-
-    handleSubmit(form) {
-        this.props.createWorkshop(form);
     }
 
     render() {
@@ -70,10 +68,11 @@ class WorkshopCreate extends Component {
                 <Jumbotron className="create-process">
                     <h3>流程</h3>
                     <ol>
-                        <li>請在個人頁面的自我介紹中附上與工作坊主題相關的簡歷與作品集。</li>
-                        <li>完成下列表單並送出審核（發佈前仍可以修改）。</li>
-                        <li>無論是否通過，我們會盡早聯絡您，協助您籌辦工作坊。</li>
-                        <li>審核通過後，即可填寫更詳盡的工作坊內容。</li>
+                        <li>請先填寫個人頁面的自我介紹，幫助我們認識你。</li>
+                        <li>完成下列表單。在審核通過之前，你隨時可以修改。</li>
+                        <li>審核通過之後，再填寫更詳盡的工作坊內容。</li>
+                        <li>遇到任何困難，你可以透過螢幕右下方的聊天室詢問我們。</li>
+                        <li>送出審核之後，我們會盡早聯絡您，協助您籌辦工作坊。</li>
                     </ol>
                 </Jumbotron>
                 <div className="create-form">

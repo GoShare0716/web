@@ -42,7 +42,7 @@ class AttendButton extends Component {
         });
     }
 
-    onCancelClick(id) {        
+    onCancelClick(id) {
         this.props.attendWorkshop(id);
         this.modalToggle();
     }
@@ -96,16 +96,6 @@ class AttendButton extends Component {
                 buttonColor = 'info';
                 disabled = true;
                 break;
-            case 'closing':
-                buttonText = '報名截止';
-                buttonColor = 'warning';
-                disabled = true;
-                break;
-            case 'full':
-                buttonText = '已額滿';
-                buttonColor = 'warning';
-                disabled = true;
-                break;
             case 'unreached':
                 buttonText = '未達標';
                 buttonColor = 'info';
@@ -122,9 +112,19 @@ class AttendButton extends Component {
                         buttonColor = 'danger';
                         disabled = true;
                     } else {
-                        buttonText = '我要報名';
-                        buttonColor = 'primary';
-                        disabled = false;
+                        if (phase === 'closing') {
+                            buttonText = '報名截止';
+                            buttonColor = 'warning';
+                            disabled = true;
+                        } else if (phase === 'full') {
+                            buttonText = '已額滿';
+                            buttonColor = 'warning';
+                            disabled = true;
+                        } else {
+                            buttonText = '我要報名';
+                            buttonColor = 'primary';
+                            disabled = false;
+                        }
                     }
                 }
         }
@@ -135,7 +135,7 @@ class AttendButton extends Component {
                 <div className="d-flex justify-content-between align-items-center">
                     <span className="link">運作機制</span>
                     {!attended && <div className="d-flex align-items-center attend-button-attendees">{this.renderAttendeesAvatar(friends)}</div>}
-                    {(phase === 'investigating' || phase === 'reached') && attended && !canceled && <span className="link" onClick={this.modalToggle}>取消報名</span>}
+                    {(phase === 'investigating' || phase === 'reached' || phase === 'closing' || phase === 'full') && attended && !canceled && <span className="link" onClick={this.modalToggle}>取消報名</span>}
                 </div>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.modalToggle}>
                     <ModalHeader>取消報名</ModalHeader>

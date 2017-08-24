@@ -138,6 +138,15 @@ class Workshop extends Component {
             default:
         }
 
+        let infoDatetime, infoCalendar;
+        if (moment(startDatetime).format('YYYY-MM-DD') === moment(endDatetime).format('YYYY-MM-DD')) {
+            infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('hh:mm')} (GMT+8)`;
+        } else {
+            infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) hh:mm')} (GMT+8)`;
+        }
+        infoCalendar = `http://www.google.com/calendar/event?action=TEMPLATE&text=${title}&dates=${moment(startDatetime).toISOString().replace(/-|:|\.\d\d\d/g,"")}/${moment(endDatetime).toISOString().replace(/-|:|\.\d\d\d/g,"")}&details=${title}&location=${location}&ctz=Asia/Taipei`;
+
+
         return (
             <div className="full workshop">
                 <div className="workshop-profile" style={{
@@ -191,7 +200,7 @@ class Workshop extends Component {
                     <div className="workshop-info">
                         <h3>工作坊資訊</h3>
                         <ul>
-                            <li>{`時間：${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) hh:mm')} (GMT+8)`}</li>
+                            <li>{`時間：${infoDatetime}`} <a href={infoCalendar} target="_blank">加入行事曆</a></li>
                             <li>{`地點：${location}`}</li>
                         </ul>
                     </div>
@@ -218,11 +227,9 @@ class Workshop extends Component {
                     <Jumbotron id="workshop-attend" className="workshop-attend">
                         <h3>注意事項</h3>
                         <ol>
-                            <li>人數在 7 天內達標才會開課，歡迎分享給有興趣參加的同學。</li>
-                            <li>若沒有達標，將以 Email 通知參加者。</li>
-                            <li>若臨時無法參與工作坊，請儘早取消報名！</li>
-                            <li>取消報名後，無法再次報名。</li>
-                            <li>報名成功後，請填寫課前調查，以供講師安排工作坊內容。</li>
+                            <li>人數達標後才會開課。無論是否達標，都會以 Email 通知。</li>
+                            <li>若臨時無法參加工作坊，請儘早取消報名，將機會讓給其他同學。</li>
+                            <li>付費工作坊請於當天繳交門票費用。</li>
                         </ol>
                         {attended && !canceled && <h3>行前通知</h3>}
                         {attended && !canceled && renderHTML(attendedMsg)}
