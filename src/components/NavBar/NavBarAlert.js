@@ -12,7 +12,7 @@ import {hideAlert} from '../../actions/alert';
 
 class NavBarAlert extends Component {
     render() {
-        let {msg, type, isOpen} = this.props.alert;
+        const {msg, type, isOpen} = this.props.alert;
         return <Alert className="nav-bar-alert" color={type} isOpen={isOpen} toggle={() => this.props.hideAlert()}>{msg}</Alert>;
     }
 }

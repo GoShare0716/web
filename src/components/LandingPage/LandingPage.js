@@ -12,7 +12,7 @@ class LandingPage extends Component {
     componentDidMount() {
         this.typed = new Typed(".landing-page-heading", {
             strings: [
-                '同學，可以教我畫畫嗎？', '同學，可以教我寫程式嗎？', '同學，可以教我打 LOL 嗎？', '同學，可以教我寫書法嗎？', '同學，可以教我電腦繪圖嗎？'
+                '同學，可以教我畫畫嗎？', '同學，可以教我寫程式嗎？', '同學，可以教我打LOL嗎？', '同學，可以教我寫書法嗎？', '同學，可以教我電腦繪圖嗎？'
             ],
             typeSpeed: 100,
             startDelay: 1000,
@@ -37,17 +37,17 @@ class LandingPage extends Component {
                 </div>
                 <div className="outer landing-page-content">
                     <div className="landing-page-item">
-                        <h2 className="m-0 text-center">WHY</h2>
+                        <h2 className="text-center">WHY</h2>
                         <hr className="w-100"/>
                         <div className="inner mx-auto pt-5">
                             <blockquote className="blockquote">
-                                <p className="mb-0">「這裡我不太懂耶，可以教我嗎？」</p>
+                                <p className="mb-0">「這裡我不太懂，可以教我嗎？」</p>
                             </blockquote>
-                            <p className="lead mb-0">看似平凡的問句，卻有著讓人傾囊相授的魔力。可惜的是，這句話大多出現在教室中、課業上和認識的人之間。為了滿足對世界充滿好奇心的你，「工作坊募資平台」應運而生。</p>
+                            <p className="lead mb-0">看似平凡的問句，卻有著讓人傾囊相授的魔力。但這句話大多出現在教室中、課業上和認識的人之間，為了滿足你對未知世界的好奇心，<mark>共學</mark>應運而生。</p>
                         </div>
                     </div>
                     <div className="landing-page-item">
-                        <h2 className="m-0 text-center">HOW</h2>
+                        <h2 className="text-center">HOW</h2>
                         <hr className="w-100"/>
                         <div className="landing-page-step">
                             <div className="landing-page-step-text-container">
@@ -66,7 +66,7 @@ class LandingPage extends Component {
                             <div className="landing-page-step-text-container reverse">
                                 <div className="landing-page-step-text">
                                     <h3>#2 徵求講者</h3>
-                                    <p className="lead">徵求願意授課的人<Link to={`/create-workshop`}>成為講者</Link>，滿足學生的求知慾。也歡迎大家推薦和自薦。</p>
+                                    <p className="lead">徵求願意分享的人<Link to={`/create-workshop`}>成為講者</Link>，滿足學生的求知慾。也歡迎大家<a href="https://www.messenger.com/t/goshare0716" target="_blank">推薦</a>和<Link to={`/create-workshop`}>自薦</Link>。</p>
                                 </div>
                             </div>
                             <div className="landing-page-step-image-container">
@@ -92,7 +92,7 @@ class LandingPage extends Component {
                             <div className="landing-page-step-text-container reverse">
                                 <div className="landing-page-step-text">
                                     <h3>#4 募資成功</h3>
-                                    <p className="lead">確定舉辦工作坊！趁座位額滿前趕快報名吧。若時限內未達標，則會取消工作坊。</p>
+                                    <p className="lead">確定舉辦工作坊！講者開始準備工作坊內容。若時限內未達標，則會取消工作坊。</p>
                                 </div>
                             </div>
                             <div className="landing-page-step-image-container">
