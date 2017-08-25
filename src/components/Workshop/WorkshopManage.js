@@ -1,3 +1,5 @@
+import './WorkshopManage.css';
+
 import {
     Button,
     Dropdown,
@@ -27,6 +29,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import moment from 'moment';
 import {unauthenticated} from '../../actions/auth';
+
 
 
 
@@ -77,20 +80,18 @@ class WorkshopManage extends Component {
     }
 
     renderAttendees(attendees) {
-        return attendees.map((a, i) => {
-            return (
-                <tr key={i}>
-                    <th scope="row">{i + 1}</th>
-                    <td>
-                        <Link to={`/user/${a.id}`}>{a.name}</Link>
-                    </td>
-                    <td>{a.email}</td>
-                    <td>{a.canceled
-                            ? '取消'
-                            : '報名'}</td>
-                </tr>
-            );
-        });
+        return attendees.map((a, i) => (
+            <tr key={i}>
+                <th scope="row">{i + 1}</th>
+                <td>
+                    <Link to={`/user/${a.id}`}>{a.name}</Link>
+                </td>
+                <td>{a.email}</td>
+                <td>{a.canceled
+                        ? '取消'
+                        : '報名'}</td>
+            </tr>
+        ));
     }
 
     componentWillMount() {
@@ -114,40 +115,38 @@ class WorkshopManage extends Component {
                 <div className="d-flex justify-content-between align-items-end mt-5 mb-3">
                     <h1 className="m-0">管理工作坊</h1>
                     <Link to={`/workshop/${id}`}>返回工作坊</Link>
-                </div>                
-                <div className="mb-3">
-                    {role === 'admin' && <div className="d-flex justify-content-between align-items-center">
-                        <span>工作坊狀態</span>
-                        <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.dropdownToggle}>
-                            <DropdownToggle caret>{state}</DropdownToggle>
-                            <DropdownMenu>{STATE_OPTIONS.map((s, i) => <DropdownItem key={i} onClick={e => this.props.setWorkshopState(id, s)}>{s}</DropdownItem>)}</DropdownMenu>
-                        </Dropdown>
-                    </div>}
-                    {role === 'admin' && <hr/>}
-                    <div className="d-flex justify-content-between align-items-center">
-                        <span>顯示狀態</span>
-                        <MultipleButton options={PUBLISHED_OPTIONS} value={published} onChange={v => this.props.setWorkshopPublished(id, v)}/>
-                    </div>
-                    <hr/>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <span>刪除工作坊</span>
-                        <Button color="danger" onClick={this.modalToggle}>刪除</Button>
-                    </div>
-                    <hr/>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <span>參加者名單</span>
-                        <CSVLink data={attendees.map(a => ({
-                            name: a.name,
-                            email: a.email,
-                            state: a.canceled
-                                ? '取消'
-                                : '報名'
-                        }))} filename={`${moment().format('YYYY-MM-DD-hh-mm-ss')}.csv`} className="btn btn-primary" target="_blank">
-                            匯出
-                        </CSVLink>
-                    </div>
                 </div>
-                <Table>
+                {role === 'admin' && <div className="workshop-manage-item">
+                    <span>工作坊狀態</span>
+                    <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.dropdownToggle}>
+                        <DropdownToggle caret>{state}</DropdownToggle>
+                        <DropdownMenu>{STATE_OPTIONS.map((s, i) => <DropdownItem key={i} onClick={e => this.props.setWorkshopState(id, s)}>{s}</DropdownItem>)}</DropdownMenu>
+                    </Dropdown>
+                </div>}
+                {role === 'admin' && <hr/>}
+                <div className="workshop-manage-item">
+                    <span>顯示狀態</span>
+                    <MultipleButton options={PUBLISHED_OPTIONS} value={published} onChange={v => this.props.setWorkshopPublished(id, v)}/>
+                </div>
+                <hr/>
+                <div className="workshop-manage-item">
+                    <span>刪除工作坊</span>
+                    <Button color="danger" onClick={this.modalToggle}>刪除</Button>
+                </div>
+                <hr/>
+                <div className="workshop-manage-item">
+                    <span>參加者名單</span>
+                    <CSVLink data={attendees.map(a => ({
+                        name: a.name,
+                        email: a.email,
+                        state: a.canceled
+                            ? '取消'
+                            : '報名'
+                    }))} filename={`${moment().format('YYYY-MM-DD-hh-mm-ss')}.csv`} className="btn btn-primary" target="_blank">
+                        匯出
+                    </CSVLink>
+                </div>
+                <Table className="mt-3">
                     <thead>
                         <tr>
                             <th>#</th>

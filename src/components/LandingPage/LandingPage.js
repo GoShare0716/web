@@ -66,7 +66,7 @@ class LandingPage extends Component {
                             <div className="landing-page-step-text-container reverse">
                                 <div className="landing-page-step-text">
                                     <h3>#2 徵求講者</h3>
-                                    <p className="lead">徵求願意分享的人<Link to={`/create-workshop`}>成為講者</Link>，滿足學生的求知慾。也歡迎大家<a href="https://www.messenger.com/t/goshare0716" target="_blank">推薦</a>和<Link to={`/create-workshop`}>自薦</Link>。</p>
+                                    <p className="lead">徵求願意分享的人<Link to={`/create-workshop`}>成為講者</Link>，滿足學生的求知慾。也歡迎大家<a href="https://www.messenger.com/t/goshare0716" target="_blank" rel="noopener noreferrer">推薦</a>和<Link to={`/create-workshop`}>自薦</Link>。</p>
                                 </div>
                             </div>
                             <div className="landing-page-step-image-container">

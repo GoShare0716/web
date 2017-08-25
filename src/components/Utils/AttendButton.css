@@ -1,3 +1,18 @@
+.attend-button
+{
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.attend-button-attendees
+{
+    display: flex;
+
+    align-items: center;
+}
+
 .attend-button-attendees > img
 {
     width: 24px;

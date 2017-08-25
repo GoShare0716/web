@@ -5,7 +5,7 @@
     width: 100%;
     margin-bottom: 3rem;
 
-    color: white !important;
+    color: white;
     background-position: center;
     background-size: cover;
 
@@ -76,39 +76,44 @@
 .workshop-article h4 + ul,
 .workshop-article h4 + img
 {
-    margin: .5rem 0 0 0 !important;
+    margin: .5rem 0 0 0;
 }
 
-.workshop-progress
+.workshop-badge {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+}
+
+.workshop-state
 {
-    margin: 1rem 0 0 0 !important;
-    padding: 2rem !important;
+    margin: 1rem 0 0 0;
+    padding: 2rem;
 
-    border-bottom-right-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-.workshop-progress h3
+.workshop-state h3
 {
     margin: 0;
 }
 
-.workshop-progress-attend button
+.workshop-state-attend button
 {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
-.workshop-attend
+#workshop-attend
 {
     margin-top: 3rem;
 }
 
-.workshop-attend > h3:first-child
+#workshop-attend > h3:first-child
 {
     margin-top: 0;
 }
 
-.workshop-attend button{
+#workshop-attend button{
     margin-top: 2rem;
 }

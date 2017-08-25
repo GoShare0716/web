@@ -1,7 +1,7 @@
 import 'moment/locale/zh-tw';
 import './Workshop.css'
 
-import {Col, Jumbotron, Row} from 'reactstrap';
+import {Badge, Col, Jumbotron, Row} from 'reactstrap';
 import React, {Component} from 'react';
 
 import AttendButton from '../Utils/AttendButton';
@@ -22,19 +22,12 @@ import {viewWorkshop} from '../../actions/workshop';
 
 
 class Workshop extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: this.props.match.params.id
-        };
-    }
-
     componentWillMount() {
-        this.props.viewWorkshop(this.state.id);
+        this.props.viewWorkshop(this.props.match.params.id);
     }
 
     render() {
-        let {
+        const {
             id,
             phase,
             author,
@@ -44,25 +37,42 @@ class Workshop extends Component {
             goal,
             requirement,
             targetAudience,
+            location,
+            description,
+            content,
+            attendedMsg,
+            attendees: {
+                friends
+            },
+            attended,
+            canceled
+        } = this.props.workshopView;
+        let {
             startDatetime,
             endDatetime,
-            location,
             prePrice,
             price,
             minNumber,
             maxNumber,
             deadline,
             closing,
-            description,
-            content,
-            attendedMsg,
-            attendees,
-            attended,
-            canceled
+            attendees: {
+                number
+            }
         } = this.props.workshopView;
+        startDatetime = parseInt(startDatetime, 10);
+        endDatetime = parseInt(endDatetime, 10);
+        prePrice = parseInt(prePrice, 10);
+        price = parseInt(price, 10);
+        minNumber = parseInt(minNumber, 10);
+        maxNumber = parseInt(maxNumber, 10);
+        deadline = parseInt(deadline, 10);
+        closing = parseInt(closing, 10);
+        number = parseInt(number, 10);
         const role = localStorage.getItem('role');
 
-        let preTitle,
+        let badgeText,
+            badgeColor,
             targetText,
             targetNumber,
             restNumberText,
@@ -74,28 +84,32 @@ class Workshop extends Component {
 
         switch (phase) {
             case 'judging':
-                preTitle = '【待審核】';
+                badgeText = '審核中';
+                badgeColor = 'warning';
                 break;
             case 'judge_na':
-                preTitle = '【審核失敗】';
+                badgeText = '未通過';
+                badgeColor = 'danger';
                 break;
             case 'investigating':
-                preTitle = '';
+                badgeText = '募資中';
+                badgeColor = 'primary';
                 targetText = '達標人數';
                 targetNumber = minNumber;
                 restNumberText = '距達標還有';
-                restDayText = '調查倒數';
+                restDayText = '募資倒數';
                 restDayNumber = moment(deadline).fromNow(true);
                 progressBarColor = '#0275d8';
-                priceText = '募課預售價';
+                priceText = '募資預售價';
                 priceNumber = prePrice;
                 break;
             case 'over':
-                preTitle = '';
+                badgeText = '已結束';
+                badgeColor = 'default';
                 targetText = '人數上限';
                 targetNumber = maxNumber;
                 restNumberText = '剩餘座位';
-                restDayText = '活動倒數';
+                restDayText = '工作坊倒數';
                 restDayNumber = '已結束';
                 progressBarColor = '#5cb85c';
                 priceText = '門票';
@@ -103,18 +117,20 @@ class Workshop extends Component {
                 break;
             case 'full':
             case 'closing':
-                preTitle = '';
+                badgeText = phase === 'full' ? '已額滿' : '報名截止';
+                badgeColor = 'success';
                 targetText = '人數上限';
                 targetNumber = maxNumber;
                 restNumberText = '剩餘座位';
-                restDayText = '活動倒數';
+                restDayText = '工作坊倒數';
                 restDayNumber = moment(startDatetime).fromNow(true);
                 progressBarColor = '#5cb85c';
                 priceText = '門票';
                 priceNumber = price;
                 break;
             case 'reached':
-                preTitle = '';
+                badgeText = '確定舉辦';
+                badgeColor = 'success';
                 targetText = '人數上限';
                 targetNumber = maxNumber;
                 restNumberText = '剩餘座位';
@@ -125,14 +141,15 @@ class Workshop extends Component {
                 priceNumber = price;
                 break;
             case 'unreached':
-                preTitle = '';
+                badgeText = '未達標';
+                badgeColor = 'default';
                 targetText = '達標人數';
                 targetNumber = minNumber;
                 restNumberText = '距達標還有';
-                restDayText = '調查倒數';
+                restDayText = '募資倒數';
                 restDayNumber = '未達標';
                 progressBarColor = '#0275d8';
-                priceText = '募課預售價';
+                priceText = '募資預售價';
                 priceNumber = prePrice;
                 break;
             default:
@@ -146,7 +163,6 @@ class Workshop extends Component {
         }
         infoCalendar = `http://www.google.com/calendar/event?action=TEMPLATE&text=${title}&dates=${moment(startDatetime).toISOString().replace(/-|:|\.\d\d\d/g,"")}/${moment(endDatetime).toISOString().replace(/-|:|\.\d\d\d/g,"")}&details=${title}&location=${location}&ctz=Asia/Taipei`;
 
-
         return (
             <div className="full workshop">
                 <div className="workshop-profile" style={{
@@ -158,13 +174,14 @@ class Workshop extends Component {
                     </Profile>
                 </div>
                 <div className="inner workshop-article">
-                    <h1>{preTitle}{title}</h1>
+                    <Badge className="workshop-badge" color={badgeColor}>{badgeText}</Badge>
+                    <h1>{title}</h1>
                     {phase !== 'judging' && phase !== 'judge_na' && <div>
-                        <Jumbotron className="workshop-progress">
+                        <Jumbotron className="workshop-state">
                             <Row className="text-center mb-2">
                                 <Col xs={6} sm={3}>
-                                    <small>報名人數</small>
-                                    <h3>{`${attendees.number} 人`}</h3>
+                                    <small>參加人數</small>
+                                    <h3>{`${number} 人`}</h3>
                                 </Col>
                                 <Col xs={6} sm={3}>
                                     <small>{targetText}</small>
@@ -172,14 +189,14 @@ class Workshop extends Component {
                                 </Col>
                                 <Col xs={6} sm={3}>
                                     <small>{restNumberText}</small>
-                                    <h3>{`${targetNumber - attendees.number} 人`}</h3>
+                                    <h3>{`${targetNumber - number} 人`}</h3>
                                 </Col>
                                 <Col xs={6} sm={3}>
                                     <small>{restDayText}</small>
                                     <h3>{restDayNumber}</h3>
                                 </Col>
                             </Row>
-                            <ProgressBar className="mb-2" height={'0.5rem'} color={progressBarColor} value={attendees.number * 100 / targetNumber}/>
+                            <ProgressBar className="mb-2" height={'0.5rem'} color={progressBarColor} value={number * 100 / targetNumber}/>
                             <Row className="text-center">
                                 {(phase === 'investigating' || phase === 'unreached') && <Col>
                                     <small>達標後售價</small>
@@ -193,8 +210,8 @@ class Workshop extends Component {
                                 </Col>
                             </Row>
                         </Jumbotron>
-                        <div className="workshop-progress-attend">
-                            <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} attendees={attendees}/>
+                        <div className="workshop-state-attend">
+                            <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} friends={friends}/>
                         </div>
                     </div>}
                     <div className="workshop-info">
@@ -208,23 +225,23 @@ class Workshop extends Component {
                         <h3>你將學會...</h3>
                         <ul>{goal.map((g, i) => <li key={i}>{g}</li>)}</ul>
                     </div>
-                    <div className="workshop-requirement">
+                    <div>
                         <h3>你需要具備...</h3>
                         <ul>{requirement.map((r, i) => <li key={i}>{r}</li>)}</ul>
                     </div>
-                    <div className="workshop-target-audience">
+                    <div>
                         <h3>這堂課適合給...</h3>
                         <ul>{targetAudience.map((t, i) => <li key={i}>{t}</li>)}</ul>
                     </div>
-                    <div className="workshop-description">
+                    <div>
                         <h3>簡介</h3>
                         {renderHTML(description)}
                     </div>
-                    <div className="workshop-content">
+                    <div>
                         <h3>詳細介紹</h3>
                         {renderHTML(content)}
                     </div>
-                    <Jumbotron id="workshop-attend" className="workshop-attend">
+                    <Jumbotron id="workshop-attend">
                         <h3>注意事項</h3>
                         <ol>
                             <li>人數達標後才會開課。無論是否達標，都會以 Email 通知。</li>
@@ -233,7 +250,7 @@ class Workshop extends Component {
                         </ol>
                         {attended && !canceled && <h3>行前通知</h3>}
                         {attended && !canceled && renderHTML(attendedMsg)}
-                        <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} attendees={attendees}/>
+                        <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} friends={friends}/>
                     </Jumbotron>
                 </div>
             </div>

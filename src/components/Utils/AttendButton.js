@@ -14,17 +14,6 @@ import {unauthenticated} from '../../actions/auth';
 
 
 class AttendButton extends Component {
-    static defaultProps = {
-        id: 2,
-        phase: 'investigating',
-        attended: false,
-        canceled: false,
-        attendees: {
-            friends: [],
-            number: 0
-        }
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -36,26 +25,98 @@ class AttendButton extends Component {
         this.onCancelClick = this.onCancelClick.bind(this);
     }
 
-    modalToggle() {
-        this.setState({
-            isModalOpen: !this.state.isModalOpen
-        });
-    }
-
-    onCancelClick(id) {
-        this.props.attendWorkshop(id);
-        this.modalToggle();
-    }
-
-    onAttendClick() {
+    render() {
         const {
             auth,
+            unauthenticated,
             id,
+            phase,
             attended,
             canceled,
-            attendWorkshop,
-            unauthenticated
+            friends,
+            attendWorkshop
         } = this.props;
+        let buttonText,
+            buttonColor,
+            buttonDisabled;
+
+        if (attended) {
+            buttonText = '報名成功';
+            buttonColor = 'success';
+            buttonDisabled = false;
+        } else {
+            if (canceled) {
+                buttonText = '已取消報名';
+                buttonColor = 'danger';
+                buttonDisabled = true;
+            } else {
+                switch (phase) {
+                    case 'judging':
+                        buttonText = '審核中';
+                        buttonColor = 'info';
+                        buttonDisabled = true;
+                        break;
+                    case 'judge_na':
+                        buttonText = '未通過';
+                        buttonColor = 'danger';
+                        buttonDisabled = true;
+                        break;
+                    case 'over':
+                        buttonText = '已結束';
+                        buttonColor = 'info';
+                        buttonDisabled = true;
+                        break;
+                    case 'closing':
+                        buttonText = '報名截止';
+                        buttonColor = 'warning';
+                        buttonDisabled = true;
+                        break;
+                    case 'full':
+                        buttonText = '已額滿';
+                        buttonColor = 'warning';
+                        buttonDisabled = true;
+                        break;
+                    case 'unreached':
+                        buttonText = '未達標';
+                        buttonColor = 'info';
+                        buttonDisabled = true;
+                        break;
+                    case 'investigating':
+                    case 'reached':
+                        buttonText = '我要報名';
+                        buttonColor = 'primary';
+                        buttonDisabled = false;
+                        break;
+                    default:
+                }
+            }
+        }
+
+        return (
+            <div>
+                <Button size="lg" block disabled={buttonDisabled} color={buttonColor} onClick={() => this.onAttendClick(auth, unauthenticated, attended, canceled, attendWorkshop, id)}>{buttonText}</Button>
+                <div className="attend-button">
+                    <span className="link">運作機制</span>
+                    {!attended && <div className="attend-button-attendees">
+                        {friends.slice(0, Math.min(3, friends.length)).map((f, i) => <img key={i} src={f.thumbnailUrl} alt=""/>)}
+                    </div>}
+                    {(phase === 'investigating' || phase === 'closing' || phase === 'full' || phase === 'reached') && attended && !canceled && <span className="link" onClick={this.modalToggle}>取消報名</span>}
+                </div>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.modalToggle}>
+                    <ModalHeader>取消報名</ModalHeader>
+                    <ModalBody>
+                        注意：取消報名後就無法再報名。
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.modalToggle}>再考慮一下</Button>
+                        <Button color="danger" onClick={() => this.onCancelClick(attendWorkshop, id)}>取消報名</Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
+        );
+    }
+
+    onAttendClick(auth, unauthenticated, attended, canceled, attendWorkshop, id) {
         if (auth.authenticated) {
             if (!attended) {
                 attendWorkshop(id);
@@ -68,87 +129,15 @@ class AttendButton extends Component {
         }
     }
 
-    renderAttendeesAvatar(friends) {
-        return friends.slice(0, Math.min(3, friends.length)).map((f, i) => <img key={i} src={f.thumbnailUrl} alt=""/>);
+    modalToggle() {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        });
     }
 
-    render() {
-        const {id, phase, attended, canceled, attendees: {
-                friends
-            }} = this.props;
-        let buttonText,
-            buttonColor,
-            disabled;
-
-        switch (phase) {
-            case 'judging':
-                buttonText = '審核中';
-                buttonColor = 'info';
-                disabled = true;
-                break;
-            case 'judge_na':
-                buttonText = '審核失敗';
-                buttonColor = 'danger';
-                disabled = true;
-                break;
-            case 'over':
-                buttonText = '已結束';
-                buttonColor = 'info';
-                disabled = true;
-                break;
-            case 'unreached':
-                buttonText = '未達標';
-                buttonColor = 'info';
-                disabled = true;
-                break;
-            default:
-                if (attended) {
-                    buttonText = '報名成功';
-                    buttonColor = 'success';
-                    disabled = false;
-                } else {
-                    if (canceled) {
-                        buttonText = '已取消報名';
-                        buttonColor = 'danger';
-                        disabled = true;
-                    } else {
-                        if (phase === 'closing') {
-                            buttonText = '報名截止';
-                            buttonColor = 'warning';
-                            disabled = true;
-                        } else if (phase === 'full') {
-                            buttonText = '已額滿';
-                            buttonColor = 'warning';
-                            disabled = true;
-                        } else {
-                            buttonText = '我要報名';
-                            buttonColor = 'primary';
-                            disabled = false;
-                        }
-                    }
-                }
-        }
-
-        return (
-            <div>
-                <Button size="lg" block disabled={disabled} color={buttonColor} onClick={this.onAttendClick}>{buttonText}</Button>
-                <div className="d-flex justify-content-between align-items-center">
-                    <span className="link">運作機制</span>
-                    {!attended && <div className="d-flex align-items-center attend-button-attendees">{this.renderAttendeesAvatar(friends)}</div>}
-                    {(phase === 'investigating' || phase === 'reached' || phase === 'closing' || phase === 'full') && attended && !canceled && <span className="link" onClick={this.modalToggle}>取消報名</span>}
-                </div>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.modalToggle}>
-                    <ModalHeader>取消報名</ModalHeader>
-                    <ModalBody>
-                        注意：取消報名後就無法再報名。
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.modalToggle}>再考慮一下</Button>
-                        <Button color="danger" onClick={e => this.onCancelClick(id)}>取消報名</Button>
-                    </ModalFooter>
-                </Modal>
-            </div>
-        );
+    onCancelClick(attendWorkshop, id) {
+        attendWorkshop(id);
+        this.modalToggle();
     }
 }
 

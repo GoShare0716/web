@@ -1,38 +1,52 @@
-.dropzone:after {
-    padding-top: 50%;
+.dropzone:after
+{
     display: block;
+
+    padding-top: 50%;
+
     content: '';
 }
 
-.dropzone:hover {
+.dropzone:hover
+{
     cursor: pointer;
 }
 
-.dropzone {
+.dropzone
+{
     position: relative;
+
     display: flex;
+    overflow: hidden;
+
+    width: 100%;
+
+    color: #666;
+    border: .25rem dashed #ccc;
+    border-radius: .25rem;
+
     align-items: center;
     justify-content: center;
-    border: 0.25rem dashed #ccc;
-    border-radius: 0.25rem;
-    width: 100%;
-    color: #666;
-    overflow: hidden;
 }
 
-.dropzone-active {
+.dropzone-active
+{
     border-color: #5cb85c;
 }
 
-.dropzone-reject {
+.dropzone-reject
+{
     border-color: #d9534f;
 }
 
-.dropzone-image {
-    width: 100%;
+.dropzone-image
+{
     position: absolute;
+
+    width: 100%;
 }
 
-.dropzone-message {
+.dropzone-message
+{
     position: absolute;
 }

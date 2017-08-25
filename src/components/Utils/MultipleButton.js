@@ -4,18 +4,6 @@ import React, {Component} from 'react';
 
 class MultipleButton extends Component {
     static defaultProps = {
-        options: [
-            {
-                text: '入門',
-                value: 'basic'
-            },
-            {
-                text: '精進',
-                value: 'advanced'
-            }
-        ],
-        value: null,
-        onChange: (option) => {},
         cancellable: false,
         size: '',
         style: {},
@@ -39,18 +27,17 @@ class MultipleButton extends Component {
     onChange(e, nextValue) {
         e.stopPropagation();
         let {value} = this.state;
-        if (this.props.cancellable) {
-            this.props.onChange(nextValue);
+        const {cancellable, onChange} = this.props;
+        if (cancellable) {
+            onChange(nextValue);
             this.setState({
                 value: value === nextValue
                     ? null
                     : nextValue
             });
-        } else {
-            if (value !== nextValue) {
-                this.props.onChange(nextValue);
-                this.setState({value: nextValue});
-            }
+        } else if (value !== nextValue) {
+            onChange(nextValue);
+            this.setState({value: nextValue});
         }
     }
 
@@ -71,7 +58,6 @@ class MultipleButton extends Component {
             </ButtonGroup>
         );
     }
-
 }
 
 export default MultipleButton;

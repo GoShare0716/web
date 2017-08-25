@@ -147,10 +147,8 @@ class WorkshopUpdate extends Component {
         }
     }
 
-    componentWillReceiveProps({initialValues: {
-            phase
-        }}) {
-        this.setState(getDisabled(phase));
+    componentWillReceiveProps(nextProps) {
+        this.setState(getDisabled(nextProps.initialValues.phase));
     }
 
     render() {

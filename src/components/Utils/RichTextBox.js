@@ -132,10 +132,8 @@ class RichTextBox extends Component {
                 <ReactQuill className="rich-text-box" modules={this.modules} value={value} onChange={onChange} readOnly={disabled} onBlur={() => this.props.touch(form, name)} ref={node => this.quillRef = node}/>
                 <Dropzone className="w-100" multiple={false} accept="image/jpeg, image/png" maxSize={10485760} onDrop={this.onDrop} disableClick={this.state.uploading} ref={node => this.dropzoneRef = node}/>
             </FormGroup>
-
         );
     }
-
 }
 
 function mapDispatchToProps(dispatch) {

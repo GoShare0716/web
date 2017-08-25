@@ -11,6 +11,14 @@ export const workshopList = (state = [], action) => {
 }
 
 const INIT_WORKSHOP_VIEW = {
+    author: {
+        id: 0,
+        pictureUrl: '',
+        name: '',
+        fbUrl: '',
+        personalWebUrl: '',
+        introduction: ''
+    },
     goal: [],
     requirement: [],
     targetAudience: [],

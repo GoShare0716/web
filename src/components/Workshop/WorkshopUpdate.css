@@ -1,20 +1,20 @@
 .workshop-update .ql-editor
 {
-    font-family: 'cwTeXMing', serif !important;
-    font-size: 1.25rem !important;
-    line-height: 1.58 !important;
+    font-family: 'cwTeXMing', serif;
+    font-size: 1.25rem;
+    line-height: 1.58;
 
-    color: rgb(41, 43, 44) !important;
+    color: rgb(41, 43, 44);
 }
 
 .workshop-update .ql-editor h4
 {
-    font-family: 'Noto Sans TC', sans-serif !important;
-    font-size: 1.5rem !important;
-    font-weight: bold !important;
-    line-height: 1.22 !important;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.22;
 
-    margin: 3rem 0 0 0 !important;
+    margin: 3rem 0 0 0;
 }
 
 .workshop-update .ql-editor p,
@@ -24,12 +24,12 @@
 .workshop-update .ql-editor ul,
 .workshop-update .ql-editor img
 {
-    margin-top: 2rem !important;
+    margin-top: 2rem;
 }
 
 .workshop-update .ql-editor *:first-child
 {
-    margin-top: 0 !important;
+    margin-top: 0;
 }
 
 .workshop-update .ql-editor h4 + p,
@@ -39,5 +39,5 @@
 .workshop-update .ql-editor h4 + ul,
 .workshop-update .ql-editor h4 + img
 {
-    margin: .5rem 0 0 0 !important;
+    margin: .5rem 0 0 0;
 }

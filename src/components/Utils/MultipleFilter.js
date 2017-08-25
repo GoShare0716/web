@@ -1,64 +1,37 @@
+import {Button, ListGroupItem} from 'reactstrap';
 import React, {Component} from 'react';
-import {Button, Row, Col} from 'reactstrap';
+
 
 class MultipleFilter extends Component {
-    static defaultProps = {
-        label: '分類',
-        options: [
-            {
-                text: '全部',
-                value: 'all'
-            }, {
-                text: '科技',
-                value: 'technology'
-            }, {
-                text: '美學',
-                value: 'aesthetics'
-            }
-        ],
-        defaultOption: 'all',
-        onChange: () => {}
-    }
-
     constructor(props) {
         super(props);
-        this.state = {
-            selectedOption: null
-        };
-
-        this.onChange = this.onChange.bind(this);
+        this.onOptionChange = this.onOptionChange.bind(this);
     }
 
     render() {
+        const {label, options, value, onChange} = this.props;
         return (
-            <div className="list-group-item">
-                <Row className="m-0">
-                    <Col xs="auto">{this.props.label}</Col>
-                    <Col>
-                        {this.renderOptions()}
-                    </Col>
-                </Row>
-            </div>
+            <ListGroupItem>
+                <span className="mr-3">{label}</span>
+                {this.renderOptions(options, value, onChange)}
+            </ListGroupItem>
         );
     }
 
-    renderOptions() {
-        const {options, defaultOption} = this.props;
+    renderOptions(options, value, onChange) {
         return options.map(option => {
-            const color = (this.state.selectedOption || defaultOption) === option.value
+            const color = value === option.value
                 ? 'primary'
                 : 'link';
-            return <Button key={option.value} onClick={e => this.onChange(option.value)} className="mr-1" size="sm" color={color}>{option.text}</Button>;
+            return <Button key={option.value} onClick={() => this.onOptionChange(value, option.value, onChange)} className="mr-1" size="sm" color={color}>{option.text}</Button>;
         });
     }
 
-    onChange(selectedOption) {
-        if (this.state.selectedOption !== selectedOption) {
-            this.props.onChange(selectedOption);
-            this.setState({selectedOption});
+    onOptionChange(value, v, onChange) {
+        if (value !== v) {
+            onChange(v);
         }
     }
-
 }
 
 export default MultipleFilter;

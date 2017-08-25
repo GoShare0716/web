@@ -12,30 +12,35 @@ import moment from 'moment';
 
 
 
-export default class WorkshopItem extends Component {
+class WorkshopItem extends Component {
     render() {
         const {
+            phase,
             id,
             imageUrl,
             title,
             author: {
                 name
             },
+            attendees: {
+                friends
+            }
+        } = this.props;
+        let {
             deadline,
             closing,
             startDatetime,
-            phase
-        } = this.props;
-        let {
             minNumber,
             maxNumber,
             prePrice,
             price,
             attendees: {
-                friends,
                 number
             }
         } = this.props;
+        deadline = parseInt(deadline, 10);
+        closing = parseInt(closing, 10);
+        startDatetime = parseInt(startDatetime, 10);
         minNumber = parseInt(minNumber, 10);
         maxNumber = parseInt(maxNumber, 10);
         prePrice = parseInt(prePrice, 10);
@@ -53,7 +58,7 @@ export default class WorkshopItem extends Component {
 
         switch (phase) {
             case 'judging':
-                badge = '待審核';
+                badge = '審核中';
                 badgeColor = 'warning';
                 progressBarText = '';
                 progressBarColor = '#f0ad4e';
@@ -73,7 +78,7 @@ export default class WorkshopItem extends Component {
                 priceColor = '#d9534f';
                 break;
             case 'investigating':
-                badge = `調查倒數 ${moment(deadline).fromNow(true)}`;
+                badge = `募資倒數 ${moment(deadline).fromNow(true)}`;
                 badgeColor = 'primary';
                 progressBarText = `還要 ${minNumber - number} 人達標`;
                 progressBarColor = '#0275d8';
@@ -90,7 +95,7 @@ export default class WorkshopItem extends Component {
             case 'reached':
                 let rest = maxNumber - number;
                 badge = rest === 0
-                    ? `活動倒數 ${moment(startDatetime).fromNow(true)}`
+                    ? `工作坊倒數 ${moment(startDatetime).fromNow(true)}`
                     : `報名倒數 ${moment(closing).fromNow(true)}`;
                 badgeColor = 'success';
                 progressBarText = rest === 0
@@ -105,7 +110,7 @@ export default class WorkshopItem extends Component {
                 priceColor = '#5cb85c';
                 break;
             case 'closing':
-                badge = `活動倒數 ${moment(startDatetime).fromNow(true)}`;
+                badge = `工作坊倒數 ${moment(startDatetime).fromNow(true)}`;
                 badgeColor = 'success';
                 progressBarText = '報名截止';
                 progressBarColor = '#5cb85c';
@@ -132,18 +137,17 @@ export default class WorkshopItem extends Component {
                 priceColor = '#AAA';
                 break;
             default:
-
         }
         return (
             <Col className="mb-3" xs={12} sm={6} lg={4}>
                 <Link to={`/workshop/${id}`} className="unlink">
-                    <Card className="workshop-list-item">
-                        <div className="workshop-list-item-image-container">
-                            <CardImg top className="workshop-list-item-image" src={imageUrl} alt=""/>
+                    <Card className="workshop-item">
+                        <div className="workshop-item-image-container">
+                            <CardImg top className="workshop-item-image" src={imageUrl} alt=""/>
                         </div>
-                        <Badge className="workshop-list-item-badge" color={badgeColor}>{badge}</Badge>
+                        <Badge className="workshop-item-badge" color={badgeColor}>{badge}</Badge>
                         <CardBlock>
-                            <h4 className="workshop-list-item-title mb-2">{title}</h4>
+                            <h4 className="workshop-item-title mb-2">{title}</h4>
                             <div className="text-muted mb-2">
                                 <span>{name}</span>
                                 <span className="mx-1">·</span>
@@ -152,9 +156,9 @@ export default class WorkshopItem extends Component {
                                 {friends.length > 0 && <span>{`${friends.length} 位朋友`}</span>}
                             </div>
                             <ProgressBar className="mb-2" color={progressBarColor} value={progressBarValue} text={progressBarText}/>
-                            <div className="d-flex align-items-center justify-content-end">
-                                <span className="workshop-list-item-price-deleted mr-2">{priceDeletedText}</span>
-                                <span className="workshop-list-item-price" style={{
+                            <div className="workshop-item-price-container">
+                                <span className="workshop-item-price-deleted mr-2">{priceDeletedText}</span>
+                                <span className="workshop-item-price" style={{
                                     color: priceColor
                                 }}>{priceText}</span>
                             </div>
@@ -165,3 +169,5 @@ export default class WorkshopItem extends Component {
         );
     }
 }
+
+export default WorkshopItem;

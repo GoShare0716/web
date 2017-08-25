@@ -1,32 +1,4 @@
-.workshop-list-item-title
-{
-    font-weight: bold;
-    line-height: 1.22;
-
-    overflow: hidden;
-
-    width: 100%;
-    height: 3.625rem;
-}
-
-.workshop-list-item-price-deleted
-{
-    font-size: .75rem;
-
-    text-decoration: line-through;
-
-    color: #636c72;
-}
-
-.workshop-list-item-price
-{
-    font-size: 1.25rem;
-    font-weight: bold;
-
-    color: #0275d8;
-}
-
-.workshop-list-item-image-container
+.workshop-item-image-container
 {
     position: relative;
 
@@ -39,7 +11,7 @@
     justify-content: center;
 }
 
-.workshop-list-item-image-container:after
+.workshop-item-image-container:after
 {
     display: block;
 
@@ -48,7 +20,7 @@
     content: '';
 }
 
-.workshop-list-item-image
+.workshop-item-image
 {
     position: absolute;
 
@@ -58,16 +30,48 @@
             transition: width .36s;
 }
 
-.workshop-list-item-image:hover
+.workshop-item-image:hover
 {
     width: 125%;
 }
 
-.workshop-list-item-badge
+.workshop-item-badge
 {
     font-size: 1rem !important;
 
     position: absolute;
     top: .5rem;
     left: -.25rem;
+}
+
+.workshop-item-title
+{
+    font-weight: bold;
+    line-height: 1.22;
+
+    overflow: hidden;
+
+    width: 100%;
+    height: 3.625rem;
+}
+
+.workshop-item-price-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.workshop-item-price-deleted
+{
+    font-size: .75rem;
+
+    text-decoration: line-through;
+
+    color: #636c72;
+}
+
+.workshop-item-price
+{
+    font-size: 1.25rem;
+    font-weight: bold;
 }

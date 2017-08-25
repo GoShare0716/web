@@ -43,12 +43,12 @@ const ORDERING_OPTIONS = [
         value: 'date'
     }
 ];
-const STATE_OPTIONS = [
+const PHASE_OPTIONS = [
     {
         text: '全部',
         value: 'all'
     }, {
-        text: '調查中',
+        text: '募資中',
         value: 'investigating'
     }, {
         text: '已達標',
@@ -66,41 +66,30 @@ class WorkshopList extends Component {
             searchText: '',
             category: 'all',
             ordering: 'hot',
-            state: 'all'
+            phase: 'all'
         };
         this.onSearchSubmit = this.onSearchSubmit.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
         this.performSearch = this.performSearch.bind(this);
     }
 
-    onSearchSubmit(e) {
-        e.preventDefault();
-        this.performSearch();
-    }
-
-    onFilterChange(nextState) {
-        this.setState(nextState, this.performSearch);
-    }
-
-    performSearch() {
-        const {seartchText, category, ordering, state} = this.state;
-        this.props.listWorkshop(seartchText, category, ordering, state);
-    }
-
     componentWillMount() {
-        const {seartchText, category, ordering, state} = this.state;
-        this.props.listWorkshop(seartchText, category, ordering, state);
+        this.performSearch(this.state);
     }
 
     render() {
-        let state_options = localStorage.getItem('role') === 'admin'
-            ? [
-                ...STATE_OPTIONS, {
+        let phaseOptions;
+        if (localStorage.getItem('role') === 'admin') {
+            phaseOptions = [
+                ...PHASE_OPTIONS, {
                     text: '管理員',
                     value: 'admin'
                 }
-            ]
-            : STATE_OPTIONS;
+            ];
+        } else {
+            phaseOptions = PHASE_OPTIONS;
+        }
+        const {category, ordering, phase} = this.state;
         return (
             <div className="outer">
                 <h1 className="mt-5 mb-3">工作坊</h1>
@@ -113,13 +102,26 @@ class WorkshopList extends Component {
                     </InputGroup>
                 </Form>
                 <ListGroup className="mb-3">
-                    <MultipleFilter label="分類" options={CATEGORY_OPTIONS} defaultOption={'all'} onChange={option => this.onFilterChange({category: option})}/>
-                    <MultipleFilter label="順序" options={ORDERING_OPTIONS} defaultOption={'hot'} onChange={option => this.onFilterChange({ordering: option})}/>
-                    <MultipleFilter label="狀態" options={state_options} defaultOption={'all'} onChange={option => this.onFilterChange({state: option})}/>
+                    <MultipleFilter label="分類" options={CATEGORY_OPTIONS} value={category} onChange={option => this.onFilterChange({category: option})}/>
+                    <MultipleFilter label="順序" options={ORDERING_OPTIONS} value={ordering} onChange={option => this.onFilterChange({ordering: option})}/>
+                    <MultipleFilter label="狀態" options={phaseOptions} value={phase} onChange={option => this.onFilterChange({phase: option})}/>
                 </ListGroup>
                 <Row>{this.props.workshopList.map((w, i) => <WorkshopItem key={i} {...w}/>)}</Row>
             </div>
         );
+    }
+
+    onSearchSubmit(e) {
+        e.preventDefault();
+        this.performSearch(this.state);
+    }
+
+    onFilterChange(nextState) {
+        this.setState(nextState, () => this.performSearch(nextState));
+    }
+
+    performSearch({seartchText, category, ordering, phase}) {
+        this.props.listWorkshop(seartchText, category, ordering, phase);
     }
 }
 
