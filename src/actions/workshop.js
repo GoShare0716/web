@@ -65,6 +65,7 @@ export const updateWorkshop = workshop => async dispatch => {
     try {
         const res = await updateWorkshopFromApi(workshop);
         const data = res.data;
+        console.log('updateWorkshop', data);
         history.push(`/workshop/${data.id}`);
         dispatch(deliverAlert('編輯成功', 'success'));
     } catch (e) {
@@ -147,7 +148,7 @@ export const attendWorkshop = id => async dispatch => {
         dispatch({type: '@WORKSHOP/ATTEND', payload: data});
     } catch (e) {
         console.log(e);
-        
+
         dispatch(deliverAlert('報名失敗', 'danger'));
     } finally {
         dispatch(hideLoading());

@@ -65,27 +65,27 @@ export const workshopManage = (state = INIT_WORKSHOP_MANAGE, action) => {
         case '@WORKSHOP/GET_STATE':
             return {
                 ...state,
-                state: action.payload
+                ...action.payload
             };
         case '@WORKSHOP/SET_STATE':
             return {
                 ...state,
-                state: action.payload
+                ...action.payload
             };
         case '@WORKSHOP/GET_PUBLISHED':
             return {
                 ...state,
-                published: action.payload
+                ...action.payload
             };
         case '@WORKSHOP/SET_PUBLISHED':
             return {
                 ...state,
-                published: action.payload
+                ...action.payload
             };
         case '@WORKSHOP/GET_ATTENDEES':
             return {
                 ...state,
-                attendees: action.payload
+                ...action.payload
             };
         default:
             return state;

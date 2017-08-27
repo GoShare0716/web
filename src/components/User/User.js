@@ -8,10 +8,12 @@ import {setUserEmail, setUserFbUrl, setUserIntroduction, setUserPersonalWebUrl, 
 import Profile from '../Utils/Profile';
 import RenderField from '../Utils/RenderField';
 import RichTextBox from '../Utils/RichTextBox';
+import SkeletonUser from '../Skeleton/SkeletonUser';
 import WorkshopItem from '../Utils/WorkshopItem';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {unauthenticated} from '../../actions/auth';
+
 
 
 
@@ -86,6 +88,10 @@ class User extends Component {
     }
 
     render() {
+        if (this.props.loading) {
+            return <SkeletonUser />
+        }
+
         const {
             user: {
                 profile,
@@ -95,9 +101,9 @@ class User extends Component {
             handleSubmit
         } = this.props;
         return (
-            <div className="outer user">
+            <div className="outer user mb-5">
                 <Profile profile={profile}>
-                    <Button onClick={this.modalToggle}>編輯</Button>
+                    <Button className="mt-2" onClick={this.modalToggle}>編輯</Button>
                     <Modal className="user-profile-modal" isOpen={this.state.isModalOpen} toggle={this.modalToggle}>
                         <ModalBody>
                             <div className="d-flex justify-content-end">
@@ -131,8 +137,8 @@ class User extends Component {
     }
 }
 
-function mapStateToProps({auth, user}) {
-    return {auth, user, initialValues: user.profile};
+function mapStateToProps({auth, user, loadingBar}) {
+    return {auth, user, initialValues: user.profile, loading: loadingBar};
 }
 
 function mapDispatchToProps(dispatch) {

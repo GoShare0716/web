@@ -8,6 +8,7 @@ import AttendButton from '../Utils/AttendButton';
 import {Link} from 'react-router-dom';
 import Profile from '../Utils/Profile';
 import ProgressBar from '../Utils/ProgressBar';
+import SkeletonWorkshop from '../Skeleton/SkeletonWorkshop';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import moment from 'moment';
@@ -27,6 +28,10 @@ class Workshop extends Component {
     }
 
     render() {
+        if (this.props.loading) {
+            return <SkeletonWorkshop/>
+        }
+
         const {
             id,
             phase,
@@ -34,20 +39,6 @@ class Workshop extends Component {
             isAuthor,
             imageUrl,
             title,
-            goal,
-            requirement,
-            targetAudience,
-            location,
-            description,
-            content,
-            attendedMsg,
-            attendees: {
-                friends
-            },
-            attended,
-            canceled
-        } = this.props.workshopView;
-        let {
             startDatetime,
             endDatetime,
             prePrice,
@@ -56,19 +47,20 @@ class Workshop extends Component {
             maxNumber,
             deadline,
             closing,
+            goal,
+            requirement,
+            targetAudience,
+            location,
+            description,
+            content,
+            attendedMsg,
             attendees: {
+                friends,
                 number
-            }
+            },
+            attended,
+            canceled
         } = this.props.workshopView;
-        startDatetime = parseInt(startDatetime, 10);
-        endDatetime = parseInt(endDatetime, 10);
-        prePrice = parseInt(prePrice, 10);
-        price = parseInt(price, 10);
-        minNumber = parseInt(minNumber, 10);
-        maxNumber = parseInt(maxNumber, 10);
-        deadline = parseInt(deadline, 10);
-        closing = parseInt(closing, 10);
-        number = parseInt(number, 10);
         const role = localStorage.getItem('role');
 
         let badgeText,
@@ -117,7 +109,9 @@ class Workshop extends Component {
                 break;
             case 'full':
             case 'closing':
-                badgeText = phase === 'full' ? '已額滿' : '報名截止';
+                badgeText = phase === 'full'
+                    ? '已額滿'
+                    : '報名截止';
                 badgeColor = 'success';
                 targetText = '人數上限';
                 targetNumber = maxNumber;
@@ -155,22 +149,25 @@ class Workshop extends Component {
             default:
         }
 
-        let infoDatetime, infoCalendar;
+        let infoDatetime,
+            infoCalendar;
         if (moment(startDatetime).format('YYYY-MM-DD') === moment(endDatetime).format('YYYY-MM-DD')) {
             infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('hh:mm')} (GMT+8)`;
         } else {
             infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) hh:mm')} (GMT+8)`;
         }
-        infoCalendar = `http://www.google.com/calendar/event?action=TEMPLATE&text=${title}&dates=${moment(startDatetime).toISOString().replace(/-|:|\.\d\d\d/g,"")}/${moment(endDatetime).toISOString().replace(/-|:|\.\d\d\d/g,"")}&details=${title}&location=${location}&ctz=Asia/Taipei`;
+        infoCalendar = `http://www.google.com/calendar/event?action=TEMPLATE&text=${title}&dates=${moment(startDatetime).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${moment(endDatetime).toISOString().replace(/-|:|\.\d\d\d/g, "")}&details=${title}&location=${location}&ctz=Asia/Taipei`;
 
         return (
-            <div className="full workshop">
+            <div className="full workshop mb-5">
                 <div className="workshop-profile" style={{
                     backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, .8), rgba(0, 0, 0, .6)), url(${imageUrl})`
                 }}>
                     <Profile className="inner" profile={author}>
-                        {(role === 'admin' || isAuthor) && <Link to={`/workshop/${id}/update`} className="btn btn-secondary mr-2">編輯</Link>}
-                        {(role === 'admin' || isAuthor) && <Link to={`/workshop/${id}/manage`} className="btn btn-secondary">管理</Link>}
+                        {(role === 'admin' || isAuthor) && <div className="mt-2">
+                            <Link to={`/workshop/${id}/update`} className="btn btn-secondary mr-2">編輯</Link>
+                            <Link to={`/workshop/${id}/manage`} className="btn btn-secondary">管理</Link>
+                        </div>}
                     </Profile>
                 </div>
                 <div className="inner workshop-article">
@@ -217,7 +214,9 @@ class Workshop extends Component {
                     <div className="workshop-info">
                         <h3>工作坊資訊</h3>
                         <ul>
-                            <li>{`時間：${infoDatetime}`} <a href={infoCalendar} target="_blank">加入行事曆</a></li>
+                            <li>{`時間：${infoDatetime}`}
+                                <a href={infoCalendar} target="_blank">加入行事曆</a>
+                            </li>
                             <li>{`地點：${location}`}</li>
                         </ul>
                     </div>
@@ -258,8 +257,8 @@ class Workshop extends Component {
     }
 }
 
-function mapStateToProps({workshopView}) {
-    return {workshopView};
+function mapStateToProps({workshopView, loadingBar}) {
+    return {workshopView, loading: loadingBar};
 }
 
 function mapDispatchToProps(dispatch) {

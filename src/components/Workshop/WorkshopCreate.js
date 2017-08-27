@@ -63,8 +63,8 @@ class WorkshopCreate extends Component {
     render() {
         const {handleSubmit} = this.props;
         return (
-            <div className="inner">
-                <h1 className="mt-5 mb-3">成為講者</h1>
+            <div className="inner my-5">
+                <h1 className="mb-3">成為講者</h1>
                 <Jumbotron>
                     <h3>流程</h3>
                     <ol>

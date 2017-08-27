@@ -155,9 +155,9 @@ class WorkshopUpdate extends Component {
         const {id, createDisabled, deadlineDisabled, restDisabled, submitDisabled} = this.state;
         const {handleSubmit} = this.props;
         return (
-            <div className="inner workshop-update">
+            <div className="inner workshop-update my-5">
                 <Form onSubmit={handleSubmit(this.handleSubmit)}>
-                    <div className="d-flex justify-content-between align-items-end mt-5 mb-3">
+                    <div className="d-flex justify-content-between align-items-end mb-3">
                         <h1 className="m-0">編輯工作坊</h1>
                         <Link to={`/workshop/${id}`}>返回工作坊</Link>
                     </div>

@@ -3,8 +3,8 @@ import './App.css';
 import React, {Component} from 'react';
 import {Route, Router} from 'react-router-dom';
 
+import Footer from './Footer/Footer';
 import LandingPage from './LandingPage/LandingPage';
-import LoadingBar from 'react-redux-loading-bar';
 import NavBar from './NavBar/NavBar';
 import NavBarAlert from './NavBar/NavBarAlert';
 import User from './User/User';
@@ -26,11 +26,10 @@ class App extends Component {
     render() {
         return (
             <Router history={history}>
-                <div>
+                <div className="app">
                     <Route path="/" component={NavBar}/>
-                    <LoadingBar className="loading-bar"/>
                     <NavBarAlert/>
-                    <div className="full">
+                    <div className="full app-content">
                         <Route exact path="/" component={LandingPage}/>
                         <Route exact path="/create-workshop" component={WorkshopCreate}/>
                         <Route exact path="/workshop" component={WorkshopList}/>
@@ -39,6 +38,7 @@ class App extends Component {
                         <Route exact path="/workshop/:id/update" component={WorkshopUpdate}/>
                         <Route exact path="/user/:id" component={User}/>
                     </div>
+                    <Footer/>
                 </div>
             </Router>
         );

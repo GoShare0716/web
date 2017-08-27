@@ -10,6 +10,7 @@ import {
 import React, {Component} from 'react';
 
 import MultipleFilter from '../Utils/MultipleFilter';
+import SkeletonWorkshopItem from '../Skeleton/SkeletonWorkshopItem';
 import WorkshopItem from '../Utils/WorkshopItem';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -90,9 +91,10 @@ class WorkshopList extends Component {
             phaseOptions = PHASE_OPTIONS;
         }
         const {category, ordering, phase} = this.state;
+        const {loading} = this.props;
         return (
-            <div className="outer">
-                <h1 className="mt-5 mb-3">工作坊</h1>
+            <div className="outer my-5">
+                <h1 className="mb-3">工作坊</h1>
                 <Form className="mb-3" onSubmit={this.onSearchSubmit}>
                     <InputGroup>
                         <Input value={this.state.searchText} onChange={e => this.setState({searchText: e.target.value})} placeholder="搜尋喜歡的工作坊"/>
@@ -106,7 +108,7 @@ class WorkshopList extends Component {
                     <MultipleFilter label="順序" options={ORDERING_OPTIONS} value={ordering} onChange={option => this.onFilterChange({ordering: option})}/>
                     <MultipleFilter label="狀態" options={phaseOptions} value={phase} onChange={option => this.onFilterChange({phase: option})}/>
                 </ListGroup>
-                <Row>{this.props.workshopList.map((w, i) => <WorkshopItem key={i} {...w}/>)}</Row>
+                {this.renderWorkshopItem(loading)}
             </div>
         );
     }
@@ -117,16 +119,36 @@ class WorkshopList extends Component {
     }
 
     onFilterChange(nextState) {
-        this.setState(nextState, () => this.performSearch(nextState));
+        this.setState(nextState, () => this.performSearch(this.state));
     }
 
-    performSearch({seartchText, category, ordering, phase}) {
-        this.props.listWorkshop(seartchText, category, ordering, phase);
+    performSearch({searchText, category, ordering, phase}) {
+        this.props.listWorkshop(searchText, category, ordering, phase);
+    }
+
+    renderWorkshopItem(loading) {
+        if (loading) {
+            return (
+                <Row>
+                    <SkeletonWorkshopItem/>
+                    <SkeletonWorkshopItem/>
+                    <SkeletonWorkshopItem/>
+                    <SkeletonWorkshopItem/>
+                    <SkeletonWorkshopItem/>
+                    <SkeletonWorkshopItem/>
+                </Row>
+            );
+        }
+        return (
+            <Row>
+                {this.props.workshopList.map((w, i) => <WorkshopItem key={i} {...w}/>)}
+            </Row>
+        );
     }
 }
 
-function mapStateToProps({workshopList}) {
-    return {workshopList};
+function mapStateToProps({workshopList, loadingBar}) {
+    return {workshopList, loading: loadingBar};
 }
 
 function mapDispatchToProps(dispatch) {

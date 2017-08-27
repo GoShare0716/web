@@ -23,29 +23,17 @@ class WorkshopItem extends Component {
                 name
             },
             attendees: {
-                friends
-            }
-        } = this.props;
-        let {
+                friends,
+                number
+            },
             deadline,
             closing,
             startDatetime,
             minNumber,
             maxNumber,
             prePrice,
-            price,
-            attendees: {
-                number
-            }
+            price
         } = this.props;
-        deadline = parseInt(deadline, 10);
-        closing = parseInt(closing, 10);
-        startDatetime = parseInt(startDatetime, 10);
-        minNumber = parseInt(minNumber, 10);
-        maxNumber = parseInt(maxNumber, 10);
-        prePrice = parseInt(prePrice, 10);
-        price = parseInt(price, 10);
-        number = parseInt(number, 10);
 
         let badge,
             badgeColor,

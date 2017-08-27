@@ -8,8 +8,8 @@ const baseUrl = 'http://localhost:3090/api';
 
 const getConfig = () => ({
     headers: {
-        fbId: '1833867746937550', //localStorage.getItem('fbId'),
-        accessToken: 'EAAZAwGb8RZBdUBAAlvov35Ih7iaKXTTc6Ij9qIR9IR5aATJzq1uk8lG7LYZB02zypaEQZBZCsdS4vwDu3NVKQUPEszsyS3lX0hv9DSzd9TKH3NRacC5cAmMzfZBaDJiz4kZATLDzfAaPUdvZCOihO9ZBAGLfeYLaZCCTmj1vb0wDfTxAZDZD' //localStorage.getItem('accessToken')
+        fbId: localStorage.getItem('fbId'),
+        accessToken: localStorage.getItem('accessToken')
     }
 });
 

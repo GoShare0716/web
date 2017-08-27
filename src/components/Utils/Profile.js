@@ -3,9 +3,7 @@ import './Profile.css';
 import React, {Component} from 'react';
 
 import {Link} from 'react-router-dom';
-import {history} from '../../utils';
 import renderHTML from 'react-render-html';
-
 
 
 
@@ -43,7 +41,7 @@ class Profile extends Component {
                         <span>個人頁面</span>
                     </a>
                 </div>
-                <div className="mb-2">{renderHTML(introduction)}</div>
+                <div>{renderHTML(introduction)}</div>
                 {children}
             </div>
         );

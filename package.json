@@ -10,6 +10,7 @@
     "react-csv": "^1.0.8",
     "react-dom": "^15.3.0",
     "react-dropzone": "^3.13.4",
+    "react-loading-skeleton": "^0.3.1",
     "react-quill": "v1.0.0",
     "react-redux": "^5.0.5",
     "react-redux-loading-bar": "^2.9.2",

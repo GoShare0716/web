@@ -111,8 +111,8 @@ class WorkshopManage extends Component {
         const {state, published, attendees} = this.props.workshopManage;
         const role = localStorage.getItem('role');
         return (
-            <div className="inner">
-                <div className="d-flex justify-content-between align-items-end mt-5 mb-3">
+            <div className="inner my-5">
+                <div className="d-flex justify-content-between align-items-end mb-3">
                     <h1 className="m-0">管理工作坊</h1>
                     <Link to={`/workshop/${id}`}>返回工作坊</Link>
                 </div>
