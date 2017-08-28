@@ -13,8 +13,8 @@
 
 .nav-bar-alert button.close
 {
-    top: 0 !important;
-    right: 0 !important;
+    top: 0;
+    right: 0;
 
-    padding: 0 !important;
+    padding: 0;
 }

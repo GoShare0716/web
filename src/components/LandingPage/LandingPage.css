@@ -1,11 +1,17 @@
 .landing-page
 {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 
     width: 100%;
-
-    align-items: center;
 }
 
 .landing-page h1,
@@ -19,8 +25,19 @@
 .landing-page-banner,
 .landing-page-footer
 {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 
     width: 100%;
     height: 510px;
@@ -29,22 +46,39 @@
     color: white;
     background-attachment: fixed;
     background-size: cover;
-
-    align-items: center;
-    justify-content: center;
 }
 
 .landing-page-banner
 {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/kLYFb4p.jpg);
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .4)), to(rgba(0, 0, 0, .2))), url(http://i.imgur.com/kLYFb4p.jpg);
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/kLYFb4p.jpg);
+    background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/kLYFb4p.jpg);
+    background-image:         linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/kLYFb4p.jpg);
     background-position: center;
 }
 
 .typed-cursor
 {
-    animation: blink 1s linear infinite;
+    -webkit-animation: blink 1s linear infinite;
+            animation: blink 1s linear infinite;
 
     opacity: 1;
+}
+
+@-webkit-keyframes blink
+{
+    0%
+    {
+        opacity: 1;
+    }
+    50%
+    {
+        opacity: 0;
+    }
+    100%
+    {
+        opacity: 1;
+    }
 }
 
 @keyframes blink
@@ -75,6 +109,8 @@
 
 .landing-page-step
 {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 
     width: 100%;
@@ -83,20 +119,32 @@
 
 .landing-page-step.reverse
 {
-    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
 }
 
 .landing-page-step-text-container
 {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-
-    flex: 1;
-    align-items: center;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+        flex: 1;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .landing-page-step-text-container.reverse
 {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
 }
 
@@ -107,10 +155,17 @@
 
 .landing-page-step-image-container
 {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-
-    flex: 1;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+        flex: 1;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -136,18 +191,28 @@
     }
     .landing-page-step
     {
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     }
     .landing-page-step.reverse
     {
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     }
     .landing-page-step-text-container
     {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
     }
     .landing-page-step-text-container.reverse
     {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
         justify-content: center;
     }
     .landing-page-step-text
@@ -163,6 +228,9 @@
 
 .landing-page-footer
 {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/cyMqpiW.jpg);
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .4)), to(rgba(0, 0, 0, .2))), url(http://i.imgur.com/cyMqpiW.jpg);
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/cyMqpiW.jpg);
+    background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/cyMqpiW.jpg);
+    background-image:         linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/cyMqpiW.jpg);
     background-position: top;
 }

@@ -2,13 +2,18 @@
 {
     position: relative;
 
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     overflow: hidden;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 
     width: 100%;
-
-    align-items: center;
-    justify-content: center;
 }
 
 .workshop-item-image-container:after
@@ -27,6 +32,7 @@
     width: 100%;
 
     -webkit-transition: width .36s;
+         -o-transition: width .36s;
             transition: width .36s;
 }
 
@@ -55,10 +61,17 @@
     height: 3.625rem;
 }
 
-.workshop-item-price-container {
+.workshop-item-price-container
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .workshop-item-price-deleted
