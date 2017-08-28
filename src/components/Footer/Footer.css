@@ -1,17 +1,22 @@
-.footer-container {
+.footer-container
+{
     width: 100%;
     padding: 2rem 0;
-    background-color: #f5f5f5;
 
+    background-color: #f5f5f5;
 }
 
-.footer {
-    margin: 0 auto;
+.footer
+{
     display: flex;
+
+    margin: 0 auto;
+
     align-items: center;
     justify-content: space-between;
 }
 
-.footer a {
+.footer a
+{
     margin-right: .5rem;
 }
