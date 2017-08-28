@@ -12,7 +12,7 @@ class Footer extends Component {
         return (
             <footer className="footer-container">
                 <div className="outer footer">
-                    <span>© 2017 GoShare All Rights Reserved</span>
+                    <small className="text-muted">© 2017 GoShare All Rights Reserved</small>
                     <div>
                         <Link to="/">關於我們</Link>
                         <Link to="/workshop">看工作坊</Link>
