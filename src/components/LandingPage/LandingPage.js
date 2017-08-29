@@ -50,52 +50,52 @@ class LandingPage extends Component {
                         <h2 className="text-center">HOW</h2>
                         <hr className="w-100"/>
                         <div className="landing-page-step">
-                            <div className="landing-page-step-text-container">
+                            <div className="landing-page-step-text-container col">
                                 <div className="landing-page-step-text">
                                     <h3>#1 技能票選</h3>
                                     <p className="lead">每兩周在 <a href="">FB 社團</a>票選大家最想學的技能，主動向懂的人求助。</p>
                                 </div>
                             </div>
-                            <div className="landing-page-step-image-container">
+                            <div className="landing-page-step-image-container col">
                                 <div className="landing-page-step-image" style={{
                                     backgroundImage: 'url(http://i.imgur.com/tHvD8uD.jpg)'
                                 }}></div>
                             </div>
                         </div>
                         <div className="landing-page-step reverse">
-                            <div className="landing-page-step-text-container reverse">
+                            <div className="landing-page-step-text-container col reverse">
                                 <div className="landing-page-step-text">
                                     <h3>#2 徵求講者</h3>
                                     <p className="lead">徵求願意分享的人<Link to={`/create-workshop`}>成為講者</Link>，滿足學生的求知慾。也歡迎大家<a href="https://www.messenger.com/t/goshare0716" target="_blank" rel="noopener noreferrer">推薦</a>和<Link to={`/create-workshop`}>自薦</Link>。</p>
                                 </div>
                             </div>
-                            <div className="landing-page-step-image-container">
+                            <div className="landing-page-step-image-container col">
                                 <div className="landing-page-step-image" style={{
                                     backgroundImage: 'url(http://i.imgur.com/cGEOmUL.png)'
                                 }}></div>
                             </div>
                         </div>
                         <div className="landing-page-step">
-                            <div className="landing-page-step-text-container">
+                            <div className="landing-page-step-text-container col">
                                 <div className="landing-page-step-text">
                                     <h3>#3 募資期間</h3>
                                     <p className="lead">發布工作坊大綱，調查參加人數及學生需求。邀請朋友來參加，讓工作坊順利達標！</p>
                                 </div>
                             </div>
-                            <div className="landing-page-step-image-container">
+                            <div className="landing-page-step-image-container col">
                                 <div className="landing-page-step-image" style={{
                                     backgroundImage: 'url(http://i.imgur.com/ILhq0vt.jpg)'
                                 }}></div>
                             </div>
                         </div>
                         <div className="landing-page-step reverse">
-                            <div className="landing-page-step-text-container reverse">
+                            <div className="landing-page-step-text-container col reverse">
                                 <div className="landing-page-step-text">
                                     <h3>#4 募資成功</h3>
                                     <p className="lead">確定舉辦工作坊！講者開始準備工作坊內容。若時限內未達標，則會取消工作坊。</p>
                                 </div>
                             </div>
-                            <div className="landing-page-step-image-container">
+                            <div className="landing-page-step-image-container col">
                                 <div className="landing-page-step-image" style={{
                                     backgroundImage: 'url(http://i.imgur.com/GQmhYii.jpg)'
                                 }}></div>

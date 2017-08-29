@@ -10,8 +10,8 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer className="footer-container">
-                <div className="outer footer">
+            <footer className="mt-auto footer-container">
+                <div className="outer footer d-flex justify-content-between align-items-center">
                     <small className="text-muted">© 2017 GoShare All Rights Reserved</small>
                     <div>
                         <Link to="/">關於我們</Link>

@@ -62,18 +62,17 @@
             "-ms-overflow-y",
             "clip",
             "zoom",
-            "-webkit-box-flex",
-            "-ms-flex",
+
+            "-webkit-flex",
             "flex",
-            "-webkit-box-orient",
-            "-webkit-box-direction",
-            "-ms-flex-direction",
+
+            "-webkit-flex-direction",
             "flex-direction",
-            "-webkit-box-pack",
-            "-ms-flex-pack",
+
+            "-webkit-justify-content",
             "justify-content",
-            "-webkit-box-align",
-            "-ms-flex-align",
+
+            "-webkit-align-items",
             "align-items"
         ],
         [

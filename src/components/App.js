@@ -26,10 +26,10 @@ class App extends Component {
     render() {
         return (
             <Router history={history}>
-                <div className="app">
+                <div className="app d-flex flex-column">
                     <Route path="/" component={NavBar}/>
                     <NavBarAlert/>
-                    <div className="full app-content">
+                    <div className="full">
                         <Route exact path="/" component={LandingPage}/>
                         <Route exact path="/create-workshop" component={WorkshopCreate}/>
                         <Route exact path="/workshop" component={WorkshopList}/>
