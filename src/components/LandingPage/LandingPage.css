@@ -1,6 +1,7 @@
 .landing-page
 {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     align-items: center;
 
@@ -12,13 +13,14 @@
 .landing-page h3
 {
     font-family: 'cwTeXMing', serif;
+    font-weight: bold;
 }
-
 
 .landing-page-banner,
 .landing-page-footer
 {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -63,58 +65,91 @@
 
 .landing-page-content
 {
-    padding: 6rem 0;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+
+    padding: 4.5rem 0;
 }
 
 .landing-page-item
 {
+    position: relative;
+
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+
     padding: 4.5rem 1.5rem;
 }
 
-.landing-page-step
+.landing-page-phase
 {
-    display: flex;
+    font-size: 1.125rem;
 
-    width: 100%;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 1.5rem 0;
+}
+
+.landing-page-phase img
+{
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.landing-page-pros
+{
     padding: 1.5rem 0;
 }
 
-.landing-page-step.reverse
-{
-    flex-direction: row-reverse;
-}
-
-.landing-page-step-text-container
+.landing-page-pros-text-container
 {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.landing-page-step-text-container.reverse
+.landing-page-pros-text-container.reverse
 {
     justify-content: flex-start;
+
+    order: 1;
 }
 
-.landing-page-step-text
+.landing-page-pros-text
 {
+    font-size: 1.125rem;
+
     max-width: 400px;
 }
 
-.landing-page-step-image-container
+.landing-page-pros-image-container
 {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.landing-page-step-image
+.landing-page-pros-image-container.reverse
+{
+    order: -1;
+}
+
+.landing-page-pros-image
 {
     width: 240px;
     height: 240px;
 
     border-radius: 50%;
-    background-color: #ccc;
+    background-position: center;
     background-size: cover;
 }
 
@@ -128,27 +163,25 @@
     {
         padding: 1.5rem;
     }
-    .landing-page-step
+    .landing-page-phase
     {
-        flex-direction: column;
+        margin: 1.5rem 0;
     }
-    .landing-page-step.reverse
-    {
-        flex-direction: column;
-    }
-    .landing-page-step-text-container
+    .landing-page-pros-text-container.reverse
     {
         justify-content: center;
+
+        order: -1;
     }
-    .landing-page-step-text-container.reverse
-    {
-        justify-content: center;
-    }
-    .landing-page-step-text
+    .landing-page-pros-text
     {
         text-align: center;
     }
-    .landing-page-step-image
+    .landing-page-pros-image-container.reverse
+    {
+        order: 1;
+    }
+    .landing-page-pros-image
     {
         width: 180px;
         height: 180px;

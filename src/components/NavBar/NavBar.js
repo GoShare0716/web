@@ -42,10 +42,14 @@ class NavBar extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink tag={Link} to='/workshop' active={pathname === '/workshop'}>工作坊</NavLink>
+                                <NavLink href="https://www.facebook.com/" target="_blank">技能票選</NavLink>
                             </NavItem>
+
                             <NavItem>
                                 <NavLink tag={Link} to='/create-workshop' active={pathname === '/create-workshop'}>成為講者</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink tag={Link} to='/workshop' active={pathname === '/workshop'}>工作坊募資</NavLink>
                             </NavItem>
                             <NavBarAuth/>
                         </Nav>
