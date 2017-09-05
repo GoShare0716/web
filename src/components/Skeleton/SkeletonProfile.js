@@ -12,10 +12,10 @@ class SkeletonProfile extends Component {
                 <h4 className="w-100"><Skeleton /></h4>
                 <div className="mb-2">
                     <i className="fa fa-facebook-square mr-1" aria-hidden="true"/>
-                    <span>臉書連結</span>
+                    <span>臉書</span>
                     <span className="mx-2">·</span>
                     <i className="fa fa-user-circle mr-1" aria-hidden="true"/>
-                    <span>個人頁面</span>
+                    <span>作品</span>
                 </div>
                 <div className="w-100"><Skeleton count={1} /></div>
             </div>

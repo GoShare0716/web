@@ -96,7 +96,6 @@ class AttendButton extends Component {
             <div>
                 <Button size="lg" block disabled={buttonDisabled} color={buttonColor} onClick={() => this.onAttendClick(auth, unauthenticated, attended, canceled, attendWorkshop, id)}>{buttonText}</Button>
                 <div className="attend-button">
-                    <span className="link">運作機制</span>
                     {!attended && <div className="attend-button-attendees">
                         {friends.slice(0, Math.min(3, friends.length)).map((f, i) => <img key={i} src={f.thumbnailUrl} alt=""/>)}
                     </div>}

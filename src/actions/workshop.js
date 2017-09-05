@@ -15,13 +15,22 @@ import {hideLoading, showLoading} from 'react-redux-loading-bar';
 
 import {deliverAlert} from './alert';
 import {history} from '../utils';
+import moment from 'moment';
+
 
 
 
 export const createWorkshop = workshop => async dispatch => {
     dispatch(showLoading());
     try {
-        const res = await createWorkshopFromApi(workshop);
+        const {requirement, targetAudience, goal} = workshop;
+        const nextWorkshop = {
+            ...workshop,
+            requirement: requirement.filter(r => r.trim() !== ''),
+            targetAudience: targetAudience.filter(t => t.trim() !== ''),
+            goal: goal.filter(g => g.trim() !== ''),
+        }
+        const res = await createWorkshopFromApi(nextWorkshop);
         const data = res.data;
         history.push(`/workshop/${data.id}`);
     } catch (e) {
@@ -63,7 +72,18 @@ export const viewWorkshop = id => async dispatch => {
 export const updateWorkshop = workshop => async dispatch => {
     dispatch(showLoading());
     try {
-        const res = await updateWorkshopFromApi(workshop);
+        const {requirement, targetAudience, goal, deadline, closing, startDatetime, endDatetime} = workshop;
+        const nextWorkshop = {
+            ...workshop,
+            requirement: requirement.filter(r => r.trim() !== ''),
+            targetAudience: targetAudience.filter(t => t.trim() !== ''),
+            goal: goal.filter(g => g.trim() !== ''),
+            deadline: moment(deadline).valueOf(),
+            closing: moment(closing).valueOf(),
+            startDatetime: moment(startDatetime).valueOf(),
+            endDatetime: moment(endDatetime).valueOf()
+        }
+        const res = await updateWorkshopFromApi(nextWorkshop);
         const data = res.data;
         console.log('updateWorkshop', data);
         history.push(`/workshop/${data.id}`);
@@ -132,6 +152,7 @@ export const getWorkshopAttendees = (id) => async dispatch => {
     try {
         const res = await getWorkshopAttendeesFromApi(id);
         const data = res.data;
+        console.log(data);
         dispatch({type: '@WORKSHOP/GET_ATTENDEES', payload: data});
     } catch (e) {
         dispatch(deliverAlert('參加人名單取得失敗', 'danger'));

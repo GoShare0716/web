@@ -16,15 +16,24 @@ class Footer extends Component {
                     <div className="footer-anchor">
                         <span>
                             <Link to="/">關於我們</Link>
-                            <Link to="/workshop">看工作坊</Link>
+                            <Link to="/workshop">工作坊募資</Link>
                         </span>
                         <span>
+                            <Link to="/create-workshop">主題票選</Link>
                             <Link to="/create-workshop">成為講者</Link>
-                            <a href="https://www.facebook.com/messages/t/goshare0716" target="_blank" rel="noopener noreferrer">聯絡我們</a>
                         </span>
-                        <a href="https://www.facebook.com/goshare0716/" target="_blank" rel="noopener noreferrer">
-                            <i className="fa fa-facebook-square fa-lg" aria-hidden="true"/>
-                        </a>
+                        <span>
+                        <a href="https://www.facebook.com/messages/t/goshare0716" target="_blank" rel="noopener noreferrer">聯絡我們</a>
+                        </span>
+                        <span>
+                            <a href="https://www.facebook.com/goshare0716/" target="_blank" rel="noopener noreferrer">
+                                <i className="fa fa-facebook-square fa-lg" aria-hidden="true"/>
+                            </a>
+                            <a href="https://github.com/GoShare0716/web" target="_blank" rel="noopener noreferrer">
+                                <i className="fa fa-github fa-lg" aria-hidden="true"/>
+                            </a>
+                        </span>
+
                     </div>
                 </div>
             </footer>

@@ -130,7 +130,7 @@ class WorkshopItem extends Component {
             <Col className="mb-3" xs={12} sm={6} lg={4}>
                 <Link to={`/workshop/${id}`} className="unlink">
                     <Card className="workshop-item">
-                        <div className="workshop-item-image-container">
+                        <div className="embed-responsive embed-responsive-16by9">
                             <CardImg top className="workshop-item-image" src={imageUrl} alt=""/>
                         </div>
                         <Badge className="workshop-item-badge" color={badgeColor}>{badge}</Badge>

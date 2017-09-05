@@ -56,7 +56,7 @@ export const workshopView = (state = INIT_WORKSHOP_VIEW, action) => {
 
 const INIT_WORKSHOP_MANAGE = {
     state: 'judging',
-    published: false,
+    published: null,
     attendees: []
 }
 
@@ -85,7 +85,7 @@ export const workshopManage = (state = INIT_WORKSHOP_MANAGE, action) => {
         case '@WORKSHOP/GET_ATTENDEES':
             return {
                 ...state,
-                ...action.payload
+                attendees: action.payload
             };
         default:
             return state;

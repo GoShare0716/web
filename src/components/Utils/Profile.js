@@ -8,6 +8,42 @@ import renderHTML from 'react-render-html';
 
 
 class Profile extends Component {
+    renderUrl(fbUrl, personalWebUrl) {
+        if (fbUrl && personalWebUrl) {
+            return (
+                <div className="profile-url mb-2">
+                    <a href={fbUrl} target="_blank">
+                        <i className="fa fa-facebook-square mr-1" aria-hidden="true"/>
+                        <span>臉書</span>
+                    </a>
+                    <span className="mx-2">·</span>
+                    <a href={personalWebUrl} target="_blank">
+                        <i className="fa fa-user-circle mr-1" aria-hidden="true"/>
+                        <span>作品</span>
+                    </a>
+                </div>
+            );
+        } else if (fbUrl) {
+            return (
+                <div className="profile-url mb-2">
+                    <a href={fbUrl} target="_blank">
+                        <i className="fa fa-facebook-square mr-1" aria-hidden="true"/>
+                        <span>臉書</span>
+                    </a>
+                </div>
+            );
+        } else if (personalWebUrl) {
+            return (
+                <div className="profile-url mb-2">
+                    <a href={personalWebUrl} target="_blank">
+                        <i className="fa fa-user-circle mr-1" aria-hidden="true"/>
+                        <span>作品</span>
+                    </a>
+                </div>
+            );
+        }
+    }
+
     render() {
         const {
             className,
@@ -30,17 +66,7 @@ class Profile extends Component {
                 <Link to={`/user/${id}`} className="unlink">
                     <h4>{name}</h4>
                 </Link>
-                <div className="mb-2">
-                    <a href={fbUrl} target="_blank">
-                        <i className="fa fa-facebook-square mr-1" aria-hidden="true"/>
-                        <span>臉書連結</span>
-                    </a>
-                    <span className="mx-2">·</span>
-                    <a href={personalWebUrl} target="_blank">
-                        <i className="fa fa-user-circle mr-1" aria-hidden="true"/>
-                        <span>個人頁面</span>
-                    </a>
-                </div>
+                {this.renderUrl(fbUrl, personalWebUrl)}
                 <div>{renderHTML(introduction)}</div>
                 {children}
             </div>

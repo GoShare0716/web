@@ -42,16 +42,18 @@ class NavBar extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="https://www.facebook.com/" target="_blank">技能票選</NavLink>
-                            </NavItem>
-
-                            <NavItem>
-                                <NavLink tag={Link} to='/create-workshop' active={pathname === '/create-workshop'}>成為講者</NavLink>
+                                <NavLink className="hidden-xs-down" tag={Link} to='/workshop' active={pathname === '/workshop'}>工作坊募資</NavLink>
+                                <NavLink className="hidden-sm-up" onClick={this.navBarToggle} tag={Link} to='/workshop' active={pathname === '/workshop'}>工作坊募資</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={Link} to='/workshop' active={pathname === '/workshop'}>工作坊募資</NavLink>
+                                <NavLink className="hidden-xs-down" tag={Link} to='/vote' active={pathname === '/vote'}>主題票選</NavLink>
+                                <NavLink className="hidden-sm-up" onClick={this.navBarToggle} tag={Link} to='/vote' active={pathname === '/vote'}>主題票選</NavLink>
                             </NavItem>
-                            <NavBarAuth/>
+                            <NavItem>
+                                <NavLink className="hidden-xs-down" tag={Link} to='/create-workshop' active={pathname === '/create-workshop'}>成為講者</NavLink>
+                                <NavLink className="hidden-sm-up" onClick={this.navBarToggle} tag={Link} to='/create-workshop' active={pathname === '/create-workshop'}>成為講者</NavLink>
+                            </NavItem>
+                            <NavBarAuth onClick={this.navBarToggle}/>
                         </Nav>
                     </Collapse>
                 </div>

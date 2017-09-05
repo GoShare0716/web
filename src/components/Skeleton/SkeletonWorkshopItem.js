@@ -12,7 +12,7 @@ class SkeletonWorkshopItem extends Component {
         return (
             <Col className="mb-3" xs={12} sm={6} lg={4}>
                 <Card className="workshop-item">
-                    <div className="workshop-item-image-container" style={{
+                    <div className="embed-responsive embed-responsive-16by9" style={{
                         backgroundColor: '#eee'
                     }}></div>
                     <CardBlock>
