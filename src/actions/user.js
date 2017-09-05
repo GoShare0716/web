@@ -19,7 +19,6 @@ export const viewUser = id => async dispatch => {
         const data = res.data;
         dispatch({type: '@USER/VIEW', payload: data});
     } catch (e) {
-        console.log(e);
         history.push(`/`);
         dispatch(deliverAlert('用戶不存在', 'danger'));
     } finally {

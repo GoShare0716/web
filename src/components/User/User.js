@@ -17,6 +17,20 @@ import {unauthenticated} from '../../actions/auth';
 
 
 
+``
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -79,7 +93,7 @@ class User extends Component {
     }
 
     componentWillMount() {
-        const {location, match, auth, unauthenticated, viewUser, deliverAlert} = this.props;
+        const {location, match, auth, unauthenticated, viewUser} = this.props;
         if (location.pathname === '/me') {
             if (auth.authenticated) {
                 viewUser('me');

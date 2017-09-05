@@ -23,7 +23,7 @@ class Footer extends Component {
                             <Link to="/create-workshop">成為講者</Link>
                         </span>
                         <span>
-                        <a href="https://www.facebook.com/messages/t/goshare0716" target="_blank" rel="noopener noreferrer">聯絡我們</a>
+                        <a href="https://m.me/goshare0716" target="_blank" rel="noopener noreferrer">聯絡我們</a>
                         </span>
                         <span>
                             <a href="https://www.facebook.com/goshare0716/" target="_blank" rel="noopener noreferrer">

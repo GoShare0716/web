@@ -47,7 +47,6 @@ export const listWorkshop = (seartchText, category, ordering, state) => async di
         const data = res.data;
         dispatch({type: '@WORKSHOP/LIST', payload: data});
     } catch (e) {
-        console.log(e);
         dispatch(deliverAlert('讀取失敗', 'danger'));
     } finally {
         dispatch(hideLoading());
@@ -62,7 +61,6 @@ export const viewWorkshop = id => async dispatch => {
         dispatch({type: '@WORKSHOP/VIEW', payload: data});
     } catch (e) {
         history.push(`/`);
-        console.log(e);
         dispatch(deliverAlert('工作坊不存在', 'danger'));
     } finally {
         dispatch(hideLoading());
@@ -85,7 +83,6 @@ export const updateWorkshop = workshop => async dispatch => {
         }
         const res = await updateWorkshopFromApi(nextWorkshop);
         const data = res.data;
-        console.log('updateWorkshop', data);
         history.push(`/workshop/${data.id}`);
         dispatch(deliverAlert('編輯成功', 'success'));
     } catch (e) {
@@ -152,7 +149,6 @@ export const getWorkshopAttendees = (id) => async dispatch => {
     try {
         const res = await getWorkshopAttendeesFromApi(id);
         const data = res.data;
-        console.log(data);
         dispatch({type: '@WORKSHOP/GET_ATTENDEES', payload: data});
     } catch (e) {
         dispatch(deliverAlert('參加人名單取得失敗', 'danger'));
@@ -168,8 +164,6 @@ export const attendWorkshop = id => async dispatch => {
         const data = res.data;
         dispatch({type: '@WORKSHOP/ATTEND', payload: data});
     } catch (e) {
-        console.log(e);
-
         dispatch(deliverAlert('報名失敗', 'danger'));
     } finally {
         dispatch(hideLoading());
