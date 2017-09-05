@@ -13,7 +13,9 @@ import RenderRadio from '../Utils/RenderRadio';
 import RichTextBox from '../Utils/RichTextBox';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import moment from 'moment';
 import {unauthenticated} from '../../actions/auth';
+
 
 
 
@@ -34,14 +36,14 @@ const CATEGORY_OPTIONS = [
 
 const getDisabled = (phase) => {
     let createDisabled,
-        deadlineDisabled,
+        memberDisabled,
         restDisabled,
         submitDisabled;
     if (localStorage.getItem('role') === 'admin') {
-        createDisabled = deadlineDisabled = restDisabled = submitDisabled = false;
+        createDisabled = memberDisabled = restDisabled = submitDisabled = false;
     } else {
         createDisabled = false;
-        deadlineDisabled = true;
+        memberDisabled = true;
         if (phase === 'investigating' || phase === 'over' || phase === 'closing' || phase === 'full' || phase === 'reached' || phase === 'unreached') {
             restDisabled = false;
         } else {
@@ -49,7 +51,7 @@ const getDisabled = (phase) => {
         }
         submitDisabled = false;
     }
-    return {createDisabled, deadlineDisabled, restDisabled, submitDisabled};
+    return {createDisabled, memberDisabled, restDisabled, submitDisabled};
 };
 
 const validate = (values, {initialValues: phase}) => {
@@ -79,28 +81,28 @@ const validate = (values, {initialValues: phase}) => {
         if (!values.endDatetime) {
             errors.endDatetime = '結束時間不可為空';
         }
-        if (values.startDatetime && values.endDatetime && values.startDatetime >= values.endDatetime) {
+        if (values.startDatetime && values.endDatetime && moment(values.startDatetime).valueOf() >= moment(values.endDatetime).valueOf()) {
             errors.startDatetime = errors.endDatetime = '結束時間需大於開始時間';
         }
-        if (!values.prePrice) {
-            errors.prePrice = '募課預售價不可為空';
+        if (values.prePrice !== 0 && !values.prePrice) {
+            errors.prePrice = '募資預售價不可為空';
         } else if (parseInt(values.prePrice, 10) < 0) {
-            errors.prePrice = '募課預售價不可為負數';
+            errors.prePrice = '募資預售價不可為負數';
         }
-        if (!values.price) {
+        if (values.price !== 0 && !values.price) {
             errors.price = '達標後售價不可為空';
         } else if (parseInt(values.price, 10) < 0) {
             errors.price = '達標後售價不可為負數';
         }
         if (values.prePrice && values.price && parseInt(values.prePrice, 10) > parseInt(values.price, 10)) {
-            errors.price = '達標後售價需大於募課預售價';
+            errors.price = '達標後售價需大於募資預售價';
         }
-        if (!values.minNumber) {
+        if (values.minNumber !== 0 && !values.minNumber) {
             errors.minNumber = '最低人數不可為空';
         } else if (parseInt(values.minNumber, 10) < 0) {
             errors.minNumber = '最低人數不可為負數';
         }
-        if (!values.maxNumber) {
+        if (values.maxNumber !== 0 && !values.maxNumber) {
             errors.maxNumber = '最高人數不可為空';
         } else if (parseInt(values.maxNumber, 10) < 0) {
             errors.maxNumber = '最高人數不可為負數';
@@ -114,7 +116,7 @@ const validate = (values, {initialValues: phase}) => {
         if (!values.closing) {
             errors.closing = '調查截止時間不可為空';
         }
-        if (values.deadline && values.closing && values.deadline >= values.closing) {
+        if (values.deadline && values.closing && moment(values.deadline).valueOf() >= moment(values.closing).valueOf()) {
             errors.deadline = errors.closing = '報名截止時間需大於調查截止時間';
         }
     }
@@ -127,7 +129,7 @@ class WorkshopUpdate extends Component {
         this.state = {
             id: this.props.match.params.id,
             createDisabled: false,
-            deadlineDisabled: false,
+            memberDisabled: false,
             restDisabled: false,
             submitDisabled: false
         };
@@ -152,7 +154,7 @@ class WorkshopUpdate extends Component {
     }
 
     render() {
-        const {id, createDisabled, deadlineDisabled, restDisabled, submitDisabled} = this.state;
+        const {id, createDisabled, memberDisabled, restDisabled, submitDisabled} = this.state;
         const {handleSubmit} = this.props;
         return (
             <div className="inner workshop-update my-5">
@@ -170,11 +172,11 @@ class WorkshopUpdate extends Component {
                     <Field component={RenderField} label="開始時間" type="datetime-local" name="startDatetime" disabled={restDisabled}/>
                     <Field component={RenderField} label="結束時間" type="datetime-local" name="endDatetime" disabled={restDisabled}/>
                     <Field component={RenderField} label="地點" type="text" name="location" disabled={restDisabled}/>
-                    <Field component={RenderField} label="募課預售價" type="number" name="prePrice" disabled={restDisabled}/>
+                    <Field component={RenderField} label="募資預售價" type="number" name="prePrice" disabled={restDisabled}/>
                     <Field component={RenderField} label="達標後售價" type="number" name="price" disabled={restDisabled}/>
-                    <Field component={RenderField} label="最低人數" type="number" name="minNumber" disabled={restDisabled}/>
+                    <Field component={RenderField} label="最低人數" type="number" name="minNumber" disabled={memberDisabled}/>
                     <Field component={RenderField} label="最高人數" type="number" name="maxNumber" disabled={restDisabled}/>
-                    <Field component={RenderField} label="調查截止時間" type="datetime-local" name="deadline" disabled={deadlineDisabled}/>
+                    <Field component={RenderField} label="募資截止時間" type="datetime-local" name="deadline" disabled={memberDisabled}/>
                     <Field component={RenderField} label="報名截止時間" type="datetime-local" name="closing" disabled={restDisabled}/>
                     <Field component={RichTextBox} label="簡介" name="description" ref="description" withRef disabled={restDisabled}/>
                     <Field component={RichTextBox} label="詳細介紹" name="content" disabled={restDisabled}/>

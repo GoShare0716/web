@@ -1,30 +1,10 @@
-.workshop-item-image-container
-{
-    position: relative;
-
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-}
-
-.workshop-item-image-container:after
-{
-    display: block;
-
-    padding-top: 50%;
-
-    content: '';
-}
-
 .workshop-item-image
 {
     position: absolute;
 
     width: 100%;
-
+    top: 0;
+    left: 0;
     transition: width .36s;
 }
 

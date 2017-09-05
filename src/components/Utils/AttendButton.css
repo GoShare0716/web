@@ -1,8 +1,9 @@
 .attend-button
 {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    padding-top: .25rem;
 }
 
 .attend-button-attendees

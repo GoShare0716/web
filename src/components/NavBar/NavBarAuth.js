@@ -38,7 +38,7 @@ class NavBarAuth extends Component {
     }
 
     render() {
-        const {facebookLogin, facebookLogout} = this.props;
+        const {facebookLogin, facebookLogout, onClick} = this.props;
         const {authenticated} = this.props.auth;
         if (authenticated) {
             return (
@@ -49,16 +49,16 @@ class NavBarAuth extends Component {
                                 <img src={localStorage.getItem('thumbnailUrl')} alt="fb"/>
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem tag={Link} to='/user/me'>個人頁面</DropdownItem>
+                                <DropdownItem tag={Link} to='/me'>個人頁面</DropdownItem>
                                 <DropdownItem onClick={facebookLogout}>登出</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </NavItem>
                     <NavItem className="hidden-sm-up">
-                        <NavLink tag={Link} to='/user/me'>個人頁面</NavLink>
+                        <NavLink tag={Link} to='/user/me' onClick={onClick}>個人頁面</NavLink>
                     </NavItem>
                     <NavItem className="hidden-sm-up">
-                        <span className="link nav-link" onClick={facebookLogout}>登出</span>
+                        <span className="link nav-link" onClick={() => onClick() || facebookLogout()}>登出</span>
                     </NavItem>
                 </div>
             );
@@ -69,7 +69,7 @@ class NavBarAuth extends Component {
                     <Button color="primary" onClick={facebookLogin}>登入</Button>
                 </NavItem>
                 <NavItem className="hidden-sm-up">
-                    <span className="link nav-link" onClick={facebookLogin}>登入</span>
+                    <span className="link nav-link" onClick={() => onClick() || facebookLogin()}>登入</span>
                 </NavItem>
             </div>
         );

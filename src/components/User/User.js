@@ -5,6 +5,7 @@ import {Field, reduxForm} from 'redux-form';
 import React, {Component} from 'react';
 import {setUserEmail, setUserFbUrl, setUserIntroduction, setUserPersonalWebUrl, viewUser} from '../../actions/user';
 
+import {Link} from 'react-router-dom';
 import Profile from '../Utils/Profile';
 import RenderField from '../Utils/RenderField';
 import RichTextBox from '../Utils/RichTextBox';
@@ -54,8 +55,7 @@ class User extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: this.props.match.params.id,
-            isModalOpen: false
+            isModalOpen: false,
         };
 
         this.modalToggle = this.modalToggle.bind(this);
@@ -69,8 +69,8 @@ class User extends Component {
     }
 
     handleSubmit({email, fbUrl, personalWebUrl, introduction}) {
-        const {setUserEmail, setUserFbUrl, setUserPersonalWebUrl, setUserIntroduction} = this.props;
-        const {id} = this.state;
+        const {user, setUserEmail, setUserFbUrl, setUserPersonalWebUrl, setUserIntroduction} = this.props;
+        const id = user.profile.id;
         setUserEmail(id, email);
         setUserFbUrl(id, fbUrl);
         setUserPersonalWebUrl(id, personalWebUrl);
@@ -79,20 +79,27 @@ class User extends Component {
     }
 
     componentWillMount() {
-        const {auth, unauthenticated, viewUser} = this.props;
-        if (!auth.authenticated && this.props.match.params.id === 'me') {
-            unauthenticated();
+        const {location, match, auth, unauthenticated, viewUser, deliverAlert} = this.props;
+        if (location.pathname === '/me') {
+            if (auth.authenticated) {
+                viewUser('me');
+            } else {
+                unauthenticated();
+            }
         } else {
-            viewUser(this.state.id);
+            viewUser(match.params.id);
         }
     }
 
+
+
     render() {
         if (this.props.loading) {
-            return <SkeletonUser />
+            return <SkeletonUser/>
         }
 
         const {
+            location,
             user: {
                 profile,
                 createWorkshops,
@@ -103,8 +110,11 @@ class User extends Component {
         return (
             <div className="outer user mb-5">
                 <Profile profile={profile}>
-                    <Button className="mt-2" onClick={this.modalToggle}>編輯</Button>
-                    <Modal className="user-profile-modal" isOpen={this.state.isModalOpen} toggle={this.modalToggle}>
+                    {location.pathname === '/me' && <div className="mt-2">
+                        <Button className="mr-2" onClick={this.modalToggle}>編輯個人檔案</Button>
+                        <Link to={`/user/${profile.id}`} className="btn btn-secondary">觀看訪客視角</Link>
+                    </div>}
+                    {location.pathname === '/me' && <Modal className="user-profile-modal" isOpen={this.state.isModalOpen} toggle={this.modalToggle}>
                         <ModalBody>
                             <div className="d-flex justify-content-end">
                                 <button type="button" className="close" onClick={this.modalToggle}>
@@ -114,13 +124,13 @@ class User extends Component {
                             <Form onSubmit={handleSubmit(this.handleSubmit)}>
                                 <h3 className="mb-3">編輯個人檔案</h3>
                                 <Field component={RenderField} label="Email" type="text" name="email"/>
-                                <Field component={RenderField} label="臉書網址" type="text" name="fbUrl"/>
-                                <Field component={RenderField} label="個人頁面網址" type="text" name="personalWebUrl"/>
+                                <Field component={RenderField} label="臉書網址" type="url" name="fbUrl"/>
+                                <Field component={RenderField} label="作品網址" type="url" name="personalWebUrl"/>
                                 <Field component={RichTextBox} label="自我介紹" name="introduction" modules={MODULES}/>
                                 <Button color="primary" block type="submit">儲存</Button>
                             </Form>
                         </ModalBody>
-                    </Modal>
+                    </Modal>}
                 </Profile>
                 <div className="user-propose">
                     <h3>我主辦的工作坊</h3>

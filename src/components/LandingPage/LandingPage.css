@@ -1,7 +1,6 @@
 .landing-page
 {
     display: flex;
-    flex: 1 1 auto;
     flex-direction: column;
     align-items: center;
 
@@ -10,186 +9,197 @@
 
 .landing-page h1,
 .landing-page h2,
+.landing-page h3,
+.landing-page .subtitle
+{
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.landing-page h1
+{
+    font-size: 4rem;
+}
+
+.landing-page h2
+{
+    font-size: 4rem;
+
+    margin-bottom: 1.25rem;
+}
+
+.landing-page h2.subtitle
+{
+    font-size: 2.5rem;
+
+    margin-bottom: 2.5rem;
+}
+
 .landing-page h3
 {
+    font-size: 2.5rem;
+
+    margin: 2.5rem 0 0 0;
+}
+
+.landing-page p
+{
     font-family: 'cwTeXMing', serif;
-    font-weight: bold;
+    font-size: 1.375rem;
+
+    margin: .5rem 0 0 0;
+}
+
+.landing-page p + p
+{
+    margin: 1.75rem 0 0 0;
+}
+
+@media (max-width: 991px)
+{
+    .landing-page h1
+    {
+        font-size: 4rem;
+    }
+    .landing-page h2
+    {
+        font-size: 3rem;
+
+        margin-bottom: 1rem;
+    }
+    .landing-page h2.subtitle
+    {
+        font-size: 2rem;
+
+        margin-bottom: 2rem;
+    }
+    .landing-page h3
+    {
+        font-size: 2rem;
+
+        margin: 2rem 0 0 0;
+    }
+    .landing-page p
+    {
+        font-size: 1.25rem;
+    }
+    .landing-page p + p
+    {
+        margin: 1.25rem 0 0 0;
+    }
+}
+
+@media (max-width: 767px)
+{
+    .landing-page h1
+    {
+        font-size: 2.125rem;
+    }
+    .landing-page h2
+    {
+        font-size: 2rem;
+
+        margin-bottom: .5rem;
+    }
+    .landing-page h2.subtitle
+    {
+        font-size: 1.5rem;
+
+        margin-bottom: 1.5rem;
+    }
+    .landing-page h3
+    {
+        font-size: 1.5rem;
+
+        margin: 1.5rem 0 0 0;
+    }
 }
 
 .landing-page-banner,
 .landing-page-footer
 {
     display: flex;
-    flex: 1 1 auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     width: 100%;
-    height: 510px;
-    padding: 1rem;
+    padding: 10rem 0;
 
     color: white;
-    background-attachment: fixed;
     background-size: cover;
 }
 
 .landing-page-banner
 {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/kLYFb4p.jpg);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(https://i.imgur.com/kLYFb4p.jpg);
     background-position: center;
 }
 
-.typed-cursor
+.landing-page-footer
 {
-    animation: blink 1s linear infinite;
-
-    opacity: 1;
-}
-
-@keyframes blink
-{
-    0%
-    {
-        opacity: 1;
-    }
-    50%
-    {
-        opacity: 0;
-    }
-    100%
-    {
-        opacity: 1;
-    }
-}
-
-.landing-page-content
-{
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-
-    padding: 4.5rem 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(https://i.imgur.com/cyMqpiW.jpg);
+    background-position: center;
 }
 
 .landing-page-item
 {
-    position: relative;
-
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-
-    padding: 4.5rem 1.5rem;
+    padding: 4.5rem 0;
 }
 
-.landing-page-phase
-{
-    font-size: 1.125rem;
-
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    margin: 1.5rem 0;
-}
-
-.landing-page-phase img
-{
-    width: 180px;
-    height: 180px;
-
-    border-radius: 50%;
-    background-color: #ccc;
-}
-
-.landing-page-pros
-{
-    padding: 1.5rem 0;
-}
-
-.landing-page-pros-text-container
-{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.landing-page-pros-text-container.reverse
-{
-    justify-content: flex-start;
-
-    order: 1;
-}
-
-.landing-page-pros-text
-{
-    font-size: 1.125rem;
-
-    max-width: 400px;
-}
-
-.landing-page-pros-image-container
+.landing-page-step-container,
+.landing-page-arrow-container
 {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.landing-page-pros-image-container.reverse
+.landing-page-step-container
 {
-    order: -1;
+    padding-left: 0;
+    padding-right: 0;
 }
 
-.landing-page-pros-image
+.landing-page-step
 {
-    width: 240px;
-    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    border-radius: 50%;
-    background-position: center;
-    background-size: cover;
+    width: 250px;
+    height: 150px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    border-radius: .25rem;
+    background-color: rgba(255, 255, 255, .2);
 }
 
-@media (max-width: 575px)
+.landing-page-step h3
 {
-    .landing-page-content
+    margin-top: 0;
+}
+
+.landing-page-step a
+{
+    color: yellow;
+}
+
+@media (max-width: 767px)
+{
+    .landing-page-banner,
+    .landing-page-footer
     {
-        padding: 3rem 0;
+        padding: 5rem 0;
     }
     .landing-page-item
     {
-        padding: 1.5rem;
+        padding: 1.5rem 0;
     }
-    .landing-page-phase
+    .landing-page-vote
     {
-        margin: 1.5rem 0;
+        margin-top: 1.5rem;
     }
-    .landing-page-pros-text-container.reverse
-    {
-        justify-content: center;
-
-        order: -1;
-    }
-    .landing-page-pros-text
-    {
-        text-align: center;
-    }
-    .landing-page-pros-image-container.reverse
-    {
-        order: 1;
-    }
-    .landing-page-pros-image
-    {
-        width: 180px;
-        height: 180px;
-    }
-}
-
-.landing-page-footer
-{
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/cyMqpiW.jpg);
-    background-position: top;
 }

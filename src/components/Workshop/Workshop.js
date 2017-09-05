@@ -3,6 +3,7 @@ import './Workshop.css'
 
 import {Badge, Col, Jumbotron, Row} from 'reactstrap';
 import React, {Component} from 'react';
+import {getWorkshopPublished, viewWorkshop} from '../../actions/workshop';
 
 import AttendButton from '../Utils/AttendButton';
 import {Link} from 'react-router-dom';
@@ -11,9 +12,10 @@ import ProgressBar from '../Utils/ProgressBar';
 import SkeletonWorkshop from '../Skeleton/SkeletonWorkshop';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {deliverAlert} from '../../actions/alert';
 import moment from 'moment';
 import renderHTML from 'react-render-html';
-import {viewWorkshop} from '../../actions/workshop';
+
 
 
 
@@ -23,8 +25,25 @@ import {viewWorkshop} from '../../actions/workshop';
 
 
 class Workshop extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isAlertNotPublished: false
+        };
+    }
+
     componentWillMount() {
-        this.props.viewWorkshop(this.props.match.params.id);
+        const {viewWorkshop, getWorkshopPublished, match} = this.props;
+        const {id} = match.params;
+        viewWorkshop(id);
+        getWorkshopPublished(id);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.loading && !this.state.isAlertNotPublished && !nextProps.workshopManage.published) {
+            this.props.deliverAlert('工作坊尚未發佈！請至管理頁面設定顯示狀態。', 'warning', 5000);
+            this.setState({isAlertNotPublished: true});
+        }
     }
 
     render() {
@@ -93,7 +112,9 @@ class Workshop extends Component {
                 restDayNumber = moment(deadline).fromNow(true);
                 progressBarColor = '#0275d8';
                 priceText = '募資預售價';
-                priceNumber = prePrice;
+                priceNumber = prePrice === 0
+                    ? '免費'
+                    : `NT$${prePrice}`;
                 break;
             case 'over':
                 badgeText = '已結束';
@@ -105,7 +126,9 @@ class Workshop extends Component {
                 restDayNumber = '已結束';
                 progressBarColor = '#5cb85c';
                 priceText = '門票';
-                priceNumber = price;
+                priceNumber = price === 0
+                    ? '免費'
+                    : `NT$${price}`;
                 break;
             case 'full':
             case 'closing':
@@ -120,7 +143,9 @@ class Workshop extends Component {
                 restDayNumber = moment(startDatetime).fromNow(true);
                 progressBarColor = '#5cb85c';
                 priceText = '門票';
-                priceNumber = price;
+                priceNumber = price === 0
+                    ? '免費'
+                    : `NT$${price}`;
                 break;
             case 'reached':
                 badgeText = '確定舉辦';
@@ -132,7 +157,9 @@ class Workshop extends Component {
                 restDayNumber = moment(closing).fromNow(true);
                 progressBarColor = '#5cb85c';
                 priceText = '門票';
-                priceNumber = price;
+                priceNumber = price === 0
+                    ? '免費'
+                    : `NT$${price}`;
                 break;
             case 'unreached':
                 badgeText = '未達標';
@@ -144,7 +171,9 @@ class Workshop extends Component {
                 restDayNumber = '未達標';
                 progressBarColor = '#0275d8';
                 priceText = '募資預售價';
-                priceNumber = prePrice;
+                priceNumber = prePrice === 0
+                    ? '免費'
+                    : `NT$${prePrice}`;
                 break;
             default:
         }
@@ -165,8 +194,8 @@ class Workshop extends Component {
                 }}>
                     <Profile className="inner" profile={author}>
                         {(role === 'admin' || isAuthor) && <div className="mt-2">
-                            <Link to={`/workshop/${id}/update`} className="btn btn-secondary mr-2">編輯</Link>
-                            <Link to={`/workshop/${id}/manage`} className="btn btn-secondary">管理</Link>
+                            <Link to={`/workshop/${id}/update`} className="btn btn-secondary mr-2">編輯工作坊</Link>
+                            <Link to={`/workshop/${id}/manage`} className="btn btn-secondary">管理工作坊</Link>
                         </div>}
                     </Profile>
                 </div>
@@ -198,12 +227,14 @@ class Workshop extends Component {
                                 {(phase === 'investigating' || phase === 'unreached') && <Col>
                                     <small>達標後售價</small>
                                     <h3>
-                                        <del>{`NT$${price}`}</del>
+                                        <del>{price === 0
+                                                ? '免費'
+                                                : `NT$${price}`}</del>
                                     </h3>
                                 </Col>}
                                 <Col>
                                     <small>{priceText}</small>
-                                    <h3>{`NT$${priceNumber}`}</h3>
+                                    <h3>{priceNumber}</h3>
                                 </Col>
                             </Row>
                         </Jumbotron>
@@ -257,13 +288,15 @@ class Workshop extends Component {
     }
 }
 
-function mapStateToProps({workshopView, loadingBar}) {
-    return {workshopView, loading: loadingBar};
+function mapStateToProps({workshopView, workshopManage, loadingBar}) {
+    return {workshopView, workshopManage, loading: loadingBar};
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        viewWorkshop
+        viewWorkshop,
+        getWorkshopPublished,
+        deliverAlert
     }, dispatch);
 }
 

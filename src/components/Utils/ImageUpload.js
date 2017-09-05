@@ -84,7 +84,7 @@ class ImageUpload extends Component {
                 <FormFeedback>{touched && error
                         ? <span>{error}</span>
                         : ''}</FormFeedback>
-                <Dropzone className="dropzone mt-2" activeClassName="dropzone-active" rejectClassName="dropzone-reject" multiple={false} accept="image/jpeg, image/png" maxSize={10485760} onDrop={this.onDrop} disableClick={disabled || uploading} ref={(node) => {
+                <Dropzone className="dropzone embed-responsive embed-responsive-16by9 mt-2" activeClassName="dropzone-active" rejectClassName="dropzone-reject" multiple={false} accept="image/jpeg, image/png" maxSize={10485760} onDrop={this.onDrop} disableClick={disabled || uploading} ref={(node) => {
                     this.dropzoneRef = node;
                 }}>
                     {value !== '' && <img className="dropzone-image" src={value} alt=""/>}

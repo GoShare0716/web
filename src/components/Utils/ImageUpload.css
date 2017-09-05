@@ -1,12 +1,3 @@
-.dropzone:after
-{
-    display: block;
-
-    padding-top: 50%;
-
-    content: '';
-}
-
 .dropzone:hover
 {
     cursor: pointer;
@@ -14,14 +5,10 @@
 
 .dropzone
 {
-    position: relative;
-
     display: flex;
     overflow: hidden;
     justify-content: center;
     align-items: center;
-
-    width: 100%;
 
     color: #666;
     border: .25rem dashed #ccc;
