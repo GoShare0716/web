@@ -92,7 +92,7 @@ class Vote extends Component {
             <div className="outer my-5">
                 <h1 className="mb-3">主題票選</h1>
                 <h2 className="mb-3">
-                    <a href="https://www.facebook.com/groups/113691139345877/" target="_blank" rel="noopener noreferrer">第二期票選中 9/11 - 9/17</a>
+                    <a href="https://www.facebook.com/groups/113691139345877/" target="_blank" rel="noopener noreferrer">點我進入票選活動</a>
                 </h2>
                 <Row>
                     {this.renderResult()}

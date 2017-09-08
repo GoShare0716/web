@@ -3,7 +3,6 @@ import './Workshop.css'
 
 import {Badge, Col, Jumbotron, Row} from 'reactstrap';
 import React, {Component} from 'react';
-import {getWorkshopPublished, viewWorkshop} from '../../actions/workshop';
 
 import AttendButton from '../Utils/AttendButton';
 import {Link} from 'react-router-dom';
@@ -15,6 +14,7 @@ import {connect} from 'react-redux';
 import {deliverAlert} from '../../actions/alert';
 import moment from 'moment';
 import renderHTML from 'react-render-html';
+import {viewWorkshop} from '../../actions/workshop';
 
 
 
@@ -33,14 +33,13 @@ class Workshop extends Component {
     }
 
     componentWillMount() {
-        const {viewWorkshop, getWorkshopPublished, match} = this.props;
+        const {viewWorkshop, match} = this.props;
         const {id} = match.params;
         viewWorkshop(id);
-        getWorkshopPublished(id);
     }
 
     componentWillReceiveProps(nextProps) {
-        if (!nextProps.loading && !this.state.isAlertNotPublished && !nextProps.workshopManage.published) {
+        if (!nextProps.loading && !this.state.isAlertNotPublished && !nextProps.workshopView.published) {
             this.props.deliverAlert('工作坊尚未發佈！請至管理頁面設定顯示狀態。', 'warning', 5000);
             this.setState({isAlertNotPublished: true});
         }
@@ -111,7 +110,7 @@ class Workshop extends Component {
                 restDayText = '募資倒數';
                 restDayNumber = moment(deadline).fromNow(true);
                 progressBarColor = '#0275d8';
-                priceText = '募資預售價';
+                priceText = prePrice === price ? '門票' : '早鳥優惠價';
                 priceNumber = prePrice === 0
                     ? '免費'
                     : `NT$${prePrice}`;
@@ -170,7 +169,7 @@ class Workshop extends Component {
                 restDayText = '募資倒數';
                 restDayNumber = '未達標';
                 progressBarColor = '#0275d8';
-                priceText = '募資預售價';
+                priceText = prePrice === price ? '門票' : '早鳥優惠價';
                 priceNumber = prePrice === 0
                     ? '免費'
                     : `NT$${prePrice}`;
@@ -224,7 +223,7 @@ class Workshop extends Component {
                             </Row>
                             <ProgressBar className="mb-2" height={'0.5rem'} color={progressBarColor} value={number * 100 / targetNumber}/>
                             <Row className="text-center">
-                                {(phase === 'investigating' || phase === 'unreached') && <Col>
+                                {(phase === 'investigating' || phase === 'unreached') && (price !== prePrice) && <Col>
                                     <small>達標後售價</small>
                                     <h3>
                                         <del>{price === 0
@@ -245,7 +244,7 @@ class Workshop extends Component {
                     <div className="workshop-info">
                         <h3>工作坊資訊</h3>
                         <ul>
-                            <li>{`時間：${infoDatetime}`}
+                            <li>{`時間：${infoDatetime} `}
                                 <a href={infoCalendar} target="_blank">加入行事曆</a>
                             </li>
                             <li>{`地點：${location}`}</li>
@@ -264,7 +263,7 @@ class Workshop extends Component {
                         <ul>{targetAudience.map((t, i) => <li key={i}>{t}</li>)}</ul>
                     </div>
                     <div>
-                        <h3>簡介</h3>
+                        <h3>簡短敘述</h3>
                         {renderHTML(description)}
                     </div>
                     <div>
@@ -288,14 +287,13 @@ class Workshop extends Component {
     }
 }
 
-function mapStateToProps({workshopView, workshopManage, loadingBar}) {
-    return {workshopView, workshopManage, loading: loadingBar};
+function mapStateToProps({workshopView, loadingBar}) {
+    return {workshopView, loading: loadingBar};
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         viewWorkshop,
-        getWorkshopPublished,
         deliverAlert
     }, dispatch);
 }

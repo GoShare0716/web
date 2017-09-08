@@ -1,4 +1,5 @@
 export const deliverAlert = (msg, type, delay = 3000) => dispatch => {
+    dispatch(hideAlert());
     dispatch({
         type: '@ALERT/SHOW',
         payload: {

@@ -41,7 +41,8 @@
     margin: 2.5rem 0 0 0;
 }
 
-.landing-page p
+.landing-page p,
+.landing-page span
 {
     font-family: 'cwTeXMing', serif;
     font-size: 1.375rem;
@@ -78,7 +79,8 @@
 
         margin: 2rem 0 0 0;
     }
-    .landing-page p
+    .landing-page p,
+    .landing-page span
     {
         font-size: 1.25rem;
     }
@@ -131,14 +133,13 @@
 
 .landing-page-banner
 {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(https://i.imgur.com/kLYFb4p.jpg);
+    background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/5LIe6Mk.jpg);
     background-position: center;
 }
 
 .landing-page-footer
 {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(https://i.imgur.com/cyMqpiW.jpg);
-    background-position: center;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(https://i.imgur.com/uqHyRs8.jpg);
 }
 
 .landing-page-item

@@ -16,8 +16,8 @@ export const createWorkshop = (workshop) => {
     return axios.post(url, workshop, getConfig());
 };
 
-export const listWorkshop = (seartchText, category, ordering, state) => {
-    let url = `${baseUrl}/workshops?seartchText=${seartchText}&category=${category}&ordering=${ordering}&state=${state}`;
+export const listWorkshop = (searchText, category, ordering, state) => {
+    let url = `${baseUrl}/workshops?searchText=${searchText}&category=${category}&ordering=${ordering}&state=${state}`;
     return axios.get(url, getConfig());
 };
 

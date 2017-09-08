@@ -57,6 +57,11 @@ body
     margin-bottom: 2rem !important;
 }
 
+.nav-item:hover
+{
+    cursor: pointer;
+}
+
 .unlink:link,
 .unlink:visited,
 .unlink:hover,

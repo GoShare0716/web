@@ -132,7 +132,7 @@ class WorkshopList extends Component {
 
     performSearch({searchText, category, ordering, phase}) {
         const stringified = queryString.stringify({searchText, category, ordering, phase});
-        history.push(`?${stringified}`);
+        history.replace(`?${stringified}`);
         this.props.listWorkshop(searchText, category, ordering, phase);
     }
 

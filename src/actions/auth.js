@@ -12,7 +12,6 @@ var scroll = require('scroll');
 var page = require('scroll-doc')();
 
 export const facebookLogin = () => dispatch => {
-    dispatch(showLoading());
     FB.getLoginStatus(response => {
         if (response.status === 'connected') {
             callGraphAPI(dispatch, response.authResponse.accessToken);
@@ -23,7 +22,6 @@ export const facebookLogin = () => dispatch => {
                 } else {
                     dispatch({type: '@AUTH/LOGIN_FAIL'});
                     dispatch(deliverAlert('登入失敗', 'danger'));
-                    dispatch(hideLoading());
                 }
             }, {scope: 'public_profile,email,user_friends'});
         }
@@ -35,14 +33,12 @@ const callGraphAPI = (dispatch, accessToken) => {
         if (response.error) {
             dispatch({type: '@AUTH/LOGIN_FAIL'});
             dispatch(deliverAlert('登入失敗', 'danger'));
-            dispatch(hideLoading());
         } else {
             const {email, id, name, picture} = response;
             FB.api(`/me/picture?access_token=${accessToken}&width=100&height=100`, response => {
                 if (response.error) {
                     dispatch({type: '@AUTH/LOGIN_FAIL'});
                     dispatch(deliverAlert('登入失敗', 'danger'));
-                    dispatch(hideLoading());
                 } else {
                     const user = {
                         name,
@@ -72,8 +68,6 @@ const login = async(dispatch, user) => {
     } catch (e) {
         dispatch({type: '@AUTH/LOGIN_FAIL'});
         dispatch(deliverAlert('登入失敗', 'danger'));
-    } finally {
-        dispatch(hideLoading());
     }
 }
 

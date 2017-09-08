@@ -13,6 +13,7 @@ import RenderRadio from '../Utils/RenderRadio';
 import RichTextBox from '../Utils/RichTextBox';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {deliverAlert} from '../../actions/alert';
 import moment from 'moment';
 import {unauthenticated} from '../../actions/auth';
 
@@ -85,9 +86,9 @@ const validate = (values, {initialValues: phase}) => {
             errors.startDatetime = errors.endDatetime = '結束時間需大於開始時間';
         }
         if (values.prePrice !== 0 && !values.prePrice) {
-            errors.prePrice = '募資預售價不可為空';
+            errors.prePrice = '早鳥優惠價不可為空';
         } else if (parseInt(values.prePrice, 10) < 0) {
-            errors.prePrice = '募資預售價不可為負數';
+            errors.prePrice = '早鳥優惠價不可為負數';
         }
         if (values.price !== 0 && !values.price) {
             errors.price = '達標後售價不可為空';
@@ -95,20 +96,20 @@ const validate = (values, {initialValues: phase}) => {
             errors.price = '達標後售價不可為負數';
         }
         if (values.prePrice && values.price && parseInt(values.prePrice, 10) > parseInt(values.price, 10)) {
-            errors.price = '達標後售價需大於募資預售價';
+            errors.price = '達標後售價需大於早鳥優惠價';
         }
         if (values.minNumber !== 0 && !values.minNumber) {
-            errors.minNumber = '最低人數不可為空';
+            errors.minNumber = '達標門檻人數不可為空';
         } else if (parseInt(values.minNumber, 10) < 0) {
-            errors.minNumber = '最低人數不可為負數';
+            errors.minNumber = '達標門檻人數不可為負數';
         }
         if (values.maxNumber !== 0 && !values.maxNumber) {
-            errors.maxNumber = '最高人數不可為空';
+            errors.maxNumber = '額滿人數不可為空';
         } else if (parseInt(values.maxNumber, 10) < 0) {
-            errors.maxNumber = '最高人數不可為負數';
+            errors.maxNumber = '額滿人數不可為負數';
         }
         if (values.minNumber && values.maxNumber && parseInt(values.minNumber, 10) > parseInt(values.maxNumber, 10)) {
-            errors.minNumber = errors.maxNumber = '最高人數需大於最低人數';
+            errors.minNumber = errors.maxNumber = '額滿人數需大於達標門檻人數';
         }
         if (!values.deadline) {
             errors.deadline = '報名截止時間不可為空';
@@ -128,6 +129,7 @@ class WorkshopUpdate extends Component {
         super(props);
         this.state = {
             id: this.props.match.params.id,
+            isAlert: false,
             createDisabled: false,
             memberDisabled: false,
             restDisabled: false,
@@ -151,6 +153,15 @@ class WorkshopUpdate extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState(getDisabled(nextProps.initialValues.phase));
+        if (!nextProps.loading && !this.state.isAlert) {
+            if (nextProps.initialValues.phase === 'judging') {
+                this.props.deliverAlert('工作坊審核中，審核通過後才能編輯完整內容。', 'warning', 5000);
+                this.setState({isAlert: true});
+            } else if (!nextProps.initialValues.published) {
+                this.props.deliverAlert('工作坊尚未發佈，請至管理頁面設定顯示狀態。', 'warning', 5000);
+                this.setState({isAlert: true});
+            }
+        }
     }
 
     render() {
@@ -172,15 +183,15 @@ class WorkshopUpdate extends Component {
                     <Field component={RenderField} label="開始時間" type="datetime-local" name="startDatetime" disabled={restDisabled}/>
                     <Field component={RenderField} label="結束時間" type="datetime-local" name="endDatetime" disabled={restDisabled}/>
                     <Field component={RenderField} label="地點" type="text" name="location" disabled={restDisabled}/>
-                    <Field component={RenderField} label="募資預售價" type="number" name="prePrice" disabled={restDisabled}/>
+                    <Field component={RenderField} label="早鳥優惠價" type="number" name="prePrice" disabled={restDisabled}/>
                     <Field component={RenderField} label="達標後售價" type="number" name="price" disabled={restDisabled}/>
-                    <Field component={RenderField} label="最低人數" type="number" name="minNumber" disabled={memberDisabled}/>
-                    <Field component={RenderField} label="最高人數" type="number" name="maxNumber" disabled={restDisabled}/>
+                    <Field component={RenderField} label="達標門檻人數" type="number" name="minNumber" disabled={memberDisabled}/>
+                    <Field component={RenderField} label="額滿人數" type="number" name="maxNumber" disabled={restDisabled}/>
                     <Field component={RenderField} label="募資截止時間" type="datetime-local" name="deadline" disabled={memberDisabled}/>
                     <Field component={RenderField} label="報名截止時間" type="datetime-local" name="closing" disabled={restDisabled}/>
-                    <Field component={RichTextBox} label="簡介" name="description" ref="description" withRef disabled={restDisabled}/>
+                    <Field component={RichTextBox} label="簡短敘述" name="description" ref="description" withRef disabled={restDisabled}/>
                     <Field component={RichTextBox} label="詳細介紹" name="content" disabled={restDisabled}/>
-                    <Field component={RichTextBox} label="報名成功訊息" name="attendedMsg" disabled={restDisabled}/>
+                    <Field component={RichTextBox} label="行前通知" name="attendedMsg" disabled={restDisabled}/>
                     <Button color="primary" size="lg" block type="submit" disabled={submitDisabled}>儲存</Button>
                 </Form>
             </div>
@@ -188,14 +199,15 @@ class WorkshopUpdate extends Component {
     }
 }
 
-function mapStateToProps({auth, workshopView}) {
-    return {auth, initialValues: workshopView};
+function mapStateToProps({auth, workshopView, loadingBar}) {
+    return {auth, initialValues: workshopView, loading: loadingBar};
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         unauthenticated,
         viewWorkshop,
+        deliverAlert,
         updateWorkshop
     }, dispatch);
 }

@@ -87,7 +87,7 @@ class SkeletonWorkshop extends Component {
                         <Skeleton count={3}/>
                     </div>
                     <div>
-                        <h3>簡介</h3>
+                        <h3>簡短敘述</h3>
                         <Skeleton count={5}/>
                     </div>
                     <div>

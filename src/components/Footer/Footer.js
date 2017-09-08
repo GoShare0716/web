@@ -19,11 +19,11 @@ class Footer extends Component {
                             <Link to="/workshop">工作坊募資</Link>
                         </span>
                         <span>
-                            <Link to="/create-workshop">主題票選</Link>
+                            <Link to="/vote">主題票選</Link>
                             <Link to="/create-workshop">成為講者</Link>
                         </span>
                         <span>
-                        <a href="https://m.me/goshare0716" target="_blank" rel="noopener noreferrer">聯絡我們</a>
+                        <a href="https://m.me/goshare0716" target="_blank" rel="noopener noreferrer">錯誤回報</a>
                         </span>
                         <span>
                             <a href="https://www.facebook.com/goshare0716/" target="_blank" rel="noopener noreferrer">

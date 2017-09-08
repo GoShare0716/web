@@ -40,10 +40,10 @@ export const createWorkshop = workshop => async dispatch => {
     }
 };
 
-export const listWorkshop = (seartchText, category, ordering, state) => async dispatch => {
+export const listWorkshop = (searchText, category, ordering, state) => async dispatch => {
     dispatch(showLoading());
     try {
-        const res = await listWorkshopFromApi(seartchText, category, ordering, state);
+        const res = await listWorkshopFromApi(searchText, category, ordering, state);
         const data = res.data;
         dispatch({type: '@WORKSHOP/LIST', payload: data});
     } catch (e) {
