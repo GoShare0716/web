@@ -10,7 +10,9 @@
 .landing-page h1,
 .landing-page h2,
 .landing-page h3,
-.landing-page .subtitle
+.landing-page .subtitle,
+.landing-page p,
+.landing-page span
 {
     font-family: 'Noto Sans TC', sans-serif;
 }
@@ -44,8 +46,7 @@
 .landing-page p,
 .landing-page span
 {
-    font-family: 'cwTeXMing', serif;
-    font-size: 1.375rem;
+    font-size: 1.25rem;
 
     margin: .5rem 0 0 0;
 }
@@ -82,7 +83,7 @@
     .landing-page p,
     .landing-page span
     {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
     }
     .landing-page p + p
     {
