@@ -2,6 +2,7 @@ import './WorkshopManage.css';
 
 import {
     Button,
+    Collapse,
     Dropdown,
     DropdownItem,
     DropdownMenu,
@@ -40,10 +41,10 @@ const STATE_OPTIONS = ['judging', 'judge_na', 'judge_ac', 'reached', 'unreached'
 
 const PUBLISHED_OPTIONS = [
     {
-        text: '顯示',
+        text: '發佈',
         value: true
     }, {
-        text: '隱藏',
+        text: '取消',
         value: false
     }
 ];
@@ -55,12 +56,14 @@ class WorkshopManage extends Component {
             id: this.props.match.params.id,
             workshopState: 'judging',
             isDropdownOpen: false,
-            isModalOpen: false
+            isModalOpen: false,
+            isCollapseOpen: false
         };
 
         this.dropdownToggle = this.dropdownToggle.bind(this);
         this.modalToggle = this.modalToggle.bind(this);
         this.onDeleteClick = this.onDeleteClick.bind(this)
+        this.collapseToggle = this.collapseToggle.bind(this);
     }
 
     dropdownToggle() {
@@ -79,6 +82,12 @@ class WorkshopManage extends Component {
         this.props.deleteWorkshop(id);
     }
 
+    collapseToggle() {
+        this.setState({
+            isCollapseOpen: !this.state.isCollapseOpen
+        });
+    }
+
     renderAttendees(attendees) {
         return attendees.map((a, i) => (
             <tr key={i}>
@@ -87,7 +96,7 @@ class WorkshopManage extends Component {
                     <Link to={`/user/${a.id}`}>{a.name}</Link>
                 </td>
                 <td>{a.email}</td>
-                <td>{a.canceled
+                <td className="text-center">{a.canceled
                         ? '取消'
                         : '報名'}</td>
             </tr>
@@ -107,14 +116,14 @@ class WorkshopManage extends Component {
     }
 
     render() {
-        const {id} = this.state;
+        const {id, isCollapseOpen} = this.state;
         const {state, published, attendees} = this.props.workshopManage;
         const role = localStorage.getItem('role');
         return (
             <div className="inner my-5">
                 <div className="d-flex justify-content-between align-items-end mb-3">
                     <h1 className="m-0">管理工作坊</h1>
-                    <Link to={`/workshop/${id}`}>返回工作坊</Link>
+                    <Link to={`/workshop/${id}`}>返回</Link>
                 </div>
                 {role === 'admin' && <div className="workshop-manage-item">
                     <span>工作坊狀態</span>
@@ -125,7 +134,7 @@ class WorkshopManage extends Component {
                 </div>}
                 {role === 'admin' && <hr/>}
                 <div className="workshop-manage-item">
-                    <span>顯示狀態</span>
+                    <span>發佈工作坊</span>
                     <MultipleButton options={PUBLISHED_OPTIONS} value={published} onChange={v => this.props.setWorkshopPublished(id, v)}/>
                 </div>
                 <hr/>
@@ -135,7 +144,7 @@ class WorkshopManage extends Component {
                 </div>
                 <hr/>
                 <div className="workshop-manage-item">
-                    <span>參加者名單</span>
+                    <span>匯出報名人列表</span>
                     <CSVLink data={attendees.map(a => ({
                         name: a.name,
                         email: a.email,
@@ -146,17 +155,25 @@ class WorkshopManage extends Component {
                         匯出
                     </CSVLink>
                 </div>
-                <Table className="mt-3">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>姓名</th>
-                            <th>Email</th>
-                            <th>狀態</th>
-                        </tr>
-                    </thead>
-                    <tbody>{this.renderAttendees(attendees)}</tbody>
-                </Table>
+                <hr/>
+                <div className="workshop-manage-item">
+                <span>預覽報名人列表</span>
+                <Button color="primary" onClick={this.collapseToggle}>{isCollapseOpen ? '收回' : '預覽'}</Button>
+
+                </div>
+                <Collapse isOpen={isCollapseOpen}>
+                    <Table responsive className="mt-3">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th className="workshop-manage-attendees-name">姓名</th>
+                                <th>Email</th>
+                                <th className="workshop-manage-attendees-attended">狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>{this.renderAttendees(attendees)}</tbody>
+                    </Table>
+                </Collapse>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.modalToggle}>
                     <ModalHeader>刪除工作坊</ModalHeader>
                     <ModalBody>

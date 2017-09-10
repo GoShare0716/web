@@ -45,7 +45,10 @@ class NavBar extends Component {
             <nav className="nav-bar-container navbar fixed-top navbar-light navbar-toggleable">
                 <div className="nav-bar">
                     <NavbarToggler right onClick={this.navBarToggle}/>
-                    <NavbarBrand onClick={this.navBarClose} tag={Link} to='/'>共學</NavbarBrand>
+                    <NavbarBrand className="nav-bar-brand" onClick={this.navBarClose} tag={Link} to='/'>
+                        <img src={process.env.PUBLIC_URL + '/assets/brand/logo.png'} height="32" alt=""/>
+                        共學
+                    </NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>

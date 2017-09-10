@@ -10,7 +10,18 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png">
+    <!-- Redirect for Github Pages -->
+    <script>
+        (function() {
+            var redirect = sessionStorage.redirect;
+            delete sessionStorage.redirect;
+            if (redirect && redirect != location.href) {
+                history.replaceState(null, null, redirect);
+            }
+        })();
+    </script>
+    <!-- End Redirect for Github Pages -->
     <script src="%PUBLIC_URL%/assets/js/fa.js"></script>
     <!-- Facebook Pixel Code -->
     <script>
@@ -39,7 +50,29 @@
         <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=484902758533032&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Facebook Pixel Code -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                // appId: '1812105742383573', // NTHU Stage
+                appId: '1468177920147616', // Go Share
+                cookie: true,
+                xfbml: true,
+                version: 'v2.8'
+            });
+            FB.AppEvents.logPageView();
+        };
 
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -68,29 +101,6 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            // appId: '1812105742383573',
-            appId: '1468177920147616',
-            cookie: true,
-            xfbml: true,
-            version: 'v2.8'
-        });
-        FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 <!-- WhatsHelp.io widget -->
 <script type="text/javascript">
     (function() {

@@ -29,7 +29,7 @@ class Footer extends Component {
                             <a href="https://www.facebook.com/goshare0716/" target="_blank" rel="noopener noreferrer">
                                 <i className="fa fa-facebook-square fa-lg" aria-hidden="true"/>
                             </a>
-                            <a href="https://github.com/GoShare0716/web" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/GoShare0716/" target="_blank" rel="noopener noreferrer">
                                 <i className="fa fa-github fa-lg" aria-hidden="true"/>
                             </a>
                         </span>

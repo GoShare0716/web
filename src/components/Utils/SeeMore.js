@@ -25,8 +25,8 @@ class SeeMore extends Component {
 
         return (
             <div>{isOpen
-                    ? more.map(m => <p>{m}</p>)
-                    : text.map(t => <p>{t}</p>)}
+                    ? more.map((m, i) => <p key={i}>{m}</p>)
+                    : text.map((t, i) => <p key={i}>{t}</p>)}
                     {!isOpen && <span className="link" onClick={this.onSeeMoreClick}>{'更多'}</span>}
             </div>
         );

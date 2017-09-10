@@ -158,7 +158,7 @@ class WorkshopUpdate extends Component {
                 this.props.deliverAlert('工作坊審核中，審核通過後才能編輯完整內容。', 'warning', 5000);
                 this.setState({isAlert: true});
             } else if (!nextProps.initialValues.published) {
-                this.props.deliverAlert('工作坊尚未發佈，請至管理頁面設定顯示狀態。', 'warning', 5000);
+                this.props.deliverAlert('工作坊尚未發佈！請至「管理工作坊」頁面設定。', 'warning', 5000);
                 this.setState({isAlert: true});
             }
         }
@@ -172,7 +172,7 @@ class WorkshopUpdate extends Component {
                 <Form onSubmit={handleSubmit(this.handleSubmit)}>
                     <div className="d-flex justify-content-between align-items-end mb-3">
                         <h1 className="m-0">編輯工作坊</h1>
-                        <Link to={`/workshop/${id}`}>返回工作坊</Link>
+                        <Link to={`/workshop/${id}`}>返回</Link>
                     </div>
                     <Field component={RenderField} label="標題" type="text" name="title" placeholder="例如：電腦繪圖入門" disabled={createDisabled}/>
                     <Field component={RenderRadio} label="類別" name="category" options={CATEGORY_OPTIONS} disabled={createDisabled}/>

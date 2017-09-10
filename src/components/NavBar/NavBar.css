@@ -13,6 +13,19 @@
     margin: 0 auto;
 }
 
+.nav-bar-brand
+{
+    font-family: 'Noto Sans TC', sans-serif;
+
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar-brand img
+{
+    margin-right: .5rem;
+}
+
 @media (max-width: 575px)
 {
     .nav-bar

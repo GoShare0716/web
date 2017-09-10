@@ -66,7 +66,7 @@ class NavBarAuth extends Component {
         return (
             <div>
                 <NavItem className="ml-2 hidden-xs-down">
-                    <Button color="primary" onClick={facebookLogin}>登入</Button>
+                    <Button color="primary" onClick={() => facebookLogin()}>登入</Button>
                 </NavItem>
                 <NavItem className="hidden-sm-up">
                     <span className="link nav-link" onClick={() => onClick() || facebookLogin()}>登入</span>

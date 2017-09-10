@@ -1,6 +1,4 @@
 /*global FB*/
-import {hideLoading, showLoading} from 'react-redux-loading-bar';
-
 import {deliverAlert} from './alert';
 import {history} from '../utils';
 import {login as loginFromApi} from '../api/auth';
@@ -8,51 +6,78 @@ import {login as loginFromApi} from '../api/auth';
 
 
 
+let hasUserFriends,
+    hasEmail;
 var scroll = require('scroll');
 var page = require('scroll-doc')();
 
 export const facebookLogin = () => dispatch => {
-    FB.getLoginStatus(response => {
-        if (response.status === 'connected') {
+    const loginOptions = hasUserFriends
+        ? {
+            scope: 'public_profile,email,user_friends'
+        }
+        : {
+            scope: 'public_profile,email,user_friends',
+            auth_type: 'rerequest'
+        };
+    FB.login(response => {
+        console.log(response);
+        if (response.authResponse) {
             callGraphAPI(dispatch, response.authResponse.accessToken);
         } else {
-            FB.login(response => {
-                if (response.authResponse) {
-                    callGraphAPI(dispatch, response.authResponse.accessToken);
-                } else {
-                    dispatch({type: '@AUTH/LOGIN_FAIL'});
-                    dispatch(deliverAlert('登入失敗', 'danger'));
-                }
-            }, {scope: 'public_profile,email,user_friends'});
+            dispatch({type: '@AUTH/LOGIN_FAIL'});
+            dispatch(deliverAlert('登入失敗', 'danger'));
         }
-    });
+    }, loginOptions);
 };
 
 const callGraphAPI = (dispatch, accessToken) => {
-    FB.api(`/me?access_token=${accessToken}&fields=id,name,picture,email`, response => {
-        if (response.error) {
+    FB.api(`/me/permissions?access_token=${accessToken}`, response => {
+        const {data} = response;
+        hasUserFriends = hasEmail = true;
+        data.forEach(d => {
+            const {permission, status} = d;
+            if (permission === 'user_friends' && status === 'declined') {
+                hasUserFriends = false;
+            } else if (permission === 'email' && status === 'declined') {
+                hasEmail = false;
+            }
+        });
+        if (!hasUserFriends) {
             dispatch({type: '@AUTH/LOGIN_FAIL'});
-            dispatch(deliverAlert('登入失敗', 'danger'));
+            dispatch(deliverAlert('登入失敗。為了讓您知道朋友們報名的工作坊，我們需要您提供朋友名單。', 'danger'));
         } else {
-            const {email, id, name, picture} = response;
-            FB.api(`/me/picture?access_token=${accessToken}&width=100&height=100`, response => {
+            const fields = hasEmail
+                ? 'id,name,picture,email'
+                : 'id,name,picture';
+            FB.api(`/me?access_token=${accessToken}&fields=${fields}`, response => {
                 if (response.error) {
                     dispatch({type: '@AUTH/LOGIN_FAIL'});
                     dispatch(deliverAlert('登入失敗', 'danger'));
                 } else {
-                    const user = {
-                        name,
-                        email,
-                        fbId: id,
-                        accessToken,
-                        thumbnailUrl: picture.data.url,
-                        pictureUrl: response.data.url
-                    }
-                    login(dispatch, user);
+                    const {id, name, picture} = response;
+                    const email = response.email || '';
+                    FB.api(`/me/picture?access_token=${accessToken}&width=100&height=100`, response => {
+                        if (response.error) {
+                            dispatch({type: '@AUTH/LOGIN_FAIL'});
+                            dispatch(deliverAlert('登入失敗', 'danger'));
+                        } else {
+                            const user = {
+                                name,
+                                email,
+                                fbId: id,
+                                accessToken,
+                                thumbnailUrl: picture.data.url,
+                                pictureUrl: response.data.url
+                            }
+                            login(dispatch, user);
+                        }
+                    });
                 }
             });
         }
     });
+
 }
 
 const login = async(dispatch, user) => {

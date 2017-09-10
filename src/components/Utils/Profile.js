@@ -30,15 +30,31 @@ class Profile extends Component {
                         <i className="fa fa-facebook-square mr-1" aria-hidden="true"/>
                         <span>臉書</span>
                     </a>
+                    <span className="mx-2">·</span>
+                    <i className="fa fa-user-circle mr-1" aria-hidden="true"/>
+                    <span>作品</span>
                 </div>
             );
         } else if (personalWebUrl) {
             return (
                 <div className="profile-url mb-2">
+                    <i className="fa fa-facebook-square mr-1" aria-hidden="true"/>
+                    <span>臉書</span>
+                    <span className="mx-2">·</span>
                     <a href={personalWebUrl} target="_blank">
                         <i className="fa fa-user-circle mr-1" aria-hidden="true"/>
                         <span>作品</span>
                     </a>
+                </div>
+            );
+        } else {
+            return (
+                <div className="profile-url mb-2">
+                    <i className="fa fa-facebook-square mr-1" aria-hidden="true"/>
+                    <span>臉書</span>
+                    <span className="mx-2">·</span>
+                    <i className="fa fa-user-circle mr-1" aria-hidden="true"/>
+                    <span>作品</span>
                 </div>
             );
         }

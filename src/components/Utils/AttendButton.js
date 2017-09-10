@@ -96,9 +96,9 @@ class AttendButton extends Component {
             <div>
                 <Button size="lg" block disabled={buttonDisabled} color={buttonColor} onClick={() => this.onAttendClick(auth, unauthenticated, attended, canceled, attendWorkshop, id)}>{buttonText}</Button>
                 <div className="attend-button">
-                    {!attended && <div className="attend-button-attendees">
+                    <div className="attend-button-attendees">
                         {friends.slice(0, Math.min(3, friends.length)).map((f, i) => <img key={i} src={f.thumbnailUrl} alt=""/>)}
-                    </div>}
+                    </div>
                     {(phase === 'investigating' || phase === 'closing' || phase === 'full' || phase === 'reached') && attended && !canceled && <span className="link" onClick={this.modalToggle}>取消報名</span>}
                 </div>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.modalToggle}>

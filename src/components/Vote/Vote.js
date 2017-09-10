@@ -1,3 +1,5 @@
+import './Vote.css';
+
 import {Col, Row, Table} from 'reactstrap';
 import React, {Component} from 'react';
 
@@ -63,9 +65,9 @@ class Vote extends Component {
                     <Table responsive>
                         <tbody>
                             <tr>
-                                <td>主題</td>
-                                <td>票數</td>
-                                <td>講者邀請</td>
+                                <td className="vote-result-topic">主題</td>
+                                <td className="vote-result-number">票數</td>
+                                <td className="vote-result-speaker">講者邀請</td>
                             </tr>
                             {table.map(({name, number, speaker}, i) => {
                                 return (

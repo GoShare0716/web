@@ -4,3 +4,16 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.workshop-manage-attendees-name
+{
+    min-width: 6rem;
+}
+
+.workshop-manage-attendees-attended
+{
+    width: 66px;
+    min-width: 66px;
+
+    text-align: center;
+}

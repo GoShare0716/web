@@ -40,7 +40,7 @@ class Workshop extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.loading && !this.state.isAlertNotPublished && !nextProps.workshopView.published) {
-            this.props.deliverAlert('工作坊尚未發佈！請至管理頁面設定顯示狀態。', 'warning', 5000);
+            this.props.deliverAlert('工作坊尚未發佈！請至「管理工作坊」頁面設定。', 'warning', 5000);
             this.setState({isAlertNotPublished: true});
         }
     }
@@ -241,7 +241,7 @@ class Workshop extends Component {
                             <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} friends={friends}/>
                         </div>
                     </div>}
-                    <div className="workshop-info">
+                    {phase !== 'judging' && phase !== 'judge_na' && <div className="workshop-info">
                         <h3>工作坊資訊</h3>
                         <ul>
                             <li>{`時間：${infoDatetime} `}
@@ -249,7 +249,7 @@ class Workshop extends Component {
                             </li>
                             <li>{`地點：${location}`}</li>
                         </ul>
-                    </div>
+                    </div>}
                     <div>
                         <h3>你將學會...</h3>
                         <ul>{goal.map((g, i) => <li key={i}>{g}</li>)}</ul>
@@ -262,14 +262,14 @@ class Workshop extends Component {
                         <h3>這堂課適合給...</h3>
                         <ul>{targetAudience.map((t, i) => <li key={i}>{t}</li>)}</ul>
                     </div>
-                    <div>
+                    {phase !== 'judging' && phase !== 'judge_na' && <div>
                         <h3>簡短敘述</h3>
                         {renderHTML(description)}
-                    </div>
-                    <div>
+                    </div>}
+                    {phase !== 'judging' && phase !== 'judge_na' && <div>
                         <h3>詳細介紹</h3>
                         {renderHTML(content)}
-                    </div>
+                    </div>}
                     <Jumbotron id="workshop-attend">
                         <h3>注意事項</h3>
                         <ol>
