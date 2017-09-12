@@ -110,7 +110,9 @@ class Workshop extends Component {
                 restDayText = '募資倒數';
                 restDayNumber = moment(deadline).fromNow(true);
                 progressBarColor = '#0275d8';
-                priceText = prePrice === price ? '門票' : '早鳥優惠價';
+                priceText = prePrice === price
+                    ? '門票'
+                    : '早鳥優惠價';
                 priceNumber = prePrice === 0
                     ? '免費'
                     : `NT$${prePrice}`;
@@ -169,7 +171,9 @@ class Workshop extends Component {
                 restDayText = '募資倒數';
                 restDayNumber = '未達標';
                 progressBarColor = '#0275d8';
-                priceText = prePrice === price ? '門票' : '早鳥優惠價';
+                priceText = prePrice === price
+                    ? '門票'
+                    : '早鳥優惠價';
                 priceNumber = prePrice === 0
                     ? '免費'
                     : `NT$${prePrice}`;
@@ -281,6 +285,10 @@ class Workshop extends Component {
                         {attended && !canceled && renderHTML(attendedMsg)}
                         <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} friends={friends}/>
                     </Jumbotron>
+                    <h3>討論區</h3>
+                    <div className="workshop-fb-comments">
+                        <div className="fb-comments" data-href={`https://goshare.life/workshop/${id}`} data-width="100%" data-numposts="5"></div>
+                    </div>
                 </div>
             </div>
         );
