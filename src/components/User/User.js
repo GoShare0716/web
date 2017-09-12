@@ -15,13 +15,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {unauthenticated} from '../../actions/auth';
 
-
-
-
-
-
-
-
 const MODULES = {
     toolbar: {
         container: [
@@ -109,7 +102,7 @@ class User extends Component {
         } = this.props;
         return (
             <div className="outer user mb-5">
-                <Profile profile={profile}>
+                <Profile profile={profile} className="inner">
                     {location.pathname === '/me' && <div className="mt-2">
                         <Button className="mr-2" onClick={this.modalToggle}>編輯個人檔案</Button>
                         <Link to={`/user/${profile.id}`} className="btn btn-secondary">觀看訪客視角</Link>

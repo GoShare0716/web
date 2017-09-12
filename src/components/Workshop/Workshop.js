@@ -263,11 +263,9 @@ class Workshop extends Component {
                         <ul>{targetAudience.map((t, i) => <li key={i}>{t}</li>)}</ul>
                     </div>
                     {phase !== 'judging' && phase !== 'judge_na' && <div>
-                        <h3>簡短敘述</h3>
                         {renderHTML(description)}
                     </div>}
                     {phase !== 'judging' && phase !== 'judge_na' && <div>
-                        <h3>詳細介紹</h3>
                         {renderHTML(content)}
                     </div>}
                     <Jumbotron id="workshop-attend">

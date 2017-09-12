@@ -8,10 +8,6 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import store from './reducers';
 
-
-
-
-
 const accessToken = localStorage.getItem('accessToken');
 if (accessToken) {
     store.dispatch({type: '@AUTH/LOGIN_SUCCESS'});
