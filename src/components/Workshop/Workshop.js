@@ -184,9 +184,9 @@ class Workshop extends Component {
         let infoDatetime,
             infoCalendar;
         if (moment(startDatetime).format('YYYY-MM-DD') === moment(endDatetime).format('YYYY-MM-DD')) {
-            infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('hh:mm')} (GMT+8)`;
+            infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) HH:mm')} ~ ${moment(endDatetime).format('HH:mm')}`;
         } else {
-            infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) hh:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) hh:mm')} (GMT+8)`;
+            infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) HH:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) HH:mm')}`;
         }
         infoCalendar = `http://www.google.com/calendar/event?action=TEMPLATE&text=${title}&dates=${moment(startDatetime).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${moment(endDatetime).toISOString().replace(/-|:|\.\d\d\d/g, "")}&details=${title}&location=${location}&ctz=Asia/Taipei`;
 
@@ -283,10 +283,8 @@ class Workshop extends Component {
                         {attended && !canceled && renderHTML(attendedMsg)}
                         <AttendButton id={id} phase={phase} attended={attended} canceled={canceled} friends={friends}/>
                     </Jumbotron>
-                    <h3>討論區</h3>
-                    <div className="workshop-fb-comments">
-                        <div className="fb-comments" data-href={`https://goshare.life/workshop/${id}`} data-width="100%" data-numposts="5"></div>
-                    </div>
+                    <h3 className="mb-2">討論區</h3>
+                    <div className="fb-comments" data-href={`https://goshare.life/workshop/${id}`} data-width="100%" data-numposts="5"></div>
                 </div>
             </div>
         );

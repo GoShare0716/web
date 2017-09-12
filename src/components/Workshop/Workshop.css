@@ -13,8 +13,7 @@
 }
 
 .workshop-article
-{
-    font-family: 'cwTeXMing', serif;
+{    
     font-size: 1.25rem;
     line-height: 1.58;
 }
@@ -118,9 +117,4 @@
 #workshop-attend button
 {
     margin-top: 2rem;
-}
-
-.workshop-fb-comments
-{
-    margin-top: .5rem;
 }

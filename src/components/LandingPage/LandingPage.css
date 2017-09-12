@@ -10,9 +10,7 @@
 .landing-page h1,
 .landing-page h2,
 .landing-page h3,
-.landing-page .subtitle,
-.landing-page p,
-.landing-page span
+.landing-page .subtitle
 {
     font-family: 'Noto Sans TC', sans-serif;
 }
@@ -134,13 +132,87 @@
 
 .landing-page-banner
 {
-    background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/5LIe6Mk.jpg);
     background-position: center;
 }
 
-.landing-page-footer
+@media (min-width: 1200px)
 {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(https://i.imgur.com/uqHyRs8.jpg);
+    .landing-page-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/5LIe6Mk.jpg);
+    }
+}
+
+@media (max-width: 1199px)
+{
+    .landing-page-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(http://i.imgur.com/kL2oiXZ.jpg);
+    }
+}
+
+@media (max-width: 991px)
+{
+    .landing-page-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(http://i.imgur.com/dRxMFSm.jpg);
+    }
+}
+
+@media (max-width: 767px)
+{
+    .landing-page-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(http://i.imgur.com/OmYLtGH.jpg);
+    }
+}
+
+@media (max-width: 543px)
+{
+    .landing-page-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(http://i.imgur.com/oW8Y2jH.png);
+    }
+}
+
+@media (min-width: 1200px)
+{
+    .landing-page-footer
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/Ho8KwTk.jpg);
+    }
+}
+
+@media (max-width: 1199px)
+{
+    .landing-page-footer
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/abg6pdj.jpg);
+    }
+}
+
+@media (max-width: 991px)
+{
+    .landing-page-footer
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/c7HGHxk.jpg);
+    }
+}
+
+@media (max-width: 767px)
+{
+    .landing-page-footer
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/Ozdf1No.jpg);
+    }
+}
+
+@media (max-width: 543px)
+{
+    .landing-page-footer
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url(http://i.imgur.com/SpGiHjx.jpg);
+    }
 }
 
 .landing-page-item
