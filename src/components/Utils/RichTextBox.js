@@ -27,7 +27,7 @@ class RichTextBox extends Component {
             container: [
                 [
                     {
-                        'header': [4, false]
+                        'header': [3, false]
                     }
                 ],
                 [

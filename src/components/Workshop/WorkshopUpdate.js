@@ -120,6 +120,9 @@ const validate = (values, {initialValues: phase}) => {
         if (values.deadline && values.closing && moment(values.deadline).valueOf() >= moment(values.closing).valueOf()) {
             errors.deadline = errors.closing = '報名截止時間需大於調查截止時間';
         }
+        if (values.deadline && values.startDatetime && moment(values.deadline).valueOf() >= moment(values.startDatetime).valueOf()) {
+            errors.deadline = errors.startDatetime = '開始時間需大於報名截止時間';
+        }
     }
     return errors;
 }

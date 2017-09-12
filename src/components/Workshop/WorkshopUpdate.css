@@ -7,12 +7,12 @@
     color: rgb(41, 43, 44);
 }
 
-.workshop-update .ql-editor h4
+.workshop-update .ql-editor h3
 {
     font-family: 'Noto Sans TC', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: bold;
-    line-height: 1.22;
+    line-height: 1.15;
 
     margin: 3rem 0 0 0;
 }
@@ -32,12 +32,12 @@
     margin-top: 0;
 }
 
-.workshop-update .ql-editor h4 + p,
-.workshop-update .ql-editor h4 + blockquote,
-.workshop-update .ql-editor h4 + pre,
-.workshop-update .ql-editor h4 + ol,
-.workshop-update .ql-editor h4 + ul,
-.workshop-update .ql-editor h4 + img
+.workshop-update .ql-editor h3 + p,
+.workshop-update .ql-editor h3 + blockquote,
+.workshop-update .ql-editor h3 + pre,
+.workshop-update .ql-editor h3 + ol,
+.workshop-update .ql-editor h3 + ul,
+.workshop-update .ql-editor h3 + img
 {
     margin: .5rem 0 0 0;
 }
