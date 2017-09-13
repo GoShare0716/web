@@ -1,10 +1,6 @@
-/*global FB*/
 import {deliverAlert} from './alert';
 import {history} from '../utils';
 import {login as loginFromApi} from '../api/auth';
-
-
-
 
 let hasUserFriends,
     hasEmail;
@@ -20,7 +16,7 @@ export const facebookLogin = () => dispatch => {
             scope: 'public_profile,email,user_friends',
             auth_type: 'rerequest'
         };
-    FB.login(response => {
+    window.FB.login(response => {
         console.log(response);
         if (response.authResponse) {
             callGraphAPI(dispatch, response.authResponse.accessToken);
@@ -32,7 +28,7 @@ export const facebookLogin = () => dispatch => {
 };
 
 const callGraphAPI = (dispatch, accessToken) => {
-    FB.api(`/me/permissions?access_token=${accessToken}`, response => {
+    window.FB.api(`/me/permissions?access_token=${accessToken}`, response => {
         const {data} = response;
         hasUserFriends = hasEmail = true;
         data.forEach(d => {
@@ -50,14 +46,14 @@ const callGraphAPI = (dispatch, accessToken) => {
             const fields = hasEmail
                 ? 'id,name,picture,email'
                 : 'id,name,picture';
-            FB.api(`/me?access_token=${accessToken}&fields=${fields}`, response => {
+            window.FB.api(`/me?access_token=${accessToken}&fields=${fields}`, response => {
                 if (response.error) {
                     dispatch({type: '@AUTH/LOGIN_FAIL'});
                     dispatch(deliverAlert('登入失敗', 'danger'));
                 } else {
                     const {id, name, picture} = response;
                     const email = response.email || '';
-                    FB.api(`/me/picture?access_token=${accessToken}&width=100&height=100`, response => {
+                    window.FB.api(`/me/picture?access_token=${accessToken}&width=100&height=100`, response => {
                         if (response.error) {
                             dispatch({type: '@AUTH/LOGIN_FAIL'});
                             dispatch(deliverAlert('登入失敗', 'danger'));
@@ -98,9 +94,9 @@ const login = async(dispatch, user) => {
 
 export const facebookLogout = () => dispatch => {
     localStorage.clear();
-    FB.getLoginStatus(response => {
+    window.FB.getLoginStatus(response => {
         if (response.status === 'connected') {
-            FB.logout(response => {
+            window.FB.logout(response => {
                 dispatch({type: '@AUTH/LOGOUT'});
             });
         } else {
@@ -116,5 +112,5 @@ export const unauthenticated = (redirect = true) => dispatch => {
     } else {
         scroll.top(page, 0);
     }
-    dispatch(deliverAlert('請先登入', 'warning'));
+    dispatch(deliverAlert('請先登入', 'info'));
 };

@@ -5,101 +5,54 @@ import React, {Component} from 'react';
 
 import {Link} from 'react-router-dom';
 
-
-
-const VOTE_RESULT = [
-    {
-        name: '第一期結果',
-        table: [
-            {
-                name: '股票入門',
-                number: 54,
-                speaker: 'not-invite'
-            }, {
-                name: 'Illustrator 插畫設計入門',
-                number: 28,
-                speaker: 'seeking'
-            }, {
-                name: 'After Effects 影片製作',
-                number: 21,
-                speaker: 'seeking'
-            }, {
-                name: '電腦繪圖入門',
-                number: 18,
-                speaker: 'seeking'
-            }, {
-                name: '資料科學入門',
-                number: 15,
-                speaker: 'seeking'
-            }, {
-                name: 'Photoshop 修圖技巧',
-                number: 11,
-                speaker: 'seeking'
-            }, {
-                name: 'Python 入門',
-                number: 8,
-                speaker: 'seeking'
-            }, {
-                name: '手作甜點',
-                number: 7,
-                speaker: 'not-invite'
-            }, {
-                name: '簡報設計技巧',
-                number: 7,
-                speaker: 'seeking'
-            }, {
-                name: '攝影入門',
-                number: 6,
-                speaker: 'seeking'
-            }
-        ]
-    }
+const VOTE_OPTIONS = [
+    '攝影入門',
+    '網頁設計入門',
+    '書法入門',
+    'Arduino 入門',
+    'Photoshop 入門',
+    '機器學習應用入門',
+    'After Effects 動畫視覺效果',
+    '機器學習理論入門',
+    'Illustrator 插畫設計',
+    '學習科學入門'
 ];
 
 class Vote extends Component {
-    renderResult() {
-        return VOTE_RESULT.map(({name, table}, i) => {
-            return (
-                <Col key={i} xs={12} md={6}>
-                    <h2>{name}</h2>
-                    <Table responsive>
-                        <tbody>
+
+
+    renderOptions() {
+        return (
+            <Table responsive>
+                <thead>
+                    <tr>
+                        <th className="vote-result-topic">本期主題 9.12 - 9.24</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {VOTE_OPTIONS.map(o => {
+                        return (
                             <tr>
-                                <td className="vote-result-topic">主題</td>
-                                <td className="vote-result-number">票數</td>
-                                <td className="vote-result-speaker">講者邀請</td>
+                                <td>{o}</td>
                             </tr>
-                            {table.map(({name, number, speaker}, i) => {
-                                return (
-                                    <tr key={i}>
-                                        <td>{name}</td>
-                                        <td>{number}</td>
-                                        <td>
-                                            {speaker === 'not-invite'
-                                                ? '暫不徵求'
-                                                : <Link to="/create-workshop">徵求中</Link>}
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </Table>
-                </Col>
-            );
-        });
+                        );
+                    })}
+                </tbody>
+            </Table>
+        );
     }
 
     render() {
         return (
-            <div className="outer my-5">
+            <div className="inner my-5">
                 <h1 className="mb-3">主題票選</h1>
-                <h2 className="mb-3">
-                    <a href="https://www.facebook.com/groups/113691139345877/" target="_blank" rel="noopener noreferrer">點我進入票選活動</a>
-                </h2>
-                <Row>
-                    {this.renderResult()}
-                </Row>
-
+                <h4 className="mb-3">
+                    <a href="https://www.facebook.com/groups/113691139345877/" target="_blank" rel="noopener noreferrer">點我提名、投票</a>
+                </h4>
+                {this.renderOptions()}
+                <h4>
+                    <a href="https://www.facebook.com/groups/113691139345877/" target="_blank" rel="noopener noreferrer">點我提名、投票</a>
+                </h4>
             </div>
         );
     }

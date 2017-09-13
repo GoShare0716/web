@@ -9,15 +9,12 @@ import {connect} from 'react-redux';
 import {history} from '../../utils';
 import {unauthenticated} from '../../actions/auth';
 
-
-
-
-
 class AttendButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isModalOpen: false
+            isModalOpen: false,
+            isClicked: false
         };
 
         this.modalToggle = this.modalToggle.bind(this);
@@ -26,6 +23,7 @@ class AttendButton extends Component {
     }
 
     render() {
+        const {isClicked} = this.state;
         const {
             auth,
             unauthenticated,
@@ -83,9 +81,21 @@ class AttendButton extends Component {
                         break;
                     case 'investigating':
                     case 'reached':
-                        buttonText = '我要報名';
-                        buttonColor = 'primary';
-                        buttonDisabled = false;
+                        if (auth.authenticated) {
+                            buttonText = '我要報名';
+                            buttonColor = 'primary';
+                            buttonDisabled = false;
+                        } else {
+                            if (isClicked) {
+                                buttonText = '右上方登入後報名';
+                                buttonColor = 'warning';
+                                buttonDisabled = false;
+                            } else {
+                                buttonText = '我要報名';
+                                buttonColor = 'primary';
+                                buttonDisabled = false;
+                            }
+                        }
                         break;
                     default:
                 }
@@ -124,7 +134,9 @@ class AttendButton extends Component {
                 history.push(`#workshop-attend`);
             }
         } else {
-            unauthenticated(false);
+            this.setState({
+                isClicked: true
+            })
         }
     }
 

@@ -51,7 +51,7 @@
 
 .landing-page p + p
 {
-    margin: 1.75rem 0 0 0;
+    margin: 1.125rem 0 0 0;
 }
 
 @media (max-width: 991px)
