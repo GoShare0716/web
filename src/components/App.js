@@ -8,21 +8,12 @@ import LandingPage from './LandingPage/LandingPage';
 import NavBar from './NavBar/NavBar';
 import NavBarAlert from './NavBar/NavBarAlert';
 import User from './User/User';
-import Vote from './Vote/Vote';
 import Workshop from './Workshop/Workshop';
 import WorkshopCreate from './Workshop/WorkshopCreate';
 import WorkshopList from './Workshop/WorkshopList';
 import WorkshopManage from './Workshop/WorkshopManage';
 import WorkshopUpdate from './Workshop/WorkshopUpdate';
 import {history} from '../utils';
-
-
-
-
-
-
-
-
 
 class App extends Component {
     render() {
@@ -32,13 +23,13 @@ class App extends Component {
                     <Route path="/" component={NavBar}/>
                     <NavBarAlert/>
                     <div className="full">
-                        <Route exact path="/" component={LandingPage}/>
+                        <Route exact path="/" component={WorkshopList}/>
+                        <Route exact path="/about" component={LandingPage}/>
                         <Route exact path="/workshop" component={WorkshopList}/>
                         <Route exact path="/workshop/:id" component={Workshop}/>
                         <Route exact path="/workshop/:id/manage" component={WorkshopManage}/>
                         <Route exact path="/workshop/:id/update" component={WorkshopUpdate}/>
-                        <Route exact path="/vote" component={Vote}/>
-                        <Route exact path="/create-workshop" component={WorkshopCreate}/>
+                        <Route exact path="/become-speaker" component={WorkshopCreate}/>
                         <Route exact path="/user/:id" component={User}/>
                         <Route exact path="/me" component={User}/>
                     </div>

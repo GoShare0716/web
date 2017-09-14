@@ -13,9 +13,6 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import NavBarAuth from './NavBarAuth';
 
-
-
-
 class NavBar extends Component {
     constructor(props) {
         super(props);
@@ -34,9 +31,7 @@ class NavBar extends Component {
     }
 
     navBarClose() {
-        this.setState({
-            isOpen: false
-        });
+        this.setState({isOpen: false});
     }
 
     render() {
@@ -52,13 +47,10 @@ class NavBar extends Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink onClick={this.navBarClose} tag={Link} to='/workshop' active={pathname === '/workshop'}>工作坊募資</NavLink>
+                                <NavLink onClick={this.navBarClose} tag={Link} to='/workshop' active={pathname === '/workshop'}>工作坊</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink onClick={this.navBarClose} tag={Link} to='/vote' active={pathname === '/vote'}>主題票選</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink onClick={this.navBarClose} tag={Link} to='/create-workshop' active={pathname === '/create-workshop'}>成為講者</NavLink>
+                                <NavLink onClick={this.navBarClose} tag={Link} to='/become-speaker' active={pathname === '/become-speaker'}>成為講者</NavLink>
                             </NavItem>
                             <NavBarAuth onClick={this.navBarClose}/>
                         </Nav>

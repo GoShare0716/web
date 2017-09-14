@@ -36,9 +36,7 @@ const MODULES = {
 
 const validate = values => {
     const errors = {};
-    if (!values.email) {
-        errors.email = 'Email 不可為空';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Email 格式錯誤';
     }
     return errors;
@@ -48,7 +46,7 @@ class User extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isModalOpen: false,
+            isModalOpen: false
         };
 
         this.modalToggle = this.modalToggle.bind(this);
@@ -63,7 +61,7 @@ class User extends Component {
 
     handleSubmit({email, fbUrl, personalWebUrl, introduction}) {
         const {user, setUserEmail, setUserFbUrl, setUserPersonalWebUrl, setUserIntroduction} = this.props;
-        const id = user.profile.id;
+        const {id} = user.profile;
         setUserEmail(id, email);
         setUserFbUrl(id, fbUrl);
         setUserPersonalWebUrl(id, personalWebUrl);
@@ -84,8 +82,6 @@ class User extends Component {
         }
     }
 
-
-
     render() {
         if (this.props.loading) {
             return <SkeletonUser/>
@@ -101,7 +97,7 @@ class User extends Component {
             handleSubmit
         } = this.props;
         return (
-            <div className="outer user mb-5">
+            <div className="full user mb-5">
                 <Profile profile={profile} className="inner">
                     {location.pathname === '/me' && <div className="mt-2">
                         <Button className="mr-2" onClick={this.modalToggle}>編輯個人檔案</Button>
@@ -125,15 +121,17 @@ class User extends Component {
                         </ModalBody>
                     </Modal>}
                 </Profile>
-                <div className="user-propose">
-                    <h3>我主辦的工作坊</h3>
-                    <hr/>
-                    <Row>{createWorkshops.map((c, i) => <WorkshopItem key={c.id} {...c}/>)}</Row>
-                </div>
-                <div className="user-attend">
-                    <h3>我報名的工作坊</h3>
-                    <hr/>
-                    <Row>{attendWorkshops.map((a, i) => <WorkshopItem key={a.id} {...a}/>)}</Row>
+                <div className="outer">
+                    <div className="user-propose">
+                        <h3>我主辦的工作坊</h3>
+                        <hr/>
+                        <Row>{createWorkshops.map((c, i) => <WorkshopItem key={c.id} {...c}/>)}</Row>
+                    </div>
+                    <div className="user-attend">
+                        <h3>我報名的工作坊</h3>
+                        <hr/>
+                        <Row>{attendWorkshops.map((a, i) => <WorkshopItem key={a.id} {...a}/>)}</Row>
+                    </div>
                 </div>
             </div>
         );

@@ -23,8 +23,7 @@ class LandingPage extends Component {
                         </div>
                     </div>
                     <div className="landing-page-item">
-                        <h2 className="text-center">工作坊募資</h2>
-                        <h2 className="text-center subtitle">探索適合您的工作坊</h2>
+                        <h2 className="text-center">探索適合您的工作坊</h2>
                         <div className="mx-auto">
                             <p>為了讓工作坊更貼近學生需求，我們以群眾募資的方式發起工作坊：</p>
                             <h3>募資開始</h3>
@@ -33,14 +32,6 @@ class LandingPage extends Component {
                             <SeeMore text={['享早鳥優惠；講者會與您在討論區交流，讓工作坊符合您的期待。']} more={['募資期間，您可以用較優惠的價錢購買早鳥票，募資成功後則恢復原價。', '您可以在討論區與講者交流，幫助講者了解您參加的動機和想學習的內容，讓工作坊更符合您的期待。', '當報名人數超過門檻時，即募資成功；否，則取消工作坊。']}/>
                             <h3>募資成功</h3>
                             <p>工作坊確定舉辦！在人數額滿、報名截止前都可以持續報名。工作坊當日，請準時出席並繳交報名費用。</p>
-                        </div>
-                    </div>
-                    <div className="landing-page-item">
-                        <h2 className="text-center">主題票選</h2>
-                        <h2 className="text-center subtitle">沒有喜歡的工作坊？</h2>
-                        <div className="mx-auto">
-                            <p>共學每兩週票選一次大家想學習的主題，您可以在主題票選提名、投票任何感興趣的新事物。我們會參考票選結果，來邀請合適的講者籌辦工作坊。<br/><Link to={`/vote`}><i className="fa fa-arrow-circle-right" aria-hidden="true"> 馬上看正在票選的主題</i></Link></p>
-
                         </div>
                     </div>
                 </div>

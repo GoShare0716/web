@@ -13,7 +13,7 @@
 }
 
 .workshop-article
-{    
+{
     font-size: 1.25rem;
     line-height: 1.58;
 }
@@ -67,13 +67,11 @@
 .workshop-article h3 + ol,
 .workshop-article h3 + ul,
 .workshop-article h3 + img,
-.workshop-article h4:first-child,
-.workshop-article p:first-child,
-.workshop-article blockquote:first-child,
-.workshop-article pre:first-child,
-.workshop-article ol:first-child,
-.workshop-article ul:first-child,
-.workshop-article img:first-child
+.workshop-article p blockquote:first-child,
+.workshop-article p pre:first-child,
+.workshop-article p ol:first-child,
+.workshop-article p ul:first-child,
+.workshop-article p img:first-child
 {
     margin: .5rem 0 0 0;
 }

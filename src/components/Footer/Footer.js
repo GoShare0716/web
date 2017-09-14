@@ -4,8 +4,6 @@ import React, {Component} from 'react';
 
 import {Link} from 'react-router-dom';
 
-
-
 class Footer extends Component {
 
     render() {
@@ -15,15 +13,12 @@ class Footer extends Component {
                     <small className="text-muted">© 2017 GoShare All Rights Reserved</small>
                     <div className="footer-anchor">
                         <span>
-                            <Link to="/">關於我們</Link>
-                            <Link to="/workshop">工作坊募資</Link>
-                        </span>
-                        <span>
-                            <Link to="/vote">主題票選</Link>
+                            <Link to="/workshop">工作坊</Link>
                             <Link to="/create-workshop">成為講者</Link>
                         </span>
                         <span>
-                        <a href="https://m.me/goshare0716" target="_blank" rel="noopener noreferrer">錯誤回報</a>
+                            <Link to="/about">關於我們</Link>
+                            <a href="https://m.me/goshare0716" target="_blank" rel="noopener noreferrer">聯絡我們</a>
                         </span>
                         <span>
                             <a href="https://www.facebook.com/goshare0716/" target="_blank" rel="noopener noreferrer">

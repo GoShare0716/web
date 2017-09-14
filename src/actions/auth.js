@@ -1,7 +1,7 @@
 import {deliverAlert} from './alert';
 import {history} from '../utils';
 import {login as loginFromApi} from '../api/auth';
-
+import {viewUser} from './user';
 let hasUserFriends,
     hasEmail;
 var scroll = require('scroll');
@@ -17,7 +17,6 @@ export const facebookLogin = () => dispatch => {
             auth_type: 'rerequest'
         };
     window.FB.login(response => {
-        console.log(response);
         if (response.authResponse) {
             callGraphAPI(dispatch, response.authResponse.accessToken);
         } else {
@@ -84,6 +83,7 @@ const login = async(dispatch, user) => {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('thumbnailUrl', user.thumbnailUrl);
         localStorage.setItem('role', role);
+        dispatch(viewUser('me'));
         dispatch({type: '@AUTH/LOGIN_SUCCESS'});
         dispatch(deliverAlert('登入成功', 'success'));
     } catch (e) {

@@ -1,0 +1,55 @@
+.workshop-list-banner
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 7rem 0;
+
+    color: white;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (min-width: 1200px)
+{
+    .workshop-list-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/5LIe6Mk.jpg);
+    }
+}
+
+@media (max-width: 1199px)
+{
+    .workshop-list-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/kL2oiXZ.jpg);
+    }
+}
+
+@media (max-width: 991px)
+{
+    .workshop-list-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/dRxMFSm.jpg);
+    }
+}
+
+@media (max-width: 767px)
+{
+    .workshop-list-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/OmYLtGH.jpg);
+        padding: 5rem 0;
+    }
+}
+
+@media (max-width: 543px)
+{
+    .workshop-list-banner
+    {
+        background-image: linear-gradient(to left, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/oW8Y2jH.png);
+    }
+}

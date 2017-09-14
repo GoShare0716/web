@@ -1,0 +1,71 @@
+.workshop-create
+{
+    height: 100%;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    padding-top: 5rem;
+    padding-bottom: 8rem;
+}
+
+@media (min-width: 1200px)
+{
+    .workshop-create
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/u9uc4b4.jpg);
+    }
+}
+
+@media (max-width: 1199px)
+{
+    .workshop-create
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/gAHC2d4.jpg);
+    }
+}
+
+@media (max-width: 991px)
+{
+    .workshop-create
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/2ku7zaJ.jpg);
+    }
+}
+
+@media (max-width: 767px)
+{
+    .workshop-create
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/EmbbCqx.jpg);
+        padding: 5rem 0;
+    }
+}
+
+@media (max-width: 543px)
+{
+    .workshop-create
+    {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(https://i.imgur.com/3CMVMRH.jpg);
+    }
+}
+
+
+.workshop-create-form-container
+{
+    width: 100%;
+    max-width: 560px;
+}
+
+.workshop-create-form-container h1
+{
+    color: white;
+}
+
+.workshop-create-form
+{
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: .25rem;
+}

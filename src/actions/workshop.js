@@ -17,20 +17,15 @@ import {deliverAlert} from './alert';
 import {history} from '../utils';
 import moment from 'moment';
 
-
-
-
 export const createWorkshop = workshop => async dispatch => {
     dispatch(showLoading());
     try {
-        const {requirement, targetAudience, goal} = workshop;
-        const nextWorkshop = {
+        const res = await createWorkshopFromApi({
             ...workshop,
-            requirement: requirement.filter(r => r.trim() !== ''),
-            targetAudience: targetAudience.filter(t => t.trim() !== ''),
-            goal: goal.filter(g => g.trim() !== ''),
-        }
-        const res = await createWorkshopFromApi(nextWorkshop);
+            requirement: [''],
+            goal: [''],
+            targetAudience: ['']
+        });
         const data = res.data;
         history.push(`/workshop/${data.id}`);
     } catch (e) {
@@ -70,7 +65,15 @@ export const viewWorkshop = id => async dispatch => {
 export const updateWorkshop = workshop => async dispatch => {
     dispatch(showLoading());
     try {
-        const {requirement, targetAudience, goal, deadline, closing, startDatetime, endDatetime} = workshop;
+        const {
+            requirement,
+            targetAudience,
+            goal,
+            deadline,
+            closing,
+            startDatetime,
+            endDatetime
+        } = workshop;
         const nextWorkshop = {
             ...workshop,
             requirement: requirement.filter(r => r.trim() !== ''),

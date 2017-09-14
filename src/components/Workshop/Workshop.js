@@ -16,14 +16,6 @@ import moment from 'moment';
 import renderHTML from 'react-render-html';
 import {viewWorkshop} from '../../actions/workshop';
 
-
-
-
-
-
-
-
-
 class Workshop extends Component {
     constructor(props) {
         super(props);
@@ -40,7 +32,7 @@ class Workshop extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.loading && !this.state.isAlertNotPublished && !nextProps.workshopView.published) {
-            this.props.deliverAlert('工作坊尚未發佈！請至「管理工作坊」頁面設定。', 'warning', 5000);
+            this.props.deliverAlert('工作坊尚未發佈！請至「管理工作坊」頁面設定。', 'info', 5000);
             this.setState({isAlertNotPublished: true});
         }
     }
@@ -188,7 +180,7 @@ class Workshop extends Component {
         } else {
             infoDatetime = `${moment(startDatetime).format('YYYY-MM-DD(dd) HH:mm')} ~ ${moment(endDatetime).format('YYYY-MM-DD(dd) HH:mm')}`;
         }
-        infoCalendar = `http://www.google.com/calendar/event?action=TEMPLATE&text=${title}&dates=${moment(startDatetime).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${moment(endDatetime).toISOString().replace(/-|:|\.\d\d\d/g, "")}&details=${title}&location=${location}&ctz=Asia/Taipei`;
+        infoCalendar = `https://www.google.com/calendar/event?action=TEMPLATE&text=${title}&dates=${moment(startDatetime).toISOString().replace(/-|:|\.\d\d\d/g, "")}/${moment(endDatetime).toISOString().replace(/-|:|\.\d\d\d/g, "")}&details=${title}&location=${location}&ctz=Asia/Taipei`;
 
         return (
             <div className="full workshop mb-5">
@@ -254,18 +246,18 @@ class Workshop extends Component {
                             <li>{`地點：${location}`}</li>
                         </ul>
                     </div>}
-                    <div>
+                    {phase !== 'judging' && phase !== 'judge_na' && <div>
                         <h3>你將學會...</h3>
                         <ul>{goal.map((g, i) => <li key={i}>{g}</li>)}</ul>
-                    </div>
-                    <div>
+                    </div>}
+                    {phase !== 'judging' && phase !== 'judge_na' && <div>
                         <h3>你需要具備...</h3>
                         <ul>{requirement.map((r, i) => <li key={i}>{r}</li>)}</ul>
-                    </div>
-                    <div>
+                    </div>}
+                    {phase !== 'judging' && phase !== 'judge_na' && <div>
                         <h3>這堂課適合給...</h3>
                         <ul>{targetAudience.map((t, i) => <li key={i}>{t}</li>)}</ul>
-                    </div>
+                    </div>}
                     {phase !== 'judging' && phase !== 'judge_na' && <div>
                         {renderHTML(description)}
                     </div>}
