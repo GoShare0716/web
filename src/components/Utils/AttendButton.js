@@ -9,6 +9,10 @@ import {connect} from 'react-redux';
 import {history} from '../../utils';
 import {unauthenticated} from '../../actions/auth';
 
+
+
+
+
 class AttendButton extends Component {
     constructor(props) {
         super(props);
@@ -51,7 +55,7 @@ class AttendButton extends Component {
                 switch (phase) {
                     case 'judging':
                         buttonText = '審核中';
-                        buttonColor = 'info';
+                        buttonColor = 'warning';
                         buttonDisabled = true;
                         break;
                     case 'judge_na':

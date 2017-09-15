@@ -1,4 +1,4 @@
-import './LandingPage.css';
+import './About.css';
 
 import {Col, Row} from 'reactstrap';
 import React, {Component} from 'react';
@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import SeeMore from '../Utils/SeeMore';
 
-class LandingPage extends Component {
+class About extends Component {
     render() {
         return (
             <div className="landing-page">
@@ -78,4 +78,4 @@ class LandingPage extends Component {
     }
 }
 
-export default LandingPage;
+export default About;

@@ -17,6 +17,14 @@ import {deliverAlert} from '../../actions/alert';
 import moment from 'moment';
 import {unauthenticated} from '../../actions/auth';
 
+
+
+
+
+
+
+
+
 const CATEGORY_OPTIONS = [
     {
         text: '科技',
@@ -57,6 +65,8 @@ const validate = (values, {initialValues: phase}) => {
         if (!values.category) {
             errors.category = '類別不可為空';
         }
+    }
+    if (!restDisabled) {
         if (!values.requirement || values.requirement.filter(r => r.trim() !== '').length === 0) {
             errors.requirement = '請至少填寫一項先決條件';
         }
@@ -66,8 +76,6 @@ const validate = (values, {initialValues: phase}) => {
         if (!values.goal || values.goal.filter(g => g.trim() !== '').length === 0) {
             errors.goal = '請至少填寫一個學習內容';
         }
-    }
-    if (!restDisabled) {
         if (!values.startDatetime) {
             errors.startDatetime = '開始時間不可為空';
         }
@@ -170,7 +178,7 @@ class WorkshopUpdate extends Component {
                         <Link to={`/workshop/${id}`}>返回</Link>
                     </div>
                     <Field component={RenderField} label="標題" type="text" name="title" placeholder="例如：電腦繪圖入門" disabled={createDisabled}/>
-                    <Field component={RenderRadio} label="類別" name="category" options={CATEGORY_OPTIONS} disabled={restDisabled}/>
+                    <Field component={RenderRadio} label="類別" name="category" options={CATEGORY_OPTIONS} disabled={createDisabled}/>
                     <Field component={AddableText} label="您的工作坊有任何先決條件嗎？" name="requirement" placeholder="例如：您需要修過微積分一" disabled={restDisabled}/>
                     <Field component={AddableText} label="您的目標學生是誰？" name="targetAudience" placeholder="例如：任何對攝影有興趣的人" disabled={restDisabled}/>
                     <Field component={AddableText} label="他們將會學習什麼內容？在您的工作坊結束時，學生將能夠..." name="goal" placeholder="例如：建立自己的個人網站" disabled={restDisabled}/>

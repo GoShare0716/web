@@ -17,6 +17,9 @@ import {deliverAlert} from './alert';
 import {history} from '../utils';
 import moment from 'moment';
 
+
+
+
 export const createWorkshop = workshop => async dispatch => {
     dispatch(showLoading());
     try {
@@ -65,7 +68,7 @@ export const viewWorkshop = id => async dispatch => {
 export const updateWorkshop = workshop => async dispatch => {
     dispatch(showLoading());
     try {
-        const {
+        let {
             requirement,
             targetAudience,
             goal,
@@ -74,11 +77,14 @@ export const updateWorkshop = workshop => async dispatch => {
             startDatetime,
             endDatetime
         } = workshop;
+        requirement = requirement.filter(r => r.trim() !== '');
+        targetAudience = targetAudience.filter(t => t.trim() !== '');
+        goal = goal.filter(g => g.trim() !== '');
         const nextWorkshop = {
             ...workshop,
-            requirement: requirement.filter(r => r.trim() !== ''),
-            targetAudience: targetAudience.filter(t => t.trim() !== ''),
-            goal: goal.filter(g => g.trim() !== ''),
+            requirement: requirement.length === 0 ? [''] : requirement,
+            targetAudience: targetAudience.length === 0 ? [''] : targetAudience,
+            goal: goal.length === 0 ? [''] : goal,
             deadline: moment(deadline).valueOf(),
             closing: moment(closing).valueOf(),
             startDatetime: moment(startDatetime).valueOf(),
