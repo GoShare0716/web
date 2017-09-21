@@ -14,3 +14,13 @@
 
     border-radius: 50%;
 }
+
+.profile p
+{
+    margin: .25rem 0;
+}
+
+.profile span
+{
+    color: inherit !important;
+}

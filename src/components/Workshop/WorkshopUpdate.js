@@ -17,14 +17,6 @@ import {deliverAlert} from '../../actions/alert';
 import moment from 'moment';
 import {unauthenticated} from '../../actions/auth';
 
-
-
-
-
-
-
-
-
 const CATEGORY_OPTIONS = [
     {
         text: '科技',
@@ -35,12 +27,12 @@ const CATEGORY_OPTIONS = [
     }
 ];
 
-const getDisabled = (phase) => {
+const getDisabled = (phase, role) => {
     let createDisabled,
         memberDisabled,
         restDisabled,
         submitDisabled;
-    if (localStorage.getItem('role') === 'admin') {
+    if (role === 'admin') {
         createDisabled = memberDisabled = restDisabled = submitDisabled = false;
     } else {
         createDisabled = false;
@@ -56,7 +48,7 @@ const getDisabled = (phase) => {
 };
 
 const validate = (values, {initialValues: phase}) => {
-    const {createDisabled, restDisabled} = getDisabled(phase);
+    const {createDisabled, restDisabled} = getDisabled(phase, 'member');
     const errors = {};
     if (!createDisabled) {
         if (!values.title || !values.title.trim()) {
@@ -155,7 +147,7 @@ class WorkshopUpdate extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState(getDisabled(nextProps.initialValues.phase));
+        this.setState(getDisabled(nextProps.initialValues.phase, localStorage.getItem('role')));
         if (!nextProps.loading && !this.state.isAlert) {
             if (nextProps.initialValues.phase === 'judging') {
                 this.props.deliverAlert('工作坊審核中，審核通過後才能編輯完整內容。', 'info', 5000);

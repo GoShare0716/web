@@ -21,13 +21,6 @@ const MODULES = {
             [
                 'bold', 'italic', 'underline', 'strike'
             ],
-            [
-                {
-                    'color': []
-                }, {
-                    'background': []
-                }
-            ],
             ['link'],
             ['clean']
         ]
