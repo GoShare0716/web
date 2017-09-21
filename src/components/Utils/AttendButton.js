@@ -3,11 +3,13 @@ import './AttendButton.css';
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 import React, {Component} from 'react';
 
+import {Link} from 'react-router-dom';
 import {attendWorkshop} from '../../actions/workshop';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {history} from '../../utils';
 import {unauthenticated} from '../../actions/auth';
+
 
 
 
@@ -111,7 +113,7 @@ class AttendButton extends Component {
                 <Button size="lg" block disabled={buttonDisabled} color={buttonColor} onClick={() => this.onAttendClick(auth, unauthenticated, attended, canceled, attendWorkshop, id)}>{buttonText}</Button>
                 <div className="attend-button">
                     <div className="attend-button-attendees">
-                        {friends.slice(0, Math.min(3, friends.length)).map((f, i) => <img key={i} src={f.thumbnailUrl} alt=""/>)}
+                        {this.renderFriends(friends)}
                     </div>
                     {(phase === 'investigating' || phase === 'closing' || phase === 'full' || phase === 'reached') && attended && !canceled && <span className="link" onClick={this.modalToggle}>取消報名</span>}
                 </div>
@@ -127,6 +129,17 @@ class AttendButton extends Component {
                 </Modal>
             </div>
         );
+    }
+
+    renderFriends(friends) {
+        console.log(friends);
+        return friends.slice(0, Math.min(3, friends.length)).map(({id, thumbnailUrl}, i) => {
+            return (
+                <Link to={`/user/${id}`}>
+                    <img key={i} src={thumbnailUrl} alt=""/>
+                </Link>
+            )
+        });
     }
 
     onAttendClick(auth, unauthenticated, attended, canceled, attendWorkshop, id) {

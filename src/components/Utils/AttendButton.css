@@ -13,7 +13,7 @@
     align-items: center;
 }
 
-.attend-button-attendees > img
+.attend-button-attendees > a > img
 {
     width: 24px;
     height: 24px;
@@ -22,7 +22,7 @@
     border-radius: 50%;
 }
 
-.attend-button-attendees > img:first-child
+.attend-button-attendees > a > img:first-child
 {
     margin-left: 0;
 }
