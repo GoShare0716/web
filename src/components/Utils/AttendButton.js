@@ -132,10 +132,9 @@ class AttendButton extends Component {
     }
 
     renderFriends(friends) {
-        console.log(friends);
         return friends.slice(0, Math.min(3, friends.length)).map(({id, thumbnailUrl}, i) => {
             return (
-                <Link to={`/user/${id}`}>
+                <Link to={`/user/${id}`} key={id}>
                     <img key={i} src={thumbnailUrl} alt=""/>
                 </Link>
             )

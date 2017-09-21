@@ -13,6 +13,11 @@
     align-items: center;
 }
 
+.attend-button-attendees > a
+{
+    margin: 0 0 0 -7px;
+}
+
 .attend-button-attendees > a > img
 {
     width: 24px;
