@@ -17,9 +17,6 @@ import {deliverAlert} from './alert';
 import {history} from '../utils';
 import moment from 'moment';
 
-
-
-
 export const createWorkshop = workshop => async dispatch => {
     dispatch(showLoading());
     try {
@@ -82,9 +79,15 @@ export const updateWorkshop = workshop => async dispatch => {
         goal = goal.filter(g => g.trim() !== '');
         const nextWorkshop = {
             ...workshop,
-            requirement: requirement.length === 0 ? [''] : requirement,
-            targetAudience: targetAudience.length === 0 ? [''] : targetAudience,
-            goal: goal.length === 0 ? [''] : goal,
+            requirement: requirement.length === 0
+                ? ['']
+                : requirement,
+            targetAudience: targetAudience.length === 0
+                ? ['']
+                : targetAudience,
+            goal: goal.length === 0
+                ? ['']
+                : goal,
             deadline: moment(deadline).valueOf(),
             closing: moment(closing).valueOf(),
             startDatetime: moment(startDatetime).valueOf(),
@@ -171,6 +174,7 @@ export const attendWorkshop = id => async dispatch => {
     try {
         const res = await attendWorkshopFromApi(id);
         const data = res.data;
+        dispatch(viewWorkshop(id));
         dispatch({type: '@WORKSHOP/ATTEND', payload: data});
     } catch (e) {
         dispatch(deliverAlert('報名失敗', 'danger'));
